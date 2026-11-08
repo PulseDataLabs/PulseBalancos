@@ -123,7 +123,7 @@ class CVMStatementsScraper(BaseScraper):
                         versao = row.get("VERSAO")
 
                         url_cvm = (
-                            f"https://rad.cvm.gov.br/ENET/consultaExterna/default.aspx?codigoCVM={cd_cvm}"
+                            f"https://www.rad.cvm.gov.br/ENET/frmConsultaExternaCVM.aspx?codigoCVM={cd_cvm}"
                             if cd_cvm
                             else "https://dados.cvm.gov.br"
                         )

@@ -76,12 +76,28 @@ def main() -> int:
     logger.info("Etapa 1: Atualizando catálogo mestre de companhias CVM e B3...")
     try:
         from scripts.build_companies_catalog import build_companies_catalog
-        build_companies_catalog(year=args.year)
+        build_companies_catalog()
     except Exception as e:
         logger.warning("Falha ao atualizar catálogo de companhias: %s", e)
 
-    # 2. Extração e saneamento de demonstrações contábeis
-    logger.info("Etapa 2: Ingestão de demonstrações financeiras (DFP/ITR)...")
+    # 2. Ingestão de Publicações Oficiais e Fatos Relevantes Recentes (CVM IPE)
+    logger.info("Etapa 2: Monitorando últimas publicações e fatos relevantes (IPE 2026/2025)...")
+    try:
+        from scripts.build_latest_publications import build_latest_publications
+        build_latest_publications()
+    except Exception as e:
+        logger.warning("Falha ao atualizar feed de publicações recentes: %s", e)
+
+    # 3. Geração de relatórios e demonstrações detalhadas com histórico multi-ano (2022-2025)
+    logger.info("Etapa 3: Gerando relatórios individuais com série histórica multi-ano em data/companies/...")
+    try:
+        from scripts.build_company_details import build_company_details
+        build_company_details(years=[2022, 2023, 2024, 2025])
+    except Exception as e:
+        logger.warning("Falha ao gerar demonstrações detalhadas por empresa: %s", e)
+
+    # 4. Extração e saneamento de demonstrações contábeis (CVMExtractor)
+    logger.info("Etapa 4: Ingestão de demonstrações financeiras (DFP/ITR)...")
     extractor = CVMExtractor()
     if args.force:
         extractor._cache.clear()
@@ -93,15 +109,7 @@ def main() -> int:
         summary = extractor.process_financial_year(doc_type=dt, year=args.year)
         summaries.append(summary)
 
-    # 3. Geração de relatórios e demonstrações detalhadas por empresa (DRE, BPA, BPP, Docs)
-    logger.info("Etapa 3: Gerando relatórios individuais por empresa em data/companies/...")
-    try:
-        from scripts.build_company_details import build_company_details
-        build_company_details(year=args.year)
-    except Exception as e:
-        logger.warning("Falha ao gerar demonstrações detalhadas por empresa: %s", e)
-
-    # 4. Gera sumário de execução
+    # 5. Gera sumário de execução
     generate_step_summary(summaries, Path("data/etl_summary.md"))
 
     logger.info("Execução finalizada com sucesso.")

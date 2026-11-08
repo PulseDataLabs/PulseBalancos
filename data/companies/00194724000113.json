@@ -15,223 +15,535 @@
   "cidade": "BAURU",
   "uf": "SP",
   "auditor": "PRICEWATERHOUSECOOPERS AUDITORES INDEPENDENTES LTDA.",
-  "ano_balanco_recente": 2023,
+  "anos_disponiveis": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "ano_balanco_recente": 2025,
   "resumo_financeiro": {
-    "ativo_total": 10984130000.0,
-    "patrimonio_liquido": 3934847000.0,
-    "receita_liquida": 3018802000.0,
-    "lucro_liquido": 334090000.0
+    "ativo_total": 10426998000.0,
+    "patrimonio_liquido": 4697786000.0,
+    "receita_liquida": 3575301000.0,
+    "lucro_liquido": 99953000.0,
+    "historico": [
+      {
+        "ano": 2022,
+        "ativo_total": 11386380000.0,
+        "patrimonio_liquido": 3887649000.0,
+        "receita_liquida": 2781576000.0,
+        "lucro_liquido": 297662000.0
+      },
+      {
+        "ano": 2023,
+        "ativo_total": 10984130000.0,
+        "patrimonio_liquido": 3934847000.0,
+        "receita_liquida": 3018802000.0,
+        "lucro_liquido": 334090000.0
+      },
+      {
+        "ano": 2024,
+        "ativo_total": 11078243000.0,
+        "patrimonio_liquido": 3659890000.0,
+        "receita_liquida": 3438492000.0,
+        "lucro_liquido": 28155000.0
+      },
+      {
+        "ano": 2025,
+        "ativo_total": 10426998000.0,
+        "patrimonio_liquido": 4697786000.0,
+        "receita_liquida": 3575301000.0,
+        "lucro_liquido": 99953000.0
+      }
+    ]
   },
   "dre": [
     {
       "cd_conta": "3.01",
       "ds_conta": "Receita de Venda de Bens e/ou Serviços",
       "nivel": 2,
-      "valor": 3018802000.0,
+      "valores": {
+        "2022": 2781576000.0,
+        "2023": 3018802000.0,
+        "2024": 3438492000.0,
+        "2025": 3575301000.0
+      },
+      "valor_recente": 3575301000.0,
+      "var_yoy": 3.98,
       "analise_vertical": 100.0
     },
     {
       "cd_conta": "3.02",
       "ds_conta": "Custo dos Bens e/ou Serviços Vendidos",
       "nivel": 2,
-      "valor": -1995902000.0,
-      "analise_vertical": -66.12
+      "valores": {
+        "2022": -1933757000.0,
+        "2023": -1995902000.0,
+        "2024": -2654305000.0,
+        "2025": -2735680000.0
+      },
+      "valor_recente": -2735680000.0,
+      "var_yoy": -3.07,
+      "analise_vertical": -76.52
+    },
+    {
+      "cd_conta": "3.02.01",
+      "ds_conta": "Custo com energia elétrica",
+      "nivel": 3,
+      "valores": {
+        "2025": -1858126000.0
+      },
+      "valor_recente": -1858126000.0,
+      "var_yoy": null,
+      "analise_vertical": -51.97
+    },
+    {
+      "cd_conta": "3.02.02",
+      "ds_conta": "Custo com operação",
+      "nivel": 3,
+      "valores": {
+        "2025": -877554000.0
+      },
+      "valor_recente": -877554000.0,
+      "var_yoy": null,
+      "analise_vertical": -24.54
+    },
+    {
+      "cd_conta": "3.02.03",
+      "ds_conta": "Repactuação do risco hidrológico",
+      "nivel": 3,
+      "valores": {
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "3.02.04",
+      "ds_conta": "Depreciação e amortização",
+      "nivel": 3,
+      "valores": {
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.03",
       "ds_conta": "Resultado Bruto",
       "nivel": 2,
-      "valor": 1022900000.0,
-      "analise_vertical": 33.88
+      "valores": {
+        "2022": 847819000.0,
+        "2023": 1022900000.0,
+        "2024": 784187000.0,
+        "2025": 839621000.0
+      },
+      "valor_recente": 839621000.0,
+      "var_yoy": 7.07,
+      "analise_vertical": 23.48
     },
     {
       "cd_conta": "3.04",
       "ds_conta": "Despesas/Receitas Operacionais",
       "nivel": 2,
-      "valor": -96567000.0,
-      "analise_vertical": -3.2
+      "valores": {
+        "2022": -165706000.0,
+        "2023": -96567000.0,
+        "2024": -301933000.0,
+        "2025": -226713000.0
+      },
+      "valor_recente": -226713000.0,
+      "var_yoy": 24.91,
+      "analise_vertical": -6.34
     },
     {
       "cd_conta": "3.04.01",
       "ds_conta": "Despesas com Vendas",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.04.02",
       "ds_conta": "Despesas Gerais e Administrativas",
       "nivel": 3,
-      "valor": -160911000.0,
-      "analise_vertical": -5.33
+      "valores": {
+        "2022": -202794000.0,
+        "2023": -160911000.0,
+        "2024": -161921000.0,
+        "2025": -121981000.0
+      },
+      "valor_recente": -121981000.0,
+      "var_yoy": 24.67,
+      "analise_vertical": -3.41
     },
     {
       "cd_conta": "3.04.03",
       "ds_conta": "Perdas pela Não Recuperabilidade de Ativos",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.04.04",
       "ds_conta": "Outras Receitas Operacionais",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.04.05",
       "ds_conta": "Outras Despesas Operacionais",
       "nivel": 3,
-      "valor": -1231000.0,
-      "analise_vertical": -0.04
+      "valores": {
+        "2022": 7826000.0,
+        "2023": -1231000.0,
+        "2024": -13744000.0,
+        "2025": -57219000.0
+      },
+      "valor_recente": -57219000.0,
+      "var_yoy": -316.32,
+      "analise_vertical": -1.6
+    },
+    {
+      "cd_conta": "3.04.05.01",
+      "ds_conta": "Outras receitas (despesas) operacionais, líquidas",
+      "nivel": 4,
+      "valores": {
+        "2025": -57219000.0
+      },
+      "valor_recente": -57219000.0,
+      "var_yoy": null,
+      "analise_vertical": -1.6
+    },
+    {
+      "cd_conta": "3.04.05.02",
+      "ds_conta": "Depreciação e amortização",
+      "nivel": 4,
+      "valores": {
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.04.06",
       "ds_conta": "Resultado de Equivalência Patrimonial",
       "nivel": 3,
-      "valor": 65575000.0,
-      "analise_vertical": 2.17
+      "valores": {
+        "2022": 29262000.0,
+        "2023": 65575000.0,
+        "2024": -126268000.0,
+        "2025": -47513000.0
+      },
+      "valor_recente": -47513000.0,
+      "var_yoy": 62.37,
+      "analise_vertical": -1.33
     },
     {
       "cd_conta": "3.05",
       "ds_conta": "Resultado Antes do Resultado Financeiro e dos Tributos",
       "nivel": 2,
-      "valor": 926333000.0,
-      "analise_vertical": 30.69
+      "valores": {
+        "2022": 682113000.0,
+        "2023": 926333000.0,
+        "2024": 482254000.0,
+        "2025": 612908000.0
+      },
+      "valor_recente": 612908000.0,
+      "var_yoy": 27.09,
+      "analise_vertical": 17.14
     },
     {
       "cd_conta": "3.06",
       "ds_conta": "Resultado Financeiro",
       "nivel": 2,
-      "valor": -538303000.0,
-      "analise_vertical": -17.83
+      "valores": {
+        "2022": -319540000.0,
+        "2023": -538303000.0,
+        "2024": -451661000.0,
+        "2025": -443173000.0
+      },
+      "valor_recente": -443173000.0,
+      "var_yoy": 1.88,
+      "analise_vertical": -12.4
     },
     {
       "cd_conta": "3.06.01",
       "ds_conta": "Receitas Financeiras",
       "nivel": 3,
-      "valor": 220415000.0,
-      "analise_vertical": 7.3
+      "valores": {
+        "2022": 335644000.0,
+        "2023": 220415000.0,
+        "2024": 203233000.0,
+        "2025": 272397000.0
+      },
+      "valor_recente": 272397000.0,
+      "var_yoy": 34.03,
+      "analise_vertical": 7.62
     },
     {
       "cd_conta": "3.06.02",
       "ds_conta": "Despesas Financeiras",
       "nivel": 3,
-      "valor": -758718000.0,
-      "analise_vertical": -25.13
+      "valores": {
+        "2022": -655184000.0,
+        "2023": -758718000.0,
+        "2024": -654894000.0,
+        "2025": -715570000.0
+      },
+      "valor_recente": -715570000.0,
+      "var_yoy": -9.27,
+      "analise_vertical": -20.01
     },
     {
       "cd_conta": "3.07",
       "ds_conta": "Resultado Antes dos Tributos sobre o Lucro",
       "nivel": 2,
-      "valor": 388030000.0,
-      "analise_vertical": 12.85
+      "valores": {
+        "2022": 362573000.0,
+        "2023": 388030000.0,
+        "2024": 30593000.0,
+        "2025": 169735000.0
+      },
+      "valor_recente": 169735000.0,
+      "var_yoy": 454.82,
+      "analise_vertical": 4.75
     },
     {
       "cd_conta": "3.08",
       "ds_conta": "Imposto de Renda e Contribuição Social sobre o Lucro",
       "nivel": 2,
-      "valor": -53940000.0,
-      "analise_vertical": -1.79
+      "valores": {
+        "2022": -64911000.0,
+        "2023": -53940000.0,
+        "2024": -2438000.0,
+        "2025": -69782000.0
+      },
+      "valor_recente": -69782000.0,
+      "var_yoy": -2762.26,
+      "analise_vertical": -1.95
     },
     {
       "cd_conta": "3.08.01",
       "ds_conta": "Corrente",
       "nivel": 3,
-      "valor": -75083000.0,
-      "analise_vertical": -2.49
+      "valores": {
+        "2022": -75423000.0,
+        "2023": -75083000.0,
+        "2024": -54380000.0,
+        "2025": -104921000.0
+      },
+      "valor_recente": -104921000.0,
+      "var_yoy": -92.94,
+      "analise_vertical": -2.93
     },
     {
       "cd_conta": "3.08.02",
       "ds_conta": "Diferido",
       "nivel": 3,
-      "valor": 21143000.0,
-      "analise_vertical": 0.7
+      "valores": {
+        "2022": 10512000.0,
+        "2023": 21143000.0,
+        "2024": 51942000.0,
+        "2025": 35139000.0
+      },
+      "valor_recente": 35139000.0,
+      "var_yoy": -32.35,
+      "analise_vertical": 0.98
     },
     {
       "cd_conta": "3.09",
       "ds_conta": "Resultado Líquido das Operações Continuadas",
       "nivel": 2,
-      "valor": 334090000.0,
-      "analise_vertical": 11.07
+      "valores": {
+        "2022": 297662000.0,
+        "2023": 334090000.0,
+        "2024": 28155000.0,
+        "2025": 99953000.0
+      },
+      "valor_recente": 99953000.0,
+      "var_yoy": 255.01,
+      "analise_vertical": 2.8
     },
     {
       "cd_conta": "3.10",
       "ds_conta": "Resultado Líquido de Operações Descontinuadas",
       "nivel": 2,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.10.01",
       "ds_conta": "Lucro/Prejuízo Líquido das Operações Descontinuadas",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.10.02",
       "ds_conta": "Ganhos/Perdas Líquidas sobre Ativos de Operações Descontinuadas",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.11",
       "ds_conta": "Lucro/Prejuízo Consolidado do Período",
       "nivel": 2,
-      "valor": 334090000.0,
-      "analise_vertical": 11.07
+      "valores": {
+        "2022": 297662000.0,
+        "2023": 334090000.0,
+        "2024": 28155000.0,
+        "2025": 99953000.0
+      },
+      "valor_recente": 99953000.0,
+      "var_yoy": 255.01,
+      "analise_vertical": 2.8
     },
     {
       "cd_conta": "3.11.01",
       "ds_conta": "Atribuído a Sócios da Empresa Controladora",
       "nivel": 3,
-      "valor": 133822000.0,
-      "analise_vertical": 4.43
+      "valores": {
+        "2022": 108579000.0,
+        "2023": 133822000.0,
+        "2024": -94307000.0,
+        "2025": -20582000.0
+      },
+      "valor_recente": -20582000.0,
+      "var_yoy": 78.18,
+      "analise_vertical": -0.58
     },
     {
       "cd_conta": "3.11.02",
       "ds_conta": "Atribuído a Sócios Não Controladores",
       "nivel": 3,
-      "valor": 200268000.0,
-      "analise_vertical": 6.63
+      "valores": {
+        "2022": 189083000.0,
+        "2023": 200268000.0,
+        "2024": 122462000.0,
+        "2025": 120535000.0
+      },
+      "valor_recente": 120535000.0,
+      "var_yoy": -1.57,
+      "analise_vertical": 3.37
     },
     {
       "cd_conta": "3.99",
       "ds_conta": "Lucro por Ação - (Reais / Ação)",
       "nivel": 2,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.99.01",
       "ds_conta": "Lucro Básico por Ação",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.99.01.01",
-      "ds_conta": "PN",
+      "ds_conta": "ON",
       "nivel": 4,
-      "valor": 66.43129959999999,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 54.370000000000005,
+        "2023": 66.43129959999999,
+        "2024": -46.68,
+        "2025": -8.7
+      },
+      "valor_recente": -8.7,
+      "var_yoy": 81.36,
+      "analise_vertical": -0.0
     },
     {
       "cd_conta": "3.99.02",
       "ds_conta": "Lucro Diluído por Ação",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "3.99.02.01",
-      "ds_conta": "PN",
+      "ds_conta": "ON",
       "nivel": 4,
-      "valor": 66.43129959999999,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 54.370000000000005,
+        "2023": 66.43129959999999,
+        "2024": -46.68,
+        "2025": -8.7
+      },
+      "valor_recente": -8.7,
+      "var_yoy": 81.36,
+      "analise_vertical": -0.0
     }
   ],
   "bpa": [
@@ -239,539 +551,1187 @@
       "cd_conta": "1",
       "ds_conta": "Ativo Total",
       "nivel": 1,
-      "valor": 10984130000.0,
+      "valores": {
+        "2022": 11386380000.0,
+        "2023": 10984130000.0,
+        "2024": 11078243000.0,
+        "2025": 10426998000.0
+      },
+      "valor_recente": 10426998000.0,
+      "var_yoy": -5.88,
       "analise_vertical": 100.0
     },
     {
       "cd_conta": "1.01",
       "ds_conta": "Ativo Circulante",
       "nivel": 2,
-      "valor": 1741462000.0,
-      "analise_vertical": 15.85
+      "valores": {
+        "2022": 2055896000.0,
+        "2023": 1741462000.0,
+        "2024": 1944198000.0,
+        "2025": 1548411000.0
+      },
+      "valor_recente": 1548411000.0,
+      "var_yoy": -20.36,
+      "analise_vertical": 14.85
     },
     {
       "cd_conta": "1.01.01",
       "ds_conta": "Caixa e Equivalentes de Caixa",
       "nivel": 3,
-      "valor": 227692000.0,
-      "analise_vertical": 2.07
+      "valores": {
+        "2022": 36114000.0,
+        "2023": 227692000.0,
+        "2024": 1178754000.0,
+        "2025": 810873000.0
+      },
+      "valor_recente": 810873000.0,
+      "var_yoy": -31.21,
+      "analise_vertical": 7.78
+    },
+    {
+      "cd_conta": "1.01.01.01",
+      "ds_conta": "Caixa e equivalente de caixa",
+      "nivel": 4,
+      "valores": {
+        "2022": 36114000.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.01.02",
       "ds_conta": "Aplicações Financeiras",
       "nivel": 3,
-      "valor": 968263000.0,
-      "analise_vertical": 8.82
+      "valores": {
+        "2022": 1435483000.0,
+        "2023": 968263000.0,
+        "2024": 0.0,
+        "2025": 164333000.0
+      },
+      "valor_recente": 164333000.0,
+      "var_yoy": null,
+      "analise_vertical": 1.58
     },
     {
       "cd_conta": "1.01.02.01",
       "ds_conta": "Aplicações Financeiras Avaliadas a Valor Justo através do Resultado",
       "nivel": 4,
-      "valor": 968263000.0,
-      "analise_vertical": 8.82
+      "valores": {
+        "2022": 1435483000.0,
+        "2023": 968263000.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.02.01.01",
       "ds_conta": "Títulos para Negociação",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.02.01.02",
       "ds_conta": "Títulos Designados a Valor Justo",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.02.01.03",
       "ds_conta": "Investimentos de curto prazo",
       "nivel": 5,
-      "valor": 968263000.0,
-      "analise_vertical": 8.82
+      "valores": {
+        "2022": 1435483000.0,
+        "2023": 968263000.0,
+        "2024": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.01.02.02",
       "ds_conta": "Aplicações Financeiras Avaliadas a Valor Justo através de Outros Resultados Abrangentes",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.02.03",
       "ds_conta": "Aplicações Financeiras Avaliadas ao Custo Amortizado",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.03",
       "ds_conta": "Contas a Receber",
       "nivel": 3,
-      "valor": 337071000.0,
-      "analise_vertical": 3.07
+      "valores": {
+        "2022": 306306000.0,
+        "2023": 337071000.0,
+        "2024": 394097000.0,
+        "2025": 401391000.0
+      },
+      "valor_recente": 401391000.0,
+      "var_yoy": 1.85,
+      "analise_vertical": 3.85
     },
     {
       "cd_conta": "1.01.03.01",
       "ds_conta": "Clientes",
       "nivel": 4,
-      "valor": 337071000.0,
-      "analise_vertical": 3.07
+      "valores": {
+        "2022": 306306000.0,
+        "2023": 337071000.0,
+        "2024": 394097000.0,
+        "2025": 401391000.0
+      },
+      "valor_recente": 401391000.0,
+      "var_yoy": 1.85,
+      "analise_vertical": 3.85
     },
     {
       "cd_conta": "1.01.03.01.01",
       "ds_conta": "Contas a receber de clientes",
       "nivel": 5,
-      "valor": 337071000.0,
-      "analise_vertical": 3.07
+      "valores": {
+        "2023": 337071000.0,
+        "2024": 394097000.0
+      },
+      "valor_recente": 394097000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.01.03.02",
       "ds_conta": "Outras Contas a Receber",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.04",
       "ds_conta": "Estoques",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.05",
       "ds_conta": "Ativos Biológicos",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.06",
       "ds_conta": "Tributos a Recuperar",
       "nivel": 3,
-      "valor": 76207000.0,
-      "analise_vertical": 0.69
+      "valores": {
+        "2022": 59731000.0,
+        "2023": 76207000.0,
+        "2024": 104230000.0,
+        "2025": 34524000.0
+      },
+      "valor_recente": 34524000.0,
+      "var_yoy": -66.88,
+      "analise_vertical": 0.33
     },
     {
       "cd_conta": "1.01.06.01",
       "ds_conta": "Tributos Correntes a Recuperar",
       "nivel": 4,
-      "valor": 76207000.0,
-      "analise_vertical": 0.69
+      "valores": {
+        "2022": 59731000.0,
+        "2023": 76207000.0,
+        "2024": 104230000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.06.01.01",
       "ds_conta": "Imposto de renda e contribuição social a recuperar",
       "nivel": 5,
-      "valor": 72859000.0,
-      "analise_vertical": 0.66
+      "valores": {
+        "2022": 57513000.0,
+        "2023": 72859000.0,
+        "2024": 101705000.0
+      },
+      "valor_recente": 101705000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.01.06.01.02",
       "ds_conta": "Outros tributos a recuperar",
       "nivel": 5,
-      "valor": 3348000.0,
-      "analise_vertical": 0.03
+      "valores": {
+        "2022": 2218000.0,
+        "2023": 3348000.0,
+        "2024": 2525000.0
+      },
+      "valor_recente": 2525000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.01.07",
       "ds_conta": "Despesas Antecipadas",
       "nivel": 3,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 23078000.0
+      },
+      "valor_recente": 23078000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.22
     },
     {
       "cd_conta": "1.01.08",
       "ds_conta": "Outros Ativos Circulantes",
       "nivel": 3,
-      "valor": 132229000.0,
-      "analise_vertical": 1.2
+      "valores": {
+        "2022": 218262000.0,
+        "2023": 132229000.0,
+        "2024": 267117000.0,
+        "2025": 114212000.0
+      },
+      "valor_recente": 114212000.0,
+      "var_yoy": -57.24,
+      "analise_vertical": 1.1
     },
     {
       "cd_conta": "1.01.08.01",
       "ds_conta": "Ativos Não-Correntes a Venda",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.08.02",
       "ds_conta": "Ativos de Operações Descontinuadas",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.08.03",
       "ds_conta": "Outros",
       "nivel": 4,
-      "valor": 132229000.0,
-      "analise_vertical": 1.2
+      "valores": {
+        "2022": 218262000.0,
+        "2023": 132229000.0,
+        "2024": 267117000.0,
+        "2025": 114212000.0
+      },
+      "valor_recente": 114212000.0,
+      "var_yoy": -57.24,
+      "analise_vertical": 1.1
     },
     {
       "cd_conta": "1.01.08.03.01",
-      "ds_conta": "Instrumentos financeiros derivativos",
+      "ds_conta": "Fundo de liquidez - Conta reserva",
       "nivel": 5,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 84345000.0,
+        "2025": 12361000.0
+      },
+      "valor_recente": 12361000.0,
+      "var_yoy": -85.34,
+      "analise_vertical": 0.12
     },
     {
       "cd_conta": "1.01.08.03.02",
-      "ds_conta": "Conta de ressarcimento",
+      "ds_conta": "Partes relacionadas",
       "nivel": 5,
-      "valor": 9718000.0,
-      "analise_vertical": 0.09
+      "valores": {
+        "2022": 96350000.0,
+        "2023": 9718000.0,
+        "2024": 3203000.0,
+        "2025": 1874000.0
+      },
+      "valor_recente": 1874000.0,
+      "var_yoy": -41.49,
+      "analise_vertical": 0.02
     },
     {
       "cd_conta": "1.01.08.03.03",
-      "ds_conta": "Cauções e depósitos vinculados",
+      "ds_conta": "Ordens de projetos - P&D",
       "nivel": 5,
-      "valor": 35258000.0,
-      "analise_vertical": 0.32
+      "valores": {
+        "2022": 21074000.0,
+        "2023": 35258000.0,
+        "2024": 2050000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.08.03.04",
-      "ds_conta": "Outros ativos",
+      "ds_conta": "Contratos futuros de energia",
       "nivel": 5,
-      "valor": 87253000.0,
-      "analise_vertical": 0.79
+      "valores": {
+        "2022": 0.0,
+        "2023": 87253000.0,
+        "2024": 171325000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.01.08.03.05",
-      "ds_conta": "Contas a receber de partes relacionadas",
+      "ds_conta": "Outros ativos",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 100838000.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 97460000.0
+      },
+      "valor_recente": 97460000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.93
+    },
+    {
+      "cd_conta": "1.01.08.03.06",
+      "ds_conta": "Ativos indenizáveis pela União",
+      "nivel": 5,
+      "valores": {
+        "2024": 6194000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "1.01.08.03.07",
+      "ds_conta": "Instrumentos financeiros derivativos",
+      "nivel": 5,
+      "valores": {
+        "2025": 139000.0
+      },
+      "valor_recente": 139000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "1.01.08.03.08",
+      "ds_conta": "Dividendos a receber",
+      "nivel": 5,
+      "valores": {
+        "2025": 1221000.0
+      },
+      "valor_recente": 1221000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.01
+    },
+    {
+      "cd_conta": "1.01.08.03.09",
+      "ds_conta": "Cauções e depósitos judiciais",
+      "nivel": 5,
+      "valores": {
+        "2025": 1157000.0
+      },
+      "valor_recente": 1157000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.01
+    },
+    {
+      "cd_conta": "1.01.08.03.10",
+      "ds_conta": "Ressarcimento",
+      "nivel": 5,
+      "valores": {
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02",
       "ds_conta": "Ativo Não Circulante",
       "nivel": 2,
-      "valor": 9242668000.0,
-      "analise_vertical": 84.15
+      "valores": {
+        "2022": 9330484000.0,
+        "2023": 9242668000.0,
+        "2024": 9134045000.0,
+        "2025": 8878587000.0
+      },
+      "valor_recente": 8878587000.0,
+      "var_yoy": -2.8,
+      "analise_vertical": 85.15
     },
     {
       "cd_conta": "1.02.01",
       "ds_conta": "Ativo Realizável a Longo Prazo",
       "nivel": 3,
-      "valor": 522664000.0,
-      "analise_vertical": 4.76
+      "valores": {
+        "2022": 444283000.0,
+        "2023": 522664000.0,
+        "2024": 661504000.0,
+        "2025": 753846000.0
+      },
+      "valor_recente": 753846000.0,
+      "var_yoy": 13.96,
+      "analise_vertical": 7.23
     },
     {
       "cd_conta": "1.02.01.01",
       "ds_conta": "Aplicações Financeiras Avaliadas a Valor Justo através do Resultado",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.01.01",
       "ds_conta": "Títulos Designados a Valor Justo",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.02",
       "ds_conta": "Aplicações Financeiras Avaliadas a Valor Justo através de Outros Resultados Abrangentes",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.03",
       "ds_conta": "Aplicações Financeiras Avaliadas ao Custo Amortizado",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.04",
       "ds_conta": "Contas a Receber",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.04.01",
       "ds_conta": "Clientes",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.04.02",
       "ds_conta": "Outras Contas a Receber",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.05",
       "ds_conta": "Estoques",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.06",
       "ds_conta": "Ativos Biológicos",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.07",
       "ds_conta": "Tributos Diferidos",
       "nivel": 4,
-      "valor": 125876000.0,
-      "analise_vertical": 1.15
+      "valores": {
+        "2022": 128321000.0,
+        "2023": 125876000.0,
+        "2024": 157100000.0,
+        "2025": 152478000.0
+      },
+      "valor_recente": 152478000.0,
+      "var_yoy": -2.94,
+      "analise_vertical": 1.46
     },
     {
       "cd_conta": "1.02.01.07.01",
       "ds_conta": "Imposto de Renda e Contribuição Social Diferidos",
       "nivel": 5,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 152478000.0
+      },
+      "valor_recente": 152478000.0,
+      "var_yoy": null,
+      "analise_vertical": 1.46
     },
     {
       "cd_conta": "1.02.01.08",
       "ds_conta": "Despesas Antecipadas",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.09",
       "ds_conta": "Créditos com Partes Relacionadas",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 3797000.0
+      },
+      "valor_recente": 3797000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.04
     },
     {
       "cd_conta": "1.02.01.09.01",
       "ds_conta": "Créditos com Coligadas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.09.03",
       "ds_conta": "Créditos com Controladores",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.09.04",
       "ds_conta": "Créditos com Outras Partes Relacionadas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.10",
       "ds_conta": "Outros Ativos Não Circulantes",
       "nivel": 4,
-      "valor": 396788000.0,
-      "analise_vertical": 3.61
+      "valores": {
+        "2022": 315962000.0,
+        "2023": 396788000.0,
+        "2024": 504404000.0,
+        "2025": 597571000.0
+      },
+      "valor_recente": 597571000.0,
+      "var_yoy": 18.47,
+      "analise_vertical": 5.73
     },
     {
       "cd_conta": "1.02.01.10.01",
       "ds_conta": "Ativos Não-Correntes a Venda",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.10.02",
       "ds_conta": "Ativos de Operações Descontinuadas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.01.10.03",
-      "ds_conta": "Cauções e depósitos vinculados",
+      "ds_conta": "Fundo de liquidez - Conta reserva",
       "nivel": 5,
-      "valor": 347842000.0,
-      "analise_vertical": 3.17
+      "valores": {
+        "2022": 265557000.0,
+        "2023": 347842000.0,
+        "2024": 6960000.0,
+        "2025": 509159000.0
+      },
+      "valor_recente": 509159000.0,
+      "var_yoy": 7215.5,
+      "analise_vertical": 4.88
     },
     {
       "cd_conta": "1.02.01.10.04",
-      "ds_conta": "Imposto de renda e contribuição social a recuperar",
+      "ds_conta": "Cauções e depósitos judiciais",
       "nivel": 5,
-      "valor": 9032000.0,
+      "valores": {
+        "2022": 4157000.0,
+        "2023": 9032000.0,
+        "2024": 24212000.0,
+        "2025": 8587000.0
+      },
+      "valor_recente": 8587000.0,
+      "var_yoy": -64.53,
       "analise_vertical": 0.08
     },
     {
       "cd_conta": "1.02.01.10.05",
-      "ds_conta": "Conta de ressarcimento",
+      "ds_conta": "Outros ativos",
       "nivel": 5,
-      "valor": 7854000.0,
-      "analise_vertical": 0.07
+      "valores": {
+        "2022": 46248000.0,
+        "2023": 7854000.0,
+        "2024": 6038000.0,
+        "2025": 2369000.0
+      },
+      "valor_recente": 2369000.0,
+      "var_yoy": -60.77,
+      "analise_vertical": 0.02
     },
     {
       "cd_conta": "1.02.01.10.06",
-      "ds_conta": "Outros ativos",
+      "ds_conta": "Contratos futuros de energia",
       "nivel": 5,
-      "valor": 32060000.0,
-      "analise_vertical": 0.29
+      "valores": {
+        "2022": 0.0,
+        "2023": 32060000.0,
+        "2024": 33618000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "1.02.01.10.07",
+      "ds_conta": "Ativo sujeito à indenização",
+      "nivel": 5,
+      "valores": {
+        "2024": 14847000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "1.02.01.10.08",
+      "ds_conta": "Ativos indenizáveis pela União",
+      "nivel": 5,
+      "valores": {
+        "2024": 418729000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "1.02.01.10.09",
+      "ds_conta": "Tributos a recuperar",
+      "nivel": 5,
+      "valores": {
+        "2025": 77456000.0
+      },
+      "valor_recente": 77456000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.74
+    },
+    {
+      "cd_conta": "1.02.01.10.10",
+      "ds_conta": "Instrumentos financeiros derivativos",
+      "nivel": 5,
+      "valores": {
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "1.02.01.10.11",
+      "ds_conta": "Ressarcimento",
+      "nivel": 5,
+      "valores": {
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.02",
       "ds_conta": "Investimentos",
       "nivel": 3,
-      "valor": 1278747000.0,
-      "analise_vertical": 11.64
+      "valores": {
+        "2022": 1098047000.0,
+        "2023": 1278747000.0,
+        "2024": 1384708000.0,
+        "2025": 1301339000.0
+      },
+      "valor_recente": 1301339000.0,
+      "var_yoy": -6.02,
+      "analise_vertical": 12.48
     },
     {
       "cd_conta": "1.02.02.01",
       "ds_conta": "Participações Societárias",
       "nivel": 4,
-      "valor": 1278747000.0,
-      "analise_vertical": 11.64
+      "valores": {
+        "2022": 1098047000.0,
+        "2023": 1278747000.0,
+        "2024": 1384708000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.02.01.01",
       "ds_conta": "Participações em Coligadas",
       "nivel": 5,
-      "valor": 1278747000.0,
-      "analise_vertical": 11.64
+      "valores": {
+        "2022": 1098047000.0,
+        "2023": 1278747000.0,
+        "2024": 1384708000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.02.01.04",
       "ds_conta": "Participações em Controladas em Conjunto",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.02.01.05",
       "ds_conta": "Outros Investimentos",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.02.02",
       "ds_conta": "Propriedades para Investimento",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.03",
       "ds_conta": "Imobilizado",
       "nivel": 3,
-      "valor": 6348930000.0,
-      "analise_vertical": 57.8
+      "valores": {
+        "2022": 6539861000.0,
+        "2023": 6348930000.0,
+        "2024": 6143674000.0,
+        "2025": 6009207000.0
+      },
+      "valor_recente": 6009207000.0,
+      "var_yoy": -2.19,
+      "analise_vertical": 57.63
     },
     {
       "cd_conta": "1.02.03.01",
       "ds_conta": "Imobilizado em Operação",
       "nivel": 4,
-      "valor": 5697534000.0,
-      "analise_vertical": 51.87
+      "valores": {
+        "2022": 6014124000.0,
+        "2023": 5697534000.0,
+        "2024": 5630749000.0,
+        "2025": 5943343000.0
+      },
+      "valor_recente": 5943343000.0,
+      "var_yoy": 5.55,
+      "analise_vertical": 57.0
     },
     {
       "cd_conta": "1.02.03.01.01",
       "ds_conta": "Imobilizado em serviço",
       "nivel": 5,
-      "valor": 5696956000.0,
-      "analise_vertical": 51.87
+      "valores": {
+        "2022": 6012025000.0,
+        "2023": 5696956000.0,
+        "2024": 5630171000.0
+      },
+      "valor_recente": 5630171000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.02.03.01.02",
       "ds_conta": "Imóveis destinados a uso futuro",
       "nivel": 5,
-      "valor": 578000.0,
-      "analise_vertical": 0.01
+      "valores": {
+        "2022": 2099000.0,
+        "2023": 578000.0,
+        "2024": 578000.0
+      },
+      "valor_recente": 578000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.02.03.02",
       "ds_conta": "Direito de Uso em Arrendamento",
       "nivel": 4,
-      "valor": 98546000.0,
-      "analise_vertical": 0.9
+      "valores": {
+        "2022": 112528000.0,
+        "2023": 98546000.0,
+        "2024": 66199000.0,
+        "2025": 65864000.0
+      },
+      "valor_recente": 65864000.0,
+      "var_yoy": -0.51,
+      "analise_vertical": 0.63
     },
     {
       "cd_conta": "1.02.03.02.01",
       "ds_conta": "Direito de Uso de Terreno Arrendado",
       "nivel": 5,
-      "valor": 92716000.0,
-      "analise_vertical": 0.84
+      "valores": {
+        "2023": 92716000.0,
+        "2024": 66199000.0
+      },
+      "valor_recente": 66199000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.02.03.02.02",
       "ds_conta": "Direito de Uso de Edificações Arrendadas",
       "nivel": 5,
-      "valor": 5830000.0,
-      "analise_vertical": 0.05
+      "valores": {
+        "2023": 5830000.0,
+        "2024": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.02.03.03",
       "ds_conta": "Imobilizado em Andamento",
       "nivel": 4,
-      "valor": 552850000.0,
-      "analise_vertical": 5.03
+      "valores": {
+        "2022": 413209000.0,
+        "2023": 552850000.0,
+        "2024": 446726000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.04",
       "ds_conta": "Intangível",
       "nivel": 3,
-      "valor": 1092327000.0,
-      "analise_vertical": 9.94
+      "valores": {
+        "2022": 1248293000.0,
+        "2023": 1092327000.0,
+        "2024": 944159000.0,
+        "2025": 814195000.0
+      },
+      "valor_recente": 814195000.0,
+      "var_yoy": -13.77,
+      "analise_vertical": 7.81
     },
     {
       "cd_conta": "1.02.04.01",
       "ds_conta": "Intangíveis",
       "nivel": 4,
-      "valor": 1092327000.0,
-      "analise_vertical": 9.94
+      "valores": {
+        "2022": 1248293000.0,
+        "2023": 1092327000.0,
+        "2024": 944159000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.04.01.01",
       "ds_conta": "Contrato de Concessão",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.04.01.02",
-      "ds_conta": "Uso do bem público",
+      "ds_conta": "Intangíveis",
       "nivel": 5,
-      "valor": 17941000.0,
-      "analise_vertical": 0.16
+      "valores": {
+        "2022": 813789000.0,
+        "2023": 17941000.0,
+        "2024": 15851000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "1.02.04.01.03",
       "ds_conta": "Intangível Gerado na Aquisição de Investimentos",
       "nivel": 5,
-      "valor": 287145000.0,
-      "analise_vertical": 2.61
+      "valores": {
+        "2022": 353957000.0,
+        "2023": 287145000.0,
+        "2024": 230028000.0
+      },
+      "valor_recente": 230028000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.02.04.01.04",
       "ds_conta": "Extensão de concessão",
       "nivel": 5,
-      "valor": 729255000.0,
-      "analise_vertical": 6.64
+      "valores": {
+        "2022": 20031000.0,
+        "2023": 729255000.0,
+        "2024": 644722000.0
+      },
+      "valor_recente": 644722000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.02.04.01.05",
       "ds_conta": "Software e outros intangíveis",
       "nivel": 5,
-      "valor": 57986000.0,
-      "analise_vertical": 0.53
+      "valores": {
+        "2022": 60516000.0,
+        "2023": 57986000.0,
+        "2024": 53558000.0
+      },
+      "valor_recente": 53558000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "1.02.04.02",
       "ds_conta": "Goodwill",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     }
   ],
@@ -780,946 +1740,1937 @@
       "cd_conta": "2",
       "ds_conta": "Passivo Total",
       "nivel": 1,
-      "valor": 10984130000.0,
+      "valores": {
+        "2022": 11386380000.0,
+        "2023": 10984130000.0,
+        "2024": 11078243000.0,
+        "2025": 10426998000.0
+      },
+      "valor_recente": 10426998000.0,
+      "var_yoy": -5.88,
       "analise_vertical": 100.0
     },
     {
       "cd_conta": "2.01",
       "ds_conta": "Passivo Circulante",
       "nivel": 2,
-      "valor": 1284788000.0,
-      "analise_vertical": 11.7
+      "valores": {
+        "2022": 983229000.0,
+        "2023": 1284788000.0,
+        "2024": 2471600000.0,
+        "2025": 2155420000.0
+      },
+      "valor_recente": 2155420000.0,
+      "var_yoy": -12.79,
+      "analise_vertical": 20.67
     },
     {
       "cd_conta": "2.01.01",
       "ds_conta": "Obrigações Sociais e Trabalhistas",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.01.01",
       "ds_conta": "Obrigações Sociais",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.01.02",
       "ds_conta": "Obrigações Trabalhistas",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": 0.0
+    },
+    {
+      "cd_conta": "2.01.01.02.01",
+      "ds_conta": "Obrigações estimadas e folha de pagamento",
+      "nivel": 5,
+      "valores": {
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.02",
       "ds_conta": "Fornecedores",
       "nivel": 3,
-      "valor": 210753000.0,
-      "analise_vertical": 1.92
+      "valores": {
+        "2022": 157452000.0,
+        "2023": 210753000.0,
+        "2024": 264250000.0,
+        "2025": 240400000.0
+      },
+      "valor_recente": 240400000.0,
+      "var_yoy": -9.03,
+      "analise_vertical": 2.31
     },
     {
       "cd_conta": "2.01.02.01",
       "ds_conta": "Fornecedores Nacionais",
       "nivel": 4,
-      "valor": 210753000.0,
-      "analise_vertical": 1.92
+      "valores": {
+        "2022": 157452000.0,
+        "2023": 210753000.0,
+        "2024": 264250000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.02.01.01",
       "ds_conta": "Fornecedores Nacionais",
       "nivel": 5,
-      "valor": 210753000.0,
-      "analise_vertical": 1.92
+      "valores": {
+        "2022": 157452000.0,
+        "2023": 210753000.0,
+        "2024": 264250000.0
+      },
+      "valor_recente": 264250000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.01.02.02",
       "ds_conta": "Fornecedores Estrangeiros",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.03",
       "ds_conta": "Obrigações Fiscais",
       "nivel": 3,
-      "valor": 61484000.0,
-      "analise_vertical": 0.56
+      "valores": {
+        "2022": 56354000.0,
+        "2023": 61484000.0,
+        "2024": 60202000.0,
+        "2025": 52623000.0
+      },
+      "valor_recente": 52623000.0,
+      "var_yoy": -12.59,
+      "analise_vertical": 0.5
     },
     {
       "cd_conta": "2.01.03.01",
       "ds_conta": "Obrigações Fiscais Federais",
       "nivel": 4,
-      "valor": 40862000.0,
-      "analise_vertical": 0.37
+      "valores": {
+        "2022": 39115000.0,
+        "2023": 40862000.0,
+        "2024": 40843000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.03.01.01",
       "ds_conta": "Imposto de Renda e Contribuição Social a Pagar",
       "nivel": 5,
-      "valor": 13117000.0,
-      "analise_vertical": 0.12
+      "valores": {
+        "2022": 17099000.0,
+        "2023": 13117000.0,
+        "2024": 16600000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.03.01.02",
       "ds_conta": "Outros tributos a pagar",
       "nivel": 5,
-      "valor": 27745000.0,
-      "analise_vertical": 0.25
+      "valores": {
+        "2022": 22016000.0,
+        "2023": 27745000.0,
+        "2024": 24243000.0
+      },
+      "valor_recente": 24243000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.01.03.02",
       "ds_conta": "Obrigações Fiscais Estaduais",
       "nivel": 4,
-      "valor": 20622000.0,
-      "analise_vertical": 0.19
+      "valores": {
+        "2022": 17239000.0,
+        "2023": 20622000.0,
+        "2024": 19359000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.03.02.01",
       "ds_conta": "Obrigações Fiscais Estaduais",
       "nivel": 5,
-      "valor": 20622000.0,
-      "analise_vertical": 0.19
+      "valores": {
+        "2022": 17239000.0,
+        "2023": 20622000.0,
+        "2024": 19359000.0
+      },
+      "valor_recente": 19359000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.01.03.03",
       "ds_conta": "Obrigações Fiscais Municipais",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.04",
       "ds_conta": "Empréstimos e Financiamentos",
       "nivel": 3,
-      "valor": 731385000.0,
-      "analise_vertical": 6.66
+      "valores": {
+        "2022": 546253000.0,
+        "2023": 731385000.0,
+        "2024": 1246464000.0,
+        "2025": 1079365000.0
+      },
+      "valor_recente": 1079365000.0,
+      "var_yoy": -13.41,
+      "analise_vertical": 10.35
     },
     {
       "cd_conta": "2.01.04.01",
       "ds_conta": "Empréstimos e Financiamentos",
       "nivel": 4,
-      "valor": 390262000.0,
-      "analise_vertical": 3.55
+      "valores": {
+        "2022": 86953000.0,
+        "2023": 390262000.0,
+        "2024": 1108945000.0,
+        "2025": 1077761000.0
+      },
+      "valor_recente": 1077761000.0,
+      "var_yoy": -2.81,
+      "analise_vertical": 10.34
     },
     {
       "cd_conta": "2.01.04.01.01",
       "ds_conta": "Em Moeda Nacional",
       "nivel": 5,
-      "valor": 105549000.0,
-      "analise_vertical": 0.96
+      "valores": {
+        "2022": 83329000.0,
+        "2023": 105549000.0,
+        "2024": 103821000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.04.01.02",
       "ds_conta": "Em Moeda Estrangeira",
       "nivel": 5,
-      "valor": 284713000.0,
-      "analise_vertical": 2.59
+      "valores": {
+        "2022": 3624000.0,
+        "2023": 284713000.0,
+        "2024": 1005124000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.04.02",
       "ds_conta": "Debêntures",
       "nivel": 4,
-      "valor": 341123000.0,
-      "analise_vertical": 3.11
+      "valores": {
+        "2022": 459300000.0,
+        "2023": 341123000.0,
+        "2024": 137519000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.04.02.01",
       "ds_conta": "Debêntures",
       "nivel": 5,
-      "valor": 341123000.0,
-      "analise_vertical": 3.11
+      "valores": {
+        "2022": 459300000.0,
+        "2023": 341123000.0,
+        "2024": 137519000.0
+      },
+      "valor_recente": 137519000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.01.04.03",
       "ds_conta": "Financiamento por Arrendamento",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 1604000.0
+      },
+      "valor_recente": 1604000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.02
     },
     {
       "cd_conta": "2.01.05",
       "ds_conta": "Outras Obrigações",
       "nivel": 3,
-      "valor": 273912000.0,
-      "analise_vertical": 2.49
+      "valores": {
+        "2022": 199672000.0,
+        "2023": 273912000.0,
+        "2024": 891200000.0,
+        "2025": 783032000.0
+      },
+      "valor_recente": 783032000.0,
+      "var_yoy": -12.14,
+      "analise_vertical": 7.51
     },
     {
       "cd_conta": "2.01.05.01",
       "ds_conta": "Passivos com Partes Relacionadas",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.05.01.01",
       "ds_conta": "Débitos com Coligadas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.05.01.03",
       "ds_conta": "Débitos com Controladores",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.05.01.04",
       "ds_conta": "Débitos com Outras Partes Relacionadas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.05.02",
       "ds_conta": "Outros",
       "nivel": 4,
-      "valor": 273912000.0,
-      "analise_vertical": 2.49
+      "valores": {
+        "2022": 199672000.0,
+        "2023": 273912000.0,
+        "2024": 891200000.0,
+        "2025": 783032000.0
+      },
+      "valor_recente": 783032000.0,
+      "var_yoy": -12.14,
+      "analise_vertical": 7.51
     },
     {
       "cd_conta": "2.01.05.02.01",
       "ds_conta": "Dividendos e JCP a Pagar",
       "nivel": 5,
-      "valor": 8926000.0,
-      "analise_vertical": 0.08
+      "valores": {
+        "2022": 138000.0,
+        "2023": 8926000.0,
+        "2024": 207840000.0,
+        "2025": 151605000.0
+      },
+      "valor_recente": 151605000.0,
+      "var_yoy": -27.06,
+      "analise_vertical": 1.45
     },
     {
       "cd_conta": "2.01.05.02.02",
       "ds_conta": "Dividendo Mínimo Obrigatório a Pagar",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.05.02.03",
       "ds_conta": "Obrigações por Pagamentos Baseados em Ações",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.05.02.04",
-      "ds_conta": "Encargos Setoriais",
+      "ds_conta": "Instrumentos financeiros derivativos",
       "nivel": 5,
-      "valor": 21527000.0,
-      "analise_vertical": 0.2
+      "valores": {
+        "2022": 14143000.0,
+        "2023": 21527000.0,
+        "2024": 20607000.0,
+        "2025": 21522000.0
+      },
+      "valor_recente": 21522000.0,
+      "var_yoy": 4.44,
+      "analise_vertical": 0.21
     },
     {
       "cd_conta": "2.01.05.02.05",
-      "ds_conta": "Instrumentos Financeiros Derivativos",
+      "ds_conta": "Contratos futuros de energia",
       "nivel": 5,
-      "valor": 80693000.0,
-      "analise_vertical": 0.73
-    },
-    {
-      "cd_conta": "2.01.05.02.06",
-      "ds_conta": "Obrigações de aquisições",
-      "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 24651000.0,
+        "2023": 80693000.0,
+        "2024": 52165000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
       "analise_vertical": 0.0
     },
     {
-      "cd_conta": "2.01.05.02.07",
-      "ds_conta": "Conta de ressarcimento",
+      "cd_conta": "2.01.05.02.06",
+      "ds_conta": "Encargos setoriais",
       "nivel": 5,
-      "valor": 92594000.0,
-      "analise_vertical": 0.84
+      "valores": {
+        "2022": 5798000.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 32660000.0
+      },
+      "valor_recente": 32660000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.31
+    },
+    {
+      "cd_conta": "2.01.05.02.07",
+      "ds_conta": "UBP - Uso do bem público",
+      "nivel": 5,
+      "valores": {
+        "2022": 102477000.0,
+        "2023": 92594000.0,
+        "2024": 569749000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.05.02.08",
-      "ds_conta": "Passivo de Arrendamento",
+      "ds_conta": "Obrigações socioambientais e desmobilização de ativos",
       "nivel": 5,
-      "valor": 5529000.0,
-      "analise_vertical": 0.05
+      "valores": {
+        "2022": 52465000.0,
+        "2023": 5529000.0,
+        "2024": 1727000.0,
+        "2025": 1318000.0
+      },
+      "valor_recente": 1318000.0,
+      "var_yoy": -23.68,
+      "analise_vertical": 0.01
     },
     {
       "cd_conta": "2.01.05.02.09",
-      "ds_conta": "Outras Obrigações",
+      "ds_conta": "Outros passivos",
       "nivel": 5,
-      "valor": 64643000.0,
-      "analise_vertical": 0.59
+      "valores": {
+        "2023": 64643000.0,
+        "2024": 39112000.0,
+        "2025": 50005000.0
+      },
+      "valor_recente": 50005000.0,
+      "var_yoy": 27.85,
+      "analise_vertical": 0.48
+    },
+    {
+      "cd_conta": "2.01.05.02.10",
+      "ds_conta": "Provisão de ressarcimento",
+      "nivel": 5,
+      "valores": {
+        "2025": 516327000.0
+      },
+      "valor_recente": 516327000.0,
+      "var_yoy": null,
+      "analise_vertical": 4.95
+    },
+    {
+      "cd_conta": "2.01.05.02.11",
+      "ds_conta": "Provisão para litígios",
+      "nivel": 5,
+      "valores": {
+        "2025": 9595000.0
+      },
+      "valor_recente": 9595000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.09
     },
     {
       "cd_conta": "2.01.06",
       "ds_conta": "Provisões",
       "nivel": 3,
-      "valor": 7254000.0,
-      "analise_vertical": 0.07
+      "valores": {
+        "2022": 23498000.0,
+        "2023": 7254000.0,
+        "2024": 9484000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.01",
       "ds_conta": "Provisões Fiscais Previdenciárias Trabalhistas e Cíveis",
       "nivel": 4,
-      "valor": 7254000.0,
-      "analise_vertical": 0.07
+      "valores": {
+        "2022": 23498000.0,
+        "2023": 7254000.0,
+        "2024": 9484000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.01.01",
       "ds_conta": "Provisões Fiscais",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.01.02",
       "ds_conta": "Provisões Previdenciárias e Trabalhistas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.01.03",
       "ds_conta": "Provisões para Benefícios a Empregados",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.01.04",
       "ds_conta": "Provisões Cíveis",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.01.05",
       "ds_conta": "Provisões para Processos Judiciais e Outros",
       "nivel": 5,
-      "valor": 7254000.0,
-      "analise_vertical": 0.07
+      "valores": {
+        "2022": 23498000.0,
+        "2023": 7254000.0,
+        "2024": 9484000.0
+      },
+      "valor_recente": 9484000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.01.06.02",
       "ds_conta": "Outras Provisões",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.02.01",
       "ds_conta": "Provisões para Garantias",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.02.02",
       "ds_conta": "Provisões para Reestruturação",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.02.03",
       "ds_conta": "Provisões para Passivos Ambientais e de Desativação",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.06.02.05",
       "ds_conta": "Provisões Regulatórias",
       "nivel": 5,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.01.07",
       "ds_conta": "Passivos sobre Ativos Não-Correntes a Venda e Descontinuados",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.07.01",
       "ds_conta": "Passivos sobre Ativos Não-Correntes a Venda",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.01.07.02",
       "ds_conta": "Passivos sobre Ativos de Operações Descontinuadas",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02",
       "ds_conta": "Passivo Não Circulante",
       "nivel": 2,
-      "valor": 5764495000.0,
-      "analise_vertical": 52.48
+      "valores": {
+        "2022": 6515502000.0,
+        "2023": 5764495000.0,
+        "2024": 4946753000.0,
+        "2025": 3573792000.0
+      },
+      "valor_recente": 3573792000.0,
+      "var_yoy": -27.75,
+      "analise_vertical": 34.27
     },
     {
       "cd_conta": "2.02.01",
       "ds_conta": "Empréstimos e Financiamentos",
       "nivel": 3,
-      "valor": 4789909000.0,
-      "analise_vertical": 43.61
+      "valores": {
+        "2022": 5454411000.0,
+        "2023": 4789909000.0,
+        "2024": 4580239000.0,
+        "2025": 2998671000.0
+      },
+      "valor_recente": 2998671000.0,
+      "var_yoy": -34.53,
+      "analise_vertical": 28.76
     },
     {
       "cd_conta": "2.02.01.01",
       "ds_conta": "Empréstimos e Financiamentos",
       "nivel": 4,
-      "valor": 1420600000.0,
-      "analise_vertical": 12.93
+      "valores": {
+        "2022": 1891315000.0,
+        "2023": 1420600000.0,
+        "2024": 595589000.0,
+        "2025": 2921256000.0
+      },
+      "valor_recente": 2921256000.0,
+      "var_yoy": 390.48,
+      "analise_vertical": 28.02
     },
     {
       "cd_conta": "2.02.01.01.01",
       "ds_conta": "Em Moeda Nacional",
       "nivel": 5,
-      "valor": 471287000.0,
-      "analise_vertical": 4.29
+      "valores": {
+        "2022": 565253000.0,
+        "2023": 471287000.0,
+        "2024": 381693000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.01.01.02",
       "ds_conta": "Em Moeda Estrangeira",
       "nivel": 5,
-      "valor": 949313000.0,
-      "analise_vertical": 8.64
+      "valores": {
+        "2022": 1326062000.0,
+        "2023": 949313000.0,
+        "2024": 213896000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.01.02",
       "ds_conta": "Debêntures",
       "nivel": 4,
-      "valor": 3369309000.0,
-      "analise_vertical": 30.67
+      "valores": {
+        "2022": 3563096000.0,
+        "2023": 3369309000.0,
+        "2024": 3984650000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.01.02.01",
       "ds_conta": "Debêntures",
       "nivel": 5,
-      "valor": 3369309000.0,
-      "analise_vertical": 30.67
+      "valores": {
+        "2022": 3563096000.0,
+        "2023": 3369309000.0,
+        "2024": 3984650000.0
+      },
+      "valor_recente": 3984650000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.02.01.03",
       "ds_conta": "Financiamento por Arrendamento",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 77415000.0
+      },
+      "valor_recente": 77415000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.74
     },
     {
       "cd_conta": "2.02.02",
       "ds_conta": "Outras Obrigações",
       "nivel": 3,
-      "valor": 908138000.0,
-      "analise_vertical": 8.27
+      "valores": {
+        "2022": 988283000.0,
+        "2023": 908138000.0,
+        "2024": 323261000.0,
+        "2025": 162259000.0
+      },
+      "valor_recente": 162259000.0,
+      "var_yoy": -49.81,
+      "analise_vertical": 1.56
     },
     {
       "cd_conta": "2.02.02.01",
       "ds_conta": "Passivos com Partes Relacionadas",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.01.01",
       "ds_conta": "Débitos com Coligadas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.01.03",
       "ds_conta": "Débitos com Controladores",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.01.04",
       "ds_conta": "Débitos com Outras Partes Relacionadas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02",
       "ds_conta": "Outros",
       "nivel": 4,
-      "valor": 908138000.0,
-      "analise_vertical": 8.27
+      "valores": {
+        "2022": 988283000.0,
+        "2023": 908138000.0,
+        "2024": 323261000.0,
+        "2025": 162259000.0
+      },
+      "valor_recente": 162259000.0,
+      "var_yoy": -49.81,
+      "analise_vertical": 1.56
     },
     {
       "cd_conta": "2.02.02.02.01",
       "ds_conta": "Obrigações por Pagamentos Baseados em Ações",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.02",
       "ds_conta": "Adiantamento para Futuro Aumento de Capital",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.03",
-      "ds_conta": "Passivo de Arrendamento",
+      "ds_conta": "Fornecedores",
       "nivel": 5,
-      "valor": 107849000.0,
-      "analise_vertical": 0.98
+      "valores": {
+        "2022": 119300000.0,
+        "2023": 107849000.0,
+        "2024": 75853000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.04",
-      "ds_conta": "Obrigações com benefícios Pós-Emprego",
+      "ds_conta": "Outros passivos",
       "nivel": 5,
-      "valor": 104007000.0,
-      "analise_vertical": 0.95
+      "valores": {
+        "2022": 110690000.0,
+        "2023": 104007000.0,
+        "2024": 27481000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.05",
-      "ds_conta": "Encargos Setoriais",
+      "ds_conta": "Contratos futuros de energia",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.06",
-      "ds_conta": "Outras Obrigações",
+      "ds_conta": "Encargos setoriais",
       "nivel": 5,
-      "valor": 69085000.0,
-      "analise_vertical": 0.63
+      "valores": {
+        "2022": 154543000.0,
+        "2023": 69085000.0,
+        "2024": 72698000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.07",
-      "ds_conta": "Obrigações de aquisições",
+      "ds_conta": "Tributos a recolher",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.08",
-      "ds_conta": "Instrumentos Financeiros Derivativos",
+      "ds_conta": "UBP - Uso do bem público",
       "nivel": 5,
-      "valor": 192236000.0,
-      "analise_vertical": 1.75
+      "valores": {
+        "2022": 217698000.0,
+        "2023": 192236000.0,
+        "2024": 45668000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.02.02.09",
-      "ds_conta": "Conta de ressarcimento",
+      "ds_conta": "Obrigações socioambientais e desmobilização de ativos",
       "nivel": 5,
-      "valor": 434961000.0,
-      "analise_vertical": 3.96
+      "valores": {
+        "2022": 386052000.0,
+        "2023": 434961000.0,
+        "2024": 101561000.0,
+        "2025": 130713000.0
+      },
+      "valor_recente": 130713000.0,
+      "var_yoy": 28.7,
+      "analise_vertical": 1.25
+    },
+    {
+      "cd_conta": "2.02.02.02.10",
+      "ds_conta": "Benefícios pós-emprego",
+      "nivel": 5,
+      "valores": {
+        "2025": 27870000.0
+      },
+      "valor_recente": 27870000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.27
+    },
+    {
+      "cd_conta": "2.02.02.02.11",
+      "ds_conta": "Instrumentos financeiros derivativos",
+      "nivel": 5,
+      "valores": {
+        "2025": 3676000.0
+      },
+      "valor_recente": 3676000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.04
     },
     {
       "cd_conta": "2.02.03",
       "ds_conta": "Tributos Diferidos",
       "nivel": 3,
-      "valor": 1466000.0,
-      "analise_vertical": 0.01
+      "valores": {
+        "2022": 858000.0,
+        "2023": 1466000.0,
+        "2024": 3817000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.03.01",
       "ds_conta": "Imposto de Renda e Contribuição Social Diferidos",
       "nivel": 4,
-      "valor": 1466000.0,
-      "analise_vertical": 0.01
+      "valores": {
+        "2022": 858000.0,
+        "2023": 1466000.0,
+        "2024": 3817000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.03.01.01",
       "ds_conta": "Imposto de Renda e Contribuição Social Diferidos",
       "nivel": 5,
-      "valor": 1466000.0,
-      "analise_vertical": 0.01
+      "valores": {
+        "2022": 858000.0,
+        "2023": 1466000.0,
+        "2024": 3817000.0
+      },
+      "valor_recente": 3817000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.02.04",
       "ds_conta": "Provisões",
       "nivel": 3,
-      "valor": 64982000.0,
-      "analise_vertical": 0.59
+      "valores": {
+        "2022": 71950000.0,
+        "2023": 64982000.0,
+        "2024": 39436000.0,
+        "2025": 412862000.0
+      },
+      "valor_recente": 412862000.0,
+      "var_yoy": 946.92,
+      "analise_vertical": 3.96
     },
     {
       "cd_conta": "2.02.04.01",
       "ds_conta": "Provisões Fiscais Previdenciárias Trabalhistas e Cíveis",
       "nivel": 4,
-      "valor": 64982000.0,
-      "analise_vertical": 0.59
+      "valores": {
+        "2022": 71950000.0,
+        "2023": 64982000.0,
+        "2024": 39436000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.04.01.01",
       "ds_conta": "Provisões Fiscais",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.04.01.02",
       "ds_conta": "Provisões Previdenciárias e Trabalhistas",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.04.01.03",
       "ds_conta": "Provisões para Benefícios a Empregados",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.04.01.04",
       "ds_conta": "Provisões Cíveis",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.04.01.05",
       "ds_conta": "Provisões para Processos Judiciais e Outros",
       "nivel": 5,
-      "valor": 64982000.0,
-      "analise_vertical": 0.59
+      "valores": {
+        "2022": 71950000.0,
+        "2023": 64982000.0,
+        "2024": 39436000.0
+      },
+      "valor_recente": 39436000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.02.04.02",
       "ds_conta": "Outras Provisões",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 412862000.0
+      },
+      "valor_recente": 412862000.0,
+      "var_yoy": null,
+      "analise_vertical": 3.96
     },
     {
       "cd_conta": "2.02.04.02.01",
       "ds_conta": "Provisões para Garantias",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.04.02.02",
       "ds_conta": "Provisões para Reestruturação",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.04.02.03",
       "ds_conta": "Provisões para Passivos Ambientais e de Desativação",
       "nivel": 5,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
-      "cd_conta": "2.02.04.02.05",
-      "ds_conta": "Provisões Regulatórias",
+      "cd_conta": "2.02.04.02.04",
+      "ds_conta": "Provisão de ressarcimento",
       "nivel": 5,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2025": 357078000.0
+      },
+      "valor_recente": 357078000.0,
+      "var_yoy": null,
+      "analise_vertical": 3.42
+    },
+    {
+      "cd_conta": "2.02.04.02.05",
+      "ds_conta": "Provisão para litígios",
+      "nivel": 5,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 55784000.0
+      },
+      "valor_recente": 55784000.0,
+      "var_yoy": null,
+      "analise_vertical": 0.53
     },
     {
       "cd_conta": "2.02.05",
       "ds_conta": "Passivos sobre Ativos Não-Correntes a Venda e Descontinuados",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.05.01",
       "ds_conta": "Passivos sobre Ativos Não-Correntes a Venda",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.05.02",
       "ds_conta": "Passivos sobre Ativos de Operações Descontinuadas",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.06",
       "ds_conta": "Lucros e Receitas a Apropriar",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.06.01",
       "ds_conta": "Lucros a Apropriar",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.06.02",
       "ds_conta": "Receitas a Apropriar",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.02.06.03",
       "ds_conta": "Subvenções de Investimento a Apropriar",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03",
       "ds_conta": "Patrimônio Líquido Consolidado",
       "nivel": 2,
-      "valor": 3934847000.0,
-      "analise_vertical": 35.82
+      "valores": {
+        "2022": 3887649000.0,
+        "2023": 3934847000.0,
+        "2024": 3659890000.0,
+        "2025": 4697786000.0
+      },
+      "valor_recente": 4697786000.0,
+      "var_yoy": 28.36,
+      "analise_vertical": 45.05
     },
     {
       "cd_conta": "2.03.01",
       "ds_conta": "Capital Social Realizado",
       "nivel": 3,
-      "valor": 1799262000.0,
-      "analise_vertical": 16.38
+      "valores": {
+        "2022": 1799262000.0,
+        "2023": 1799262000.0,
+        "2024": 1823775000.0,
+        "2025": 2833775000.0
+      },
+      "valor_recente": 2833775000.0,
+      "var_yoy": 55.38,
+      "analise_vertical": 27.18
     },
     {
       "cd_conta": "2.03.02",
       "ds_conta": "Reservas de Capital",
       "nivel": 3,
-      "valor": 71519000.0,
-      "analise_vertical": 0.65
+      "valores": {
+        "2022": 71519000.0,
+        "2023": 71519000.0,
+        "2024": 47006000.0,
+        "2025": 47006000.0
+      },
+      "valor_recente": 47006000.0,
+      "var_yoy": 0.0,
+      "analise_vertical": 0.45
     },
     {
       "cd_conta": "2.03.02.01",
       "ds_conta": "Ágio na Emissão de Ações",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.02.02",
       "ds_conta": "Reserva Especial de Ágio na Incorporação",
       "nivel": 4,
-      "valor": 97651000.0,
-      "analise_vertical": 0.89
+      "valores": {
+        "2022": 97651000.0,
+        "2023": 97651000.0,
+        "2024": 73138000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.02.03",
       "ds_conta": "Alienação de Bônus de Subscrição",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.02.04",
       "ds_conta": "Opções Outorgadas",
       "nivel": 4,
-      "valor": 4699000.0,
-      "analise_vertical": 0.04
+      "valores": {
+        "2022": 4699000.0,
+        "2023": 4699000.0,
+        "2024": 4699000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.02.05",
       "ds_conta": "Ações em Tesouraria",
       "nivel": 4,
-      "valor": 264000.0,
+      "valores": {
+        "2022": 264000.0,
+        "2023": 264000.0,
+        "2024": 264000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.02.06",
       "ds_conta": "Adiantamento para Futuro Aumento de Capital",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.02.07",
-      "ds_conta": "Remuneração das imobilizações em curso - capital próprio",
+      "ds_conta": "Reservas de Capital",
       "nivel": 4,
-      "valor": 9405000.0,
-      "analise_vertical": 0.09
+      "valores": {
+        "2022": 9405000.0,
+        "2023": 9405000.0,
+        "2024": 9405000.0,
+        "2025": 47006000.0
+      },
+      "valor_recente": 47006000.0,
+      "var_yoy": 399.8,
+      "analise_vertical": 0.45
     },
     {
       "cd_conta": "2.03.02.08",
       "ds_conta": "Incorporação reversa da AES Tietê Energia S.A.",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.02.09",
       "ds_conta": "Perda em transação de aquisição sob controle comum",
       "nivel": 4,
-      "valor": -40500000.0,
-      "analise_vertical": -0.37
+      "valores": {
+        "2022": -40500000.0,
+        "2023": -40500000.0,
+        "2024": -40500000.0
+      },
+      "valor_recente": -40500000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.03",
       "ds_conta": "Reservas de Reavaliação",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04",
       "ds_conta": "Reservas de Lucros",
       "nivel": 3,
-      "valor": 688468000.0,
-      "analise_vertical": 6.27
+      "valores": {
+        "2022": 512257000.0,
+        "2023": 688468000.0,
+        "2024": 444330000.0,
+        "2025": 488813000.0
+      },
+      "valor_recente": 488813000.0,
+      "var_yoy": 10.01,
+      "analise_vertical": 4.69
     },
     {
       "cd_conta": "2.03.04.01",
       "ds_conta": "Reserva Legal",
       "nivel": 4,
-      "valor": 138227000.0,
-      "analise_vertical": 1.26
+      "valores": {
+        "2022": 128977000.0,
+        "2023": 138227000.0,
+        "2024": 138227000.0,
+        "2025": 138227000.0
+      },
+      "valor_recente": 138227000.0,
+      "var_yoy": 0.0,
+      "analise_vertical": 1.33
     },
     {
       "cd_conta": "2.03.04.02",
       "ds_conta": "Reserva Estatutária",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 166961000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.03",
       "ds_conta": "Reserva para Contingências",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.04",
       "ds_conta": "Reserva de Lucros a Realizar",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.05",
       "ds_conta": "Reserva de Retenção de Lucros",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.06",
       "ds_conta": "Reserva Especial para Dividendos Não Distribuídos",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.07",
       "ds_conta": "Reserva de Incentivos Fiscais",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.08",
       "ds_conta": "Dividendo Adicional Proposto",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.09",
       "ds_conta": "Ações em Tesouraria",
       "nivel": 4,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.04.10",
       "ds_conta": "Reserva de Investimentos",
       "nivel": 4,
-      "valor": 550241000.0,
-      "analise_vertical": 5.01
+      "valores": {
+        "2022": 383280000.0,
+        "2023": 550241000.0,
+        "2024": 139142000.0,
+        "2025": 350586000.0
+      },
+      "valor_recente": 350586000.0,
+      "var_yoy": 151.96,
+      "analise_vertical": 3.36
     },
     {
       "cd_conta": "2.03.04.11",
       "ds_conta": "Aumento de Capital Proposto",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.04.12",
       "ds_conta": "Dividendos intermediários",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.05",
       "ds_conta": "Lucros/Prejuízos Acumulados",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.06",
       "ds_conta": "Ajustes de Avaliação Patrimonial",
       "nivel": 3,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 318543000.0
+      },
+      "valor_recente": 318543000.0,
+      "var_yoy": null,
+      "analise_vertical": 3.05
     },
     {
       "cd_conta": "2.03.07",
       "ds_conta": "Ajustes Acumulados de Conversão",
       "nivel": 3,
-      "valor": 0.0,
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
       "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.08",
       "ds_conta": "Outros Resultados Abrangentes",
       "nivel": 3,
-      "valor": 338084000.0,
-      "analise_vertical": 3.08
+      "valores": {
+        "2022": 346743000.0,
+        "2023": 338084000.0,
+        "2024": 330580000.0,
+        "2025": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": -100.0,
+      "analise_vertical": 0.0
     },
     {
       "cd_conta": "2.03.08.01",
       "ds_conta": "Plano de previdência privada e programa de incentivo a aposentadoria",
       "nivel": 4,
-      "valor": -57475000.0,
-      "analise_vertical": -0.52
+      "valores": {
+        "2022": -64207000.0,
+        "2023": -57475000.0,
+        "2024": -6214000.0
+      },
+      "valor_recente": -6214000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.08.02",
       "ds_conta": "Programa de Incentivo a Aposentadoria",
       "nivel": 4,
-      "valor": 0.0,
-      "analise_vertical": 0.0
+      "valores": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0
+      },
+      "valor_recente": 0.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.08.03",
       "ds_conta": "Equivalência Patrimonial Sobre Hedge de Fluxo de Caixa de Controladas",
       "nivel": 4,
-      "valor": -12571000.0,
-      "analise_vertical": -0.11
+      "valores": {
+        "2022": -8344000.0,
+        "2023": -12571000.0,
+        "2024": -12477000.0
+      },
+      "valor_recente": -12477000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.08.04",
       "ds_conta": "Hedge de Fluxo de Caixa, Líquido de Impostos",
       "nivel": 4,
-      "valor": -54683000.0,
-      "analise_vertical": -0.5
+      "valores": {
+        "2022": -94919000.0,
+        "2023": -54683000.0,
+        "2024": -61163000.0
+      },
+      "valor_recente": -61163000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.08.05",
       "ds_conta": "Ajuste de avaliação patrimonial, líquido de impostos",
       "nivel": 4,
-      "valor": 468340000.0,
-      "analise_vertical": 4.26
+      "valores": {
+        "2022": 519520000.0,
+        "2023": 468340000.0,
+        "2024": 418171000.0
+      },
+      "valor_recente": 418171000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.08.06",
       "ds_conta": "Opção de recompra de participação acionária",
       "nivel": 4,
-      "valor": -5527000.0,
-      "analise_vertical": -0.05
+      "valores": {
+        "2022": -5307000.0,
+        "2023": -5527000.0,
+        "2024": -7737000.0
+      },
+      "valor_recente": -7737000.0,
+      "var_yoy": null,
+      "analise_vertical": null
     },
     {
       "cd_conta": "2.03.09",
       "ds_conta": "Participação dos Acionistas Não Controladores",
       "nivel": 3,
-      "valor": 1037514000.0,
-      "analise_vertical": 9.45
+      "valores": {
+        "2022": 1157868000.0,
+        "2023": 1037514000.0,
+        "2024": 1014199000.0,
+        "2025": 1009649000.0
+      },
+      "valor_recente": 1009649000.0,
+      "var_yoy": -0.45,
+      "analise_vertical": 9.68
     }
   ],
   "acionistas": [
@@ -1916,110 +3867,145 @@
   ],
   "documentos": [
     {
-      "data": "2024-09-26",
+      "data": "2026-02-12",
       "categoria": "Assembleia",
       "tipo": "AGDEB",
-      "assunto": "Aprovação de consentimento prévio (waiver) para alteração do controle indireto da emissora sem caracterização de inadimplência.",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1285488&numSequencia=810214&numVersao=1"
+      "assunto": "Aprovar consentimento prévio (waiver) para ajustes em índices financeiros e condições da Escritura de Emissão, vinculados à possível reorgan",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1477330&numSequencia=1002036&numVersao=1"
     },
     {
-      "data": "2024-09-26",
+      "data": "2026-07-03",
       "categoria": "Assembleia",
       "tipo": "AGDEB",
-      "assunto": "Aprovação de consentimento prévio (waiver) para alteração do controle indireto da emissora sem caracterização de inadimplência.",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1285497&numSequencia=810223&numVersao=1"
+      "assunto": "Aprovar consentimento prévio (waiver) para ajustes em índices financeiros e condições da Escritura de Emissão, vinculados à possível reorgan",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1541686&numSequencia=1066392&numVersao=2"
     },
     {
-      "data": "2024-10-01",
+      "data": "2026-07-03",
       "categoria": "Assembleia",
       "tipo": "AGDEB",
-      "assunto": "Termo de Não Instalação da Assembleia de Debenturistas (9ª Emissão) em 1ª Convocação",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1286917&numSequencia=811643&numVersao=1"
+      "assunto": "Aprovar consentimento prévio (waiver) para ajustes em índices financeiros e condições da Escritura de Emissão, vinculados à possível reorgan",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1541689&numSequencia=1066395&numVersao=2"
     },
     {
-      "data": "2024-10-01",
+      "data": "2026-07-03",
       "categoria": "Assembleia",
       "tipo": "AGDEB",
-      "assunto": "Termo de Não Instalação da Assembleia de Debenturistas (8ª Emissão) em 1ª Convocação",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1286918&numSequencia=811644&numVersao=1"
+      "assunto": "Aprovar consentimento prévio (waiver) para ajustes em índices financeiros e condições da Escritura de Emissão, vinculados à possível reorgan",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1541690&numSequencia=1066396&numVersao=2"
     },
     {
-      "data": "2024-10-09",
+      "data": "2026-07-03",
       "categoria": "Assembleia",
       "tipo": "AGDEB",
-      "assunto": "Aprovação de consentimento prévio (waiver) para alteração do controle indireto da emissora sem caracterização de inadimplência.",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1289953&numSequencia=814679&numVersao=1"
+      "assunto": "Termo de não instalação da Assembleia Geral de Debenturistas das 2ª (segunda) e 3ª (terceira) séries da 9ª (nona) emissão de debêntures simp",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1541692&numSequencia=1066398&numVersao=2"
     },
     {
-      "data": "2024-10-17",
+      "data": "2026-02-02",
       "categoria": "Assembleia",
       "tipo": "AGDEB",
-      "assunto": "(TIET18) Aprovação de consentimento prévio (waiver) para alteração do controle indireto da emissora",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1292469&numSequencia=817195&numVersao=1"
+      "assunto": "Edital de 2ª (Segunda) Convocação para Assembleia Geral de Debenturistas da 2ª (Segunda) e da 3ª (Terceira) Séries da 9ª (Nona) Emissão de D",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1472286&numSequencia=996992&numVersao=1"
     },
     {
-      "data": "2024-10-17",
+      "data": "2026-03-11",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "(TIET29 e TIET39) Aprovação de consentimento prévio (waiver) para alteração do controle indireto da emissora",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1292472&numSequencia=817198&numVersao=1"
+      "tipo": "AGE",
+      "assunto": "Aprovar a Emissão e a realização da Oferta para as Debêntures Simples da 12ª Emissão da Auren Operações.||Autorizar  os representantes da Co",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1489266&numSequencia=1013972&numVersao=1"
     },
     {
-      "data": "2024-08-30",
+      "data": "2026-04-14",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital de Convocação 1ª AGD - 11ª emissão",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1277520&numSequencia=802246&numVersao=1"
+      "tipo": "AGE",
+      "assunto": "Deliberar a alteração do art. 5º, caput, do estatuto  social da Companhia para refletir o Aumento de Capital.||Deliberar a incorporação reve",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1504951&numSequencia=1029657&numVersao=1"
     },
     {
-      "data": "2024-08-30",
+      "data": "2026-05-12",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital de Convocação 1ª AGD - 10ª emissão",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1277521&numSequencia=802247&numVersao=1"
+      "tipo": "AGE",
+      "assunto": "Alteração do caput do artigo 21 do Estatuto Social da Companhia para alterar o prazo do  mandato da Diretoria da Companhia.||Alteração do ca",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1520980&numSequencia=1045686&numVersao=1"
     },
     {
-      "data": "2024-09-02",
+      "data": "2026-06-24",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital de Convocação - 9ª emissão de Debêntures||https://ri.aesbrasil.com.br/",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1277724&numSequencia=802450&numVersao=1"
+      "tipo": "AGE",
+      "assunto": "Reorganização Societária | 2ª Fase",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1538176&numSequencia=1062882&numVersao=1"
     },
     {
-      "data": "2024-09-02",
+      "data": "2026-04-14",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital de Convocação - 8ª emissão de Debêntures",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1277725&numSequencia=802451&numVersao=1"
+      "tipo": "AGE",
+      "assunto": "Protocolo e Justificação de Incorporação, Fusão ou Cisão",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1504953&numSequencia=1029659&numVersao=1"
     },
     {
-      "data": "2024-09-02",
+      "data": "2026-04-15",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital de Convocação - 9ª emissão de Debêntures - 2ª série",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1277727&numSequencia=802453&numVersao=1"
+      "tipo": "AGE",
+      "assunto": "Protocolo e Justificação de Incorporação, Fusão ou Cisão",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1505367&numSequencia=1030073&numVersao=2"
     },
     {
-      "data": "2024-10-02",
+      "data": "2026-06-24",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital para Assembleia de Debenturistas em 2ª Convocação",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1287428&numSequencia=812154&numVersao=1"
+      "tipo": "AGE",
+      "assunto": "Protocolo e Justificação de Incorporação, Fusão ou Cisão",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1538177&numSequencia=1062883&numVersao=1"
     },
     {
-      "data": "2024-10-02",
+      "data": "2026-05-04",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital para Assembleia de Debenturistas em 2ª Convocação (TIET29 e TIET39)",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1287431&numSequencia=812157&numVersao=1"
+      "tipo": "AGO",
+      "assunto": "Deliberar a fixação da remuneração global anual dos administradores para o exercício social de 2026.||Deliberar a homologação do resultado d",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1515568&numSequencia=1040274&numVersao=1"
     },
     {
-      "data": "2024-10-10",
+      "data": "2026-05-05",
       "categoria": "Assembleia",
-      "tipo": "AGDEB",
-      "assunto": "Edital para Assembleia de Debenturistas em 2ª Convocação (TIET29 e TIET39)",
-      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1290618&numSequencia=815344&numVersao=2"
+      "tipo": "AGO",
+      "assunto": "Deliberar a fixação da remuneração global anual dos administradores para o exercício social de 2026.||Deliberar a homologação do resultado d",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1516389&numSequencia=1041095&numVersao=2"
+    },
+    {
+      "data": "2026-06-01",
+      "categoria": "Comunicado ao Mercado",
+      "tipo": "Outros Comunicados Não Considerados Fatos Relevantes",
+      "assunto": "Conclusão da Incorporação Reversa | Fase 1 da Reorganização Societária",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1529029&numSequencia=1053735&numVersao=1"
+    },
+    {
+      "data": "2026-04-14",
+      "categoria": "Dados Econômico-Financeiros",
+      "tipo": "Demonstrações Financeiras Adicionais",
+      "assunto": "Demonstrações Financeiras Pro Forma - Incorporação Reversa",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1504954&numSequencia=1029660&numVersao=1"
+    },
+    {
+      "data": "2026-03-03",
+      "categoria": "Dados Econômico-Financeiros",
+      "tipo": "Demonstrações Financeiras Anuais Completas",
+      "assunto": "Demonstrações Financeiras Anuais Completas",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1485120&numSequencia=1009826&numVersao=1"
+    },
+    {
+      "data": "2026-04-01",
+      "categoria": "Dados Econômico-Financeiros",
+      "tipo": "Demonstrações Financeiras Anuais Completas",
+      "assunto": "Demonstrações Financeiras Anuais Completas",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1499833&numSequencia=1024539&numVersao=2"
+    },
+    {
+      "data": "2026-05-06",
+      "categoria": "Dados Econômico-Financeiros",
+      "tipo": "Demonstrações Financeiras Intermediárias",
+      "assunto": "Demonstrações Financeiras Intermediárias",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1517190&numSequencia=1041896&numVersao=1"
     }
   ],
-  "url_cvm": "https://rad.cvm.gov.br/ENET/consultaExterna/default.aspx?codigoCVM=26174"
+  "url_cvm": "https://www.rad.cvm.gov.br/ENET/frmConsultaExternaCVM.aspx?codigoCVM=26174"
 }

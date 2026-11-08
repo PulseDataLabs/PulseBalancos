@@ -383,7 +383,8 @@
       </div>
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Início</a>
-        <a href="consulta.html" class="nav-link active">Empresas</a>
+        <a href="consulta.html" class="nav-link">Empresas & Balanços</a>
+        <a href="publicacoes.html" class="nav-link">🚨 Fatos Relevantes & Docs</a>
         <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="nav-link">GitHub</a>
       </nav>
     </div>
@@ -462,17 +463,10 @@
       <div id="tab-dre" class="tab-pane active">
         <div class="statement-table-card">
           <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
-            Demonstração do Resultado Consolidada (DRE) • Exercício social auditado com Análise Vertical (% da Receita Líquida):
+            Demonstração do Resultado Consolidada (DRE) • Série histórica auditada com Análise Horizontal (Var YoY) e Vertical (% da Receita Líquida):
           </div>
           <table class="statement-table">
-            <thead>
-              <tr>
-                <th style="width:110px;">Código</th>
-                <th>Descrição da Conta Contábil</th>
-                <th style="text-align:right;">Valor (R$)</th>
-                <th style="text-align:right; width:120px;">% AV (Receita)</th>
-              </tr>
-            </thead>
+            <thead id="dre-head"></thead>
             <tbody id="dre-body"></tbody>
           </table>
         </div>
@@ -485,14 +479,7 @@
             Balanço Patrimonial Ativo (BPA) • Estrutura de Bens e Direitos com Análise Vertical (% do Ativo Total):
           </div>
           <table class="statement-table">
-            <thead>
-              <tr>
-                <th style="width:110px;">Código</th>
-                <th>Descrição da Conta Contábil</th>
-                <th style="text-align:right;">Valor (R$)</th>
-                <th style="text-align:right; width:120px;">% AV (Ativo)</th>
-              </tr>
-            </thead>
+            <thead id="bpa-head"></thead>
             <tbody id="bpa-body"></tbody>
           </table>
         </div>
@@ -505,14 +492,7 @@
             Balanço Patrimonial Passivo e Patrimônio Líquido (BPP) • Obrigações e Capital Social:
           </div>
           <table class="statement-table">
-            <thead>
-              <tr>
-                <th style="width:110px;">Código</th>
-                <th>Descrição da Conta Contábil</th>
-                <th style="text-align:right;">Valor (R$)</th>
-                <th style="text-align:right; width:120px;">% AV (Passivo)</th>
-              </tr>
-            </thead>
+            <thead id="bpp-head"></thead>
             <tbody id="bpp-body"></tbody>
           </table>
         </div>
@@ -582,26 +562,70 @@
       document.getElementById(`tab-${tabName}`).classList.add('active');
     }
 
-    function renderStatementRows(accounts, tbodyId) {
+    function renderStatementTable(accounts, theadId, tbodyId, years, avBasisLabel) {
+      const thead = document.getElementById(theadId);
       const tbody = document.getElementById(tbodyId);
+
       if (!accounts || accounts.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--text-3);">Nenhuma rubrica contábil disponível para este demonstrativo.</td></tr>';
+        thead.innerHTML = '';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--text-3);">Nenhuma rubrica contábil disponível para este demonstrativo.</td></tr>';
         return;
       }
 
+      // Renderiza Cabeçalho dinâmico com os anos da série histórica
+      let theadHtml = `
+        <tr>
+          <th style="width:100px;">Código</th>
+          <th>Descrição da Conta Contábil</th>
+      `;
+      years.forEach(y => {
+        theadHtml += `<th style="text-align:right; min-width:110px;">${y}</th>`;
+      });
+      theadHtml += `
+          <th style="text-align:right; width:95px;">Var YoY</th>
+          <th style="text-align:right; width:95px;">% AV (${avBasisLabel})</th>
+        </tr>
+      `;
+      thead.innerHTML = theadHtml;
+
+      // Renderiza Linhas
       tbody.innerHTML = accounts.map(a => {
         const isParent = a.nivel <= 2;
         const indentClass = `account-indent-${Math.min(a.nivel - 1, 4)}`;
-        const avText = a.analise_vertical !== null && a.analise_vertical !== undefined ? `${a.analise_vertical.toFixed(2).replace('.', ',')}%` : '-';
-        
+
+        // Células dos anos
+        let yearsCells = '';
+        years.forEach(y => {
+          const val = a.valores ? a.valores[String(y)] : (y == a.ano_recente ? a.valor_recente : null);
+          const formatted = val !== null && val !== undefined ? formatCompactMoney(val) : '-';
+          const fullTitle = val !== null && val !== undefined ? formatBRL(val) : '';
+          yearsCells += `
+            <td class="num-val" title="${fullTitle}">
+              ${isParent && val !== null ? '<strong>' + formatted + '</strong>' : formatted}
+            </td>
+          `;
+        });
+
+        // Variação YoY
+        let yoyHtml = '-';
+        if (a.var_yoy !== null && a.var_yoy !== undefined) {
+          const isPos = a.var_yoy > 0;
+          const isZero = a.var_yoy === 0;
+          const color = isZero ? 'var(--text-3)' : (isPos ? 'var(--green)' : 'var(--red)');
+          const sign = isPos ? '+' : '';
+          yoyHtml = `<span style="color:${color}; font-weight:600;">${sign}${a.var_yoy.toFixed(1).replace('.', ',')}%</span>`;
+        }
+
+        // Análise Vertical
+        const avText = a.analise_vertical !== null && a.analise_vertical !== undefined ? `${a.analise_vertical.toFixed(1).replace('.', ',')}%` : '-';
+
         return `
           <tr class="${isParent ? 'account-parent' : ''}">
             <td style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">${a.cd_conta}</td>
-            <td class="${indentClass}">${a.ds_conta}</td>
-            <td class="num-val" title="${formatBRL(a.valor)}">
-              ${isParent ? '<strong>' + formatBRL(a.valor) + '</strong>' : formatBRL(a.valor)}
-            </td>
-            <td class="num-val" style="color:var(--accent);">${avText}</td>
+            <td class="${indentClass}">${isParent ? '<strong>' + a.ds_conta + '</strong>' : a.ds_conta}</td>
+            ${yearsCells}
+            <td class="num-val" style="font-size:12px;">${yoyHtml}</td>
+            <td class="num-val" style="color:var(--accent); font-size:12px;">${avText}</td>
           </tr>
         `;
       }).join('');
@@ -672,10 +696,14 @@
           document.getElementById('kpi-roe').textContent = ((res.lucro_liquido / res.patrimonio_liquido) * 100).toFixed(1).replace('.', ',') + '%';
         }
 
-        // Renderiza DRE, BPA, BPP
-        renderStatementRows(data.dre, 'dre-body');
-        renderStatementRows(data.bpa, 'bpa-body');
-        renderStatementRows(data.bpp, 'bpp-body');
+        // Renderiza DRE, BPA, BPP com série histórica multi-ano
+        const years = data.anos_disponiveis && data.anos_disponiveis.length > 0
+          ? data.anos_disponiveis
+          : [data.ano_balanco_recente || 2025];
+
+        renderStatementTable(data.dre, 'dre-head', 'dre-body', years, 'Receita');
+        renderStatementTable(data.bpa, 'bpa-head', 'bpa-body', years, 'Ativo');
+        renderStatementTable(data.bpp, 'bpp-head', 'bpp-body', years, 'Passivo');
 
         // Renderiza Acionistas
         const shBody = document.getElementById('acionistas-body');
@@ -738,3 +766,4 @@
   </script>
 </body>
 </html>
+

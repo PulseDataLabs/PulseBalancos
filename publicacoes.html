@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatos Relevantes & Publicações Oficiais CVM em Tempo Real | PulseBalanços</title>
+  <meta name="description" content="Monitor em tempo real de fatos relevantes, comunicados ao mercado, dividendos, balanços e assembleias protocoladas na CVM." />
+
+  <!-- Google Fonts & DataTables CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080c10;
+      --bg-2:      #0d1218;
+      --bg-3:      #141c26;
+      --surface:   #111822;
+      --surface-2: #16202c;
+      --surface-3: #1c2938;
+      --border:    #1e2d3d;
+      --border-2:  #243444;
+      --accent:    #00d4ff;
+      --accent-dim:#0095c8;
+      --accent-bg: rgba(0, 212, 255, 0.08);
+      --green:     #00e5a0;
+      --green-bg:  rgba(0, 229, 160, 0.12);
+      --gold:      #f0b429;
+      --gold-bg:   rgba(240, 180, 41, 0.12);
+      --red:       #ff4d6d;
+      --red-bg:    rgba(255, 77, 109, 0.12);
+      --text:      #e8eef4;
+      --text-2:    #8fa3b8;
+      --text-3:    #5a7288;
+      --font-head: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #fff; }
+
+    /* Header */
+    header {
+      background: rgba(8, 12, 16, 0.9);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .nav-container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent), #0066ff);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800;
+      color: #000;
+      font-size: 18px;
+    }
+    .brand-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 19px;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .brand-name span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-2);
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+      background: var(--surface-2);
+    }
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 229, 160, 0.15);
+      border: 1px solid rgba(0, 229, 160, 0.3);
+      color: var(--green);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse-dot 1.8s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .page-header {
+      margin-bottom: 24px;
+    }
+    .page-title {
+      font-family: var(--font-head);
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-desc {
+      color: var(--text-2);
+      font-size: 14px;
+      max-width: 850px;
+    }
+
+    /* KPI Summary Cards */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .kpi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text-3);
+    }
+    .kpi-num {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 4px;
+    }
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-top: 2px;
+    }
+
+    /* Filter Pills */
+    .filter-pills-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 10px;
+      align-items: center;
+    }
+    .filter-pills-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      margin-right: 6px;
+    }
+    .pill-btn {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pill-btn:hover {
+      background: var(--surface-2);
+      color: #fff;
+      border-color: var(--accent-dim);
+    }
+    .pill-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    /* Table Container */
+    .table-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    table.dataTable {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      color: var(--text) !important;
+      background: transparent !important;
+    }
+    table.dataTable thead th {
+      background: var(--bg-2) !important;
+      color: var(--text-2) !important;
+      font-size: 11px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+      border-bottom: 1px solid var(--border) !important;
+      padding: 12px 14px !important;
+      font-weight: 600 !important;
+    }
+    table.dataTable tbody td {
+      border-bottom: 1px solid var(--border) !important;
+      padding: 12px 14px !important;
+      font-size: 13px !important;
+      background: transparent !important;
+      vertical-align: middle;
+    }
+    table.dataTable tbody tr:hover td {
+      background: var(--surface-2) !important;
+    }
+
+    /* Badges */
+    .badge-cat {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      white-space: nowrap;
+    }
+    .badge-cat.fr {
+      background: var(--red-bg);
+      color: var(--red);
+      border: 1px solid rgba(255, 77, 109, 0.3);
+    }
+    .badge-cat.com {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+    .badge-cat.prov {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid rgba(0, 229, 160, 0.3);
+    }
+    .badge-cat.res {
+      background: var(--gold-bg);
+      color: var(--gold);
+      border: 1px solid rgba(240, 180, 41, 0.3);
+    }
+    .badge-cat.ass {
+      background: rgba(167, 139, 250, 0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(167, 139, 250, 0.3);
+    }
+    .badge-cat.doc {
+      background: var(--surface-2);
+      color: var(--text-2);
+      border: 1px solid var(--border);
+    }
+
+    .badge-ticker {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    .company-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .company-title {
+      font-weight: 600;
+      color: #fff;
+    }
+    .company-cnpj {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-3);
+    }
+
+    .doc-subject {
+      font-weight: 500;
+      color: var(--text);
+      max-width: 460px;
+      line-height: 1.4;
+    }
+
+    .btn-action-dl {
+      background: var(--accent);
+      color: #000 !important;
+      font-weight: 600;
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .btn-action-dl:hover {
+      background: #fff;
+    }
+
+    .btn-action-sec {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text-2) !important;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-action-sec:hover {
+      background: var(--surface-2);
+      color: #fff !important;
+    }
+
+    /* DataTables Overrides */
+    .dataTables_wrapper .dataTables_filter input {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      margin-left: 8px;
+    }
+    .dataTables_wrapper .dataTables_length select {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin: 0 6px;
+    }
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+      color: var(--text-2) !important;
+      font-size: 12px;
+      padding-top: 14px;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      color: var(--text-2) !important;
+      border: 1px solid var(--border) !important;
+      background: var(--bg-2) !important;
+      border-radius: 4px !important;
+      padding: 4px 10px !important;
+      margin: 0 2px !important;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      color: #000 !important;
+      background: var(--accent) !important;
+      border-color: var(--accent) !important;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-logo">P</div>
+        <div class="brand-name">Pulse<span>Balanços</span></div>
+        <div class="badge-live"><span class="live-dot"></span> FEED OFICIAL CVM</div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Início</a>
+        <a href="consulta.html" class="nav-link">Empresas & Balanços</a>
+        <a href="publicacoes.html" class="nav-link active">🚨 Fatos Relevantes & Docs</a>
+        <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="nav-link">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">
+        <span>Fatos Relevantes & Publicações Regulatórias</span>
+      </h1>
+      <p class="page-desc">
+        Monitor contínuo em tempo real de publicações protocoladas pelas companhias no sistema IPE da CVM: fatos relevantes de fusões e aquisições, comunicados ao mercado, deliberações de proventos (JCP e dividendos), demonstrações financeiras e convocações de assembleias com link direto para o PDF oficial auditado.
+      </p>
+    </div>
+
+    <!-- KPIs Rápidos -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-label">Documentos no Monitor</div>
+        <div id="stat-total" class="kpi-num">1.000</div>
+        <div class="kpi-sub">Últimos protocolos oficiais</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">🚨 Fatos Relevantes</div>
+        <div id="stat-fr" class="kpi-num" style="color:var(--red);">-</div>
+        <div class="kpi-sub">M&A, Guidances e Decisões</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">💰 Proventos / JCP</div>
+        <div id="stat-prov" class="kpi-num" style="color:var(--green);">-</div>
+        <div class="kpi-sub">Avisos aos Acionistas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">📊 Resultados & DRE</div>
+        <div id="stat-res" class="kpi-num" style="color:var(--gold);">-</div>
+        <div class="kpi-sub">DFP, ITR e Releases</div>
+      </div>
+    </div>
+
+    <!-- Barra de Filtros Rápidos -->
+    <div class="filter-pills-bar">
+      <span class="filter-pills-label">Filtrar Categoria:</span>
+      <button class="pill-btn active" data-filter="ALL">Todos os Documentos</button>
+      <button class="pill-btn" data-filter="Fato Relevante">🚨 Fatos Relevantes</button>
+      <button class="pill-btn" data-filter="Comunicado">📢 Comunicados ao Mercado</button>
+      <button class="pill-btn" data-filter="Proventos">💰 Proventos / Dividendos</button>
+      <button class="pill-btn" data-filter="Resultados">📊 Resultados & Balanços</button>
+      <button class="pill-btn" data-filter="Assembleia">🗳️ Assembleias & Atas</button>
+    </div>
+
+    <!-- Tabela DataTables -->
+    <div class="table-container">
+      <table id="publications-table" class="dataTable">
+        <thead>
+          <tr>
+            <th style="width:130px;">Data / Hora</th>
+            <th style="width:240px;">Empresa</th>
+            <th style="width:150px;">Categoria</th>
+            <th>Assunto / Documento</th>
+            <th style="text-align:right; width:170px;">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="publications-body"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- jQuery & DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    let rawDocs = [];
+    let dataTable = null;
+    let currentFilter = 'ALL';
+
+    function formatCNPJ(cnpj) {
+      if (!cnpj || cnpj.length !== 14) return cnpj || '-';
+      return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5");
+    }
+
+    function getBadgeClass(badge) {
+      switch (badge) {
+        case 'Fato Relevante': return 'fr';
+        case 'Comunicado': return 'com';
+        case 'Proventos': return 'prov';
+        case 'Resultados': return 'res';
+        case 'Assembleia': return 'ass';
+        default: return 'doc';
+      }
+    }
+
+    async function loadPublications() {
+      try {
+        const resp = await fetch('./data/ultimas_publicacoes.json');
+        if (!resp.ok) throw new Error('Não foi possível carregar as publicações');
+        rawDocs = await resp.json();
+
+        // Atualiza contadores dos KPIs
+        document.getElementById('stat-total').textContent = rawDocs.length.toLocaleString('pt-BR');
+        document.getElementById('stat-fr').textContent = rawDocs.filter(d => d.badge === 'Fato Relevante').length;
+        document.getElementById('stat-prov').textContent = rawDocs.filter(d => d.badge === 'Proventos').length;
+        document.getElementById('stat-res').textContent = rawDocs.filter(d => d.badge === 'Resultados').length;
+
+        initTable(rawDocs);
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById('publications-body').innerHTML = `
+          <tr><td colspan="5" style="text-align:center; padding:30px; color:var(--red);">
+            Falha ao carregar feed de publicações. Atualize a página ou tente novamente em instantes.
+          </td></tr>
+        `;
+      }
+    }
+
+    function initTable(docs) {
+      dataTable = $('#publications-table').DataTable({
+        data: docs,
+        pageLength: 25,
+        order: [[0, 'desc']],
+        columns: [
+          // 1. Data Entrega
+          {
+            data: 'data_entrega',
+            render: function(data) {
+              const dt = data ? data.replace(' ', '<br><span style="font-size:11px; color:var(--text-3); font-family:var(--font-mono);">') + '</span>' : '-';
+              return `<div style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">${dt}</div>`;
+            }
+          },
+          // 2. Empresa / Ticker
+          {
+            data: 'razao_social',
+            render: function(data, type, row) {
+              const ticker = row.ticker ? `<span class="badge-ticker">${row.ticker}</span>` : '';
+              return `
+                <div class="company-col">
+                  <div>${ticker}<a href="empresa.html?cnpj=${row.cnpj}" class="company-title">${data}</a></div>
+                  <div class="company-cnpj">${formatCNPJ(row.cnpj)} ${row.uf ? '• ' + row.uf : ''}</div>
+                </div>
+              `;
+            }
+          },
+          // 3. Categoria
+          {
+            data: 'badge',
+            render: function(data, type, row) {
+              const cls = getBadgeClass(data);
+              return `<span class="badge-cat ${cls}">${data}</span>`;
+            }
+          },
+          // 4. Assunto
+          {
+            data: 'assunto',
+            render: function(data, type, row) {
+              const sub = row.tipo && row.tipo !== data ? `<div style="font-size:11px; color:var(--text-3); margin-top:2px;">Tipo: ${row.tipo}</div>` : '';
+              return `<div class="doc-subject"><strong>${data}</strong>${sub}</div>`;
+            }
+          },
+          // 5. Ações
+          {
+            data: null,
+            orderable: false,
+            render: function(data, type, row) {
+              return `
+                <div style="display:flex; gap:6px; justify-content:flex-end;">
+                  <a href="${row.url_download}" target="_blank" class="btn-action-dl" title="Baixar PDF Oficial protocolado na CVM">
+                    PDF CVM ↗
+                  </a>
+                  <a href="empresa.html?cnpj=${row.cnpj}" class="btn-action-sec" title="Ver balanços e DRE desta empresa">
+                    Empresa
+                  </a>
+                </div>
+              `;
+            }
+          }
+        ],
+        language: {
+          search: "Filtrar no Feed:",
+          searchPlaceholder: "Empresa, Ticker, CNPJ ou Assunto...",
+          lengthMenu: "Exibir _MENU_ publicações",
+          info: "Página _PAGE_ de _PAGES_ • Mostrando _START_ a _END_ de _TOTAL_ documentos",
+          infoEmpty: "Nenhum documento encontrado",
+          paginate: {
+            first: "Primeira",
+            last: "Última",
+            next: "Próxima ›",
+            previous: "‹ Anterior"
+          }
+        }
+      });
+
+      // Configura Filtros de Pílulas
+      $('.pill-btn').on('click', function() {
+        $('.pill-btn').removeClass('active');
+        $(this).addClass('active');
+
+        currentFilter = $(this).data('filter');
+        applyCategoryFilter();
+      });
+    }
+
+    function applyCategoryFilter() {
+      $.fn.dataTable.ext.search = [];
+
+      if (currentFilter !== 'ALL') {
+        $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+          const row = rawDocs[dataIndex];
+          if (!row) return true;
+          return row.badge === currentFilter || row.categoria.includes(currentFilter);
+        });
+      }
+
+      dataTable.draw();
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPublications);
+  </script>
+</body>
+</html>

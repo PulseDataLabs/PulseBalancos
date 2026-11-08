@@ -3,10 +3,14 @@ name: PulseBalanços - Ingestão e Processamento CVM
 on:
   schedule:
     # Horários em UTC (BRT = UTC-3)
-    # 07h00 BRT (Manhã) - Captura de publicações da madrugada/início do dia
-    - cron: '0 10 * * 1-5'
-    # 20h00 BRT (Noite) - Captura após o fechamento do pregão da B3
-    - cron: '0 23 * * 1-5'
+    # Execução 4x ao dia em dias úteis para captura contínua de fatos relevantes e balanços
+    # 07h00 BRT (10h00 UTC) - Matinal / Publicações da madrugada
+    # 12h00 BRT (15h00 UTC) - Meio-dia
+    # 16h00 BRT (19h00 UTC) - Tarde do pregão
+    # 20h00 BRT (23h00 UTC) - Pós-fechamento do mercado (Fatos Relevantes pós-18h)
+    - cron: '0 10,15,19,23 * * 1-5'
+    # Fins de semana (sábado e domingo): 2x ao dia
+    - cron: '0 15,23 * * 0,6'
 
   # Execução manual parametrizada via GitHub Console
   workflow_dispatch:
@@ -96,7 +100,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/companies_catalog.json data/companies_catalog.parquet data/companies/ data/metadata/http_cache_metadata.json
+          git add data/companies_catalog.json data/companies_catalog.parquet data/ultimas_publicacoes.json data/companies/ data/metadata/http_cache_metadata.json
           git commit -m "chore(data): atualização automática diária de companhias e demonstrativos CVM [skip ci]" || echo "Nenhuma alteração de dados para commit."
           git push || echo "Nenhuma alteração para enviar."
 

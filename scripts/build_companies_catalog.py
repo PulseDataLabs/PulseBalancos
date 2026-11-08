@@ -109,8 +109,8 @@ def fetch_b3_tickers(session: requests.Session, year: int = 2024) -> pl.DataFram
         return pl.DataFrame()
 
 
-def fetch_latest_financial_metrics(session: requests.Session, year: int = 2024) -> pl.DataFrame:
-    """Extrai métricas financeiras essenciais (PL, Receita, Lucro, Ativo) do DFP mais recente."""
+def _fetch_dfp_metrics_single_year(session: requests.Session, year: int) -> pl.DataFrame:
+    """Extrai métricas financeiras essenciais (PL, Receita, Lucro, Ativo) de um ano do DFP."""
     url = URL_DFP_TEMPLATE.format(year=year)
     try:
         content = download_bytes(url, session)
@@ -205,6 +205,27 @@ def fetch_latest_financial_metrics(session: requests.Session, year: int = 2024) 
         return pl.DataFrame()
 
 
+def fetch_latest_financial_metrics(session: requests.Session, years: Optional[List[int]] = None) -> pl.DataFrame:
+    """Extrai métricas financeiras priorizando os exercícios mais recentes (ex: 2025 -> 2024 -> 2023)."""
+    if years is None:
+        years = [2025, 2024, 2023]
+
+    combined = None
+    for y in sorted(years, reverse=True):
+        df_y = _fetch_dfp_metrics_single_year(session, y)
+        if df_y.is_empty():
+            continue
+        if combined is None:
+            combined = df_y
+        else:
+            existing_cnpjs = set(combined["cnpj"].to_list())
+            missing_y = df_y.filter(~pl.col("cnpj").is_in(existing_cnpjs))
+            if not missing_y.is_empty():
+                combined = pl.concat([combined, missing_y], how="diagonal")
+
+    return combined if combined is not None else pl.DataFrame()
+
+
 def build_companies_catalog(year: int = 2024, output_dir: Optional[Path] = None) -> pl.DataFrame:
     """Gera o catálogo mestre de companhias da CVM enriquecido com dados de B3 e Geografia."""
     output_dir = Path(output_dir or Path("data"))
@@ -275,8 +296,8 @@ def build_companies_catalog(year: int = 2024, output_dir: Optional[Path] = None)
     # 4. Join com os tickers
     df_final = df_companies.join(grouped_tickers, on="cnpj", how="left")
 
-    # 5. Enriquecimento com as métricas financeiras mais recentes (DFP 2023)
-    df_metrics = fetch_latest_financial_metrics(session, year=2023)
+    # 5. Enriquecimento com as métricas financeiras mais recentes (DFP 2025 prioritário, com fallback para 2024 e 2023)
+    df_metrics = fetch_latest_financial_metrics(session, years=[2025, 2024, 2023])
     if not df_metrics.is_empty():
         df_final = df_final.join(df_metrics, on="cnpj", how="left")
     else:
@@ -319,19 +340,20 @@ def build_companies_catalog(year: int = 2024, output_dir: Optional[Path] = None)
     except Exception as e:
         logger.warning("Falha ao processar acionistas: %s", e)
 
-    logger.info("Mapeando documentos e fatos relevantes recentes via IPE...")
+    logger.info("Mapeando documentos e fatos relevantes recentes via IPE (2026/2025)...")
     docs_by_cnpj = defaultdict(list)
     try:
         ipe = CVMIPEDocumentsScraper()
-        for d in ipe.extract_year(year=2024):
-            if len(docs_by_cnpj[d.cnpj]) < 5:
-                docs_by_cnpj[d.cnpj].append({
-                    "data": d.data_entrega,
-                    "categoria": d.categoria,
-                    "tipo": d.tipo,
-                    "assunto": (d.assunto or d.especie or d.tipo)[:140],
-                    "url": d.url_download
-                })
+        for y in [2026, 2025]:
+            for d in ipe.extract_year(year=y):
+                if len(docs_by_cnpj[d.cnpj]) < 8:
+                    docs_by_cnpj[d.cnpj].append({
+                        "data": d.data_entrega,
+                        "categoria": d.categoria,
+                        "tipo": d.tipo,
+                        "assunto": (d.assunto or d.especie or d.tipo)[:140],
+                        "url": d.url_download
+                    })
     except Exception as e:
         logger.warning("Falha ao processar documentos IPE: %s", e)
 

@@ -3,16 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PulseBalanços — Inteligência Contábil e Séries Históricas de Empresas Brasileiras | PulseDataLabs</title>
-  <meta name="description" content="Demonstrações contábeis e indicadores fundamentalistas de empresas de capital aberto brasileiras (DFP/ITR/CVM). Dados estruturados, séries históricas TTM e consulta pública gratuita." />
-  <meta property="og:title" content="PulseBalanços — Demonstrações Financeiras e Indicadores CVM/B3" />
-  <meta property="og:description" content="Demonstrações financeiras padronizadas (DRE, Balanço Patrimonial, Fluxo de Caixa, DVA) e métricas TTM de empresas brasileiras." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://pulsedatalabs.github.io/PulseBalancos/" />
-  
+  <title>PulseBalanços — Inteligência Contábil, Demonstrações & Fatos Relevantes de Empresas Brasileiras</title>
+  <meta name="description" content="Base aberta e auditável de balanços patrimoniais, DREs, séries históricas e fatos relevantes de companhias abertas e fechadas no Brasil." />
+
+  <!-- Google Fonts: Syne (Headings), JetBrains Mono (Dados/Código), Inter (Interface) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,16 +20,18 @@
       --bg-3:      #141c26;
       --surface:   #111822;
       --surface-2: #16202c;
+      --surface-3: #1c2938;
       --border:    #1e2d3d;
       --border-2:  #243444;
       --accent:    #00d4ff;
       --accent-dim:#0095c8;
       --accent-bg: rgba(0, 212, 255, 0.08);
       --green:     #00e5a0;
-      --green-bg:  rgba(0, 229, 160, 0.1);
+      --green-bg:  rgba(0, 229, 160, 0.12);
       --gold:      #f0b429;
-      --gold-bg:   rgba(240, 180, 41, 0.1);
+      --gold-bg:   rgba(240, 180, 41, 0.12);
       --red:       #ff4d6d;
+      --red-bg:    rgba(255, 77, 109, 0.12);
       --text:      #e8eef4;
       --text-2:    #8fa3b8;
       --text-3:    #5a7288;
@@ -41,19 +40,19 @@
       --font-sans: 'Inter', system-ui, sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-sans);
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    a { color: var(--accent); text-decoration: none; transition: all 0.2s; }
-    a:hover { color: #fff; text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* ── Ticker Tape Superior ── */
+    /* ── Ticker Tape ── */
     .ticker {
       background: var(--bg-2);
       border-bottom: 1px solid var(--border);
@@ -100,9 +99,9 @@
       z-index: 100;
     }
     .nav-container {
-      max-width: 1240px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 14px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -135,7 +134,7 @@
     .brand-name span { color: var(--accent); }
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       align-items: center;
     }
     .nav-link {
@@ -149,6 +148,7 @@
     .nav-link:hover, .nav-link.active {
       color: #fff;
       background: var(--surface-2);
+      text-decoration: none;
     }
     .btn-action {
       background: var(--accent);
@@ -160,6 +160,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      text-decoration: none !important;
     }
     .btn-action:hover {
       background: #4de1ff;
@@ -170,7 +171,7 @@
     .hero {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 70px 24px 50px;
+      padding: 64px 24px 44px;
       text-align: center;
     }
     .badge-pill {
@@ -195,7 +196,7 @@
     }
     .hero h1 {
       font-family: var(--font-head);
-      font-size: clamp(34px, 5vw, 54px);
+      font-size: clamp(32px, 5vw, 52px);
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.03em;
@@ -207,16 +208,16 @@
       -webkit-text-fill-color: transparent;
     }
     .hero p {
-      font-size: clamp(16px, 2vw, 18px);
+      font-size: clamp(15px, 2vw, 17px);
       color: var(--text-2);
-      max-width: 760px;
-      margin: 0 auto 36px;
+      max-width: 820px;
+      margin: 0 auto 34px;
       line-height: 1.6;
     }
     .hero-buttons {
       display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
     .btn-secondary {
@@ -230,6 +231,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      text-decoration: none !important;
     }
     .btn-secondary:hover {
       background: var(--surface-2);
@@ -241,7 +243,7 @@
     .metrics-container {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 0 24px 60px;
+      padding: 0 24px 50px;
     }
     .metrics-grid {
       display: grid;
@@ -269,7 +271,7 @@
       opacity: 0.6;
     }
     .metric-label {
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--text-3);
@@ -278,7 +280,7 @@
     }
     .metric-value {
       font-family: var(--font-head);
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
       color: #fff;
       line-height: 1.1;
@@ -289,40 +291,85 @@
       color: var(--text-2);
     }
 
-    /* ── Features Section ── */
+    /* ── Section & Pillars ── */
     .section {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 40px 24px 70px;
+      padding: 30px 24px 60px;
     }
     .section-header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
     .section-title {
       font-family: var(--font-head);
       font-size: 28px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      color: #fff;
     }
     .section-desc {
       color: var(--text-2);
       font-size: 15px;
-      max-width: 600px;
+      max-width: 720px;
       margin: 0 auto;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .pillar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      border-top: 3px solid var(--accent);
+    }
+    .pillar-title {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pillar-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .pillar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .pillar-tag {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: var(--accent);
     }
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
+      gap: 20px;
     }
     .feature-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 28px;
+      padding: 26px;
       transition: all 0.2s;
     }
     .feature-card:hover {
@@ -330,8 +377,8 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
     .feature-icon {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 10px;
       background: var(--accent-bg);
       border: 1px solid rgba(0, 212, 255, 0.2);
@@ -339,47 +386,52 @@
       align-items: center;
       justify-content: center;
       font-size: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       color: var(--accent);
     }
     .feature-title {
       font-family: var(--font-head);
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #fff;
     }
     .feature-text {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-2);
       line-height: 1.6;
     }
 
-    /* ── Formula Box ── */
-    .formula-box {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      padding: 24px;
-      border-radius: 8px;
-      margin-top: 32px;
-      font-family: var(--font-mono);
-      font-size: 14px;
-      color: var(--text);
+    /* ── Live Banner Box ── */
+    .live-banner {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 102, 255, 0.05));
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px 30px;
+      margin-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
     }
-    .formula-title {
-      font-size: 12px;
-      color: var(--accent);
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 8px;
+    .live-banner-content h3 {
+      font-family: var(--font-head);
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .live-banner-content p {
+      font-size: 13px;
+      color: var(--text-2);
     }
 
     /* ── Footer ── */
     footer {
       background: var(--bg-2);
       border-top: 1px solid var(--border);
-      padding: 40px 24px;
+      padding: 36px 24px;
       margin-top: 60px;
     }
     .footer-content {
@@ -402,15 +454,16 @@
   <!-- Ticker Tape -->
   <div class="ticker">
     <div class="ticker-track">
-      <div class="ticker-item"><span class="ticker-tag">CVM / B3</span> 2.532 Companhias Mapeadas</div>
-      <div class="ticker-item"><span class="ticker-tag">ATIVAS</span> 650 Empresas com Registro Vigente</div>
-      <div class="ticker-item"><span class="ticker-tag">BOLSA B3</span> 394 Tickers de Ações & Units</div>
-      <div class="ticker-item"><span class="ticker-tag">SÉRIES TTM</span> DRE, Balanço, DFC e DVA Normalizados</div>
+      <div class="ticker-item"><span class="ticker-tag">CVM / B3</span> 2.532 Empresas Cadastradas</div>
+      <div class="ticker-item"><span class="ticker-tag">HISTÓRICO</span> Séries 2022 a 2025 Normalizadas</div>
+      <div class="ticker-item"><span class="ticker-tag">FATOS RELEVANTES</span> Feed Contínuo IPE 2026</div>
+      <div class="ticker-item"><span class="ticker-tag">S.A. FECHADAS</span> Diários Oficiais da União e dos Estados</div>
+      <div class="ticker-item"><span class="ticker-tag">BACEN IF.DATA</span> Balancetes de Instituições Financeiras</div>
       <div class="ticker-item"><span class="ticker-tag">SERVERLESS</span> Pipeline Automatizado via GitHub Actions</div>
-      <!-- Repetição para loop contínuo -->
-      <div class="ticker-item"><span class="ticker-tag">CVM / B3</span> 2.532 Companhias Mapeadas</div>
-      <div class="ticker-item"><span class="ticker-tag">ATIVAS</span> 650 Empresas com Registro Vigente</div>
-      <div class="ticker-item"><span class="ticker-tag">BOLSA B3</span> 394 Tickers de Ações & Units</div>
+      <!-- Loop -->
+      <div class="ticker-item"><span class="ticker-tag">CVM / B3</span> 2.532 Empresas Cadastradas</div>
+      <div class="ticker-item"><span class="ticker-tag">HISTÓRICO</span> Séries 2022 a 2025 Normalizadas</div>
+      <div class="ticker-item"><span class="ticker-tag">FATOS RELEVANTES</span> Feed Contínuo IPE 2026</div>
     </div>
   </div>
 
@@ -423,9 +476,10 @@
       </div>
       <nav class="nav-links">
         <a href="index.html" class="nav-link active">Início</a>
-        <a href="consulta.html" class="nav-link">Consulta de Empresas</a>
+        <a href="consulta.html" class="nav-link">Empresas & Balanços</a>
+        <a href="publicacoes.html" class="nav-link">🚨 Fatos Relevantes & Docs</a>
         <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="nav-link">GitHub</a>
-        <a href="consulta.html" class="btn-action">Acessar Consulta →</a>
+        <a href="consulta.html" class="btn-action">Consultar Empresas →</a>
       </nav>
     </div>
   </header>
@@ -436,14 +490,14 @@
       <div class="badge-dot"></div>
       Open-Source Financial Data Ecosystem
     </div>
-    <h1>Demonstrações Contábeis & Séries Históricas <span>sem Fricção</span></h1>
+    <h1>Demonstrações Contábeis & Inteligência Financeira <span>para o Brasil</span></h1>
     <p>
-      Ingestão automatizada, saneamento de escalas monetárias e cálculo do <strong>TTM (Trailing Twelve Months)</strong> sobre dados oficiais da CVM e B3. Projetado para investidores, analistas e sistemas de BI.
+      Plataforma aberta para consulta e processamento de balanços patrimoniais, DREs linha a linha (IFRS), séries históricas multi-ano e publicações oficiais de empresas brasileiras. Base que vai além das companhias abertas, com dados organizados por CNPJ e rastreabilidade total à fonte de origem.
     </p>
     <div class="hero-buttons">
-      <a href="consulta.html" class="btn-action" style="font-size: 15px; padding: 12px 24px;">Buscar Companhias Abertas 🔍</a>
-      <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="btn-secondary">Ver Repositório no GitHub ⭐</a>
-      <a href="./data/companies_catalog.parquet" class="btn-secondary">Download Parquet (136 KB) 📥</a>
+      <a href="consulta.html" class="btn-action" style="font-size: 15px; padding: 12px 24px;">Buscar Empresas & Balanços 🔍</a>
+      <a href="publicacoes.html" class="btn-secondary">🚨 Fatos Relevantes em Tempo Real ⚡</a>
+      <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="btn-secondary">GitHub Repository ⭐</a>
     </div>
   </section>
 
@@ -451,7 +505,7 @@
   <section class="metrics-container">
     <div class="metrics-grid">
       <div class="metric-card">
-        <div class="metric-label">Companhias CVM</div>
+        <div class="metric-label">Companhias CVM & B3</div>
         <div class="metric-value">2.532</div>
         <div class="metric-sub">Base histórica completa de emissores</div>
       </div>
@@ -461,23 +515,93 @@
         <div class="metric-sub">Registros com situação regular na CVM</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Ações na Bolsa B3</div>
-        <div class="metric-value" style="color: var(--accent);">394</div>
-        <div class="metric-sub">Tickers mapeados via formulários FCA</div>
+        <div class="metric-label">Séries Multi-Ano</div>
+        <div class="metric-value" style="color: var(--accent);">2022 - 2025</div>
+        <div class="metric-sub">DRE, BPA e BPP lado a lado com YoY</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Demonstrações Suportadas</div>
-        <div class="metric-value" style="color: var(--gold);">5 Tipos</div>
-        <div class="metric-sub">BPA, BPP, DRE, DFC e DVA</div>
+        <div class="metric-label">Publicações Oficiais 2026</div>
+        <div class="metric-value" style="color: var(--gold);">39.000+</div>
+        <div class="metric-sub">Fatos relevantes, comunicados e atas</div>
       </div>
+    </div>
+  </section>
+
+  <!-- 4 Pilares de Fontes Oficiais -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Fontes Oficiais Estruturadas por CNPJ</h2>
+      <p class="section-desc">
+        O PulseBalanços consolida demonstrações financeiras de fontes públicas auditadas, garantindo que qualquer número possa ser verificado diretamente no documento original.
+      </p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-title">🏛️ CVM / B3 (Abertas)</div>
+        <div class="pillar-desc">
+          DFP (Demonstrações Anuais), ITR (Trimestrais), Formulários FRE (Governança e Acionistas Controladores) e cotações B3.
+        </div>
+        <div class="pillar-tags">
+          <span class="pillar-tag">DFP</span>
+          <span class="pillar-tag">ITR</span>
+          <span class="pillar-tag">FRE Acionistas</span>
+          <span class="pillar-tag">FCA Tickers</span>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-title">📑 Diários Oficiais (Fechadas)</div>
+        <div class="pillar-desc">
+          Balanços e atas de aprovação de contas de S.A.s de capital fechado e empresas de grande porte obrigadas pela Lei 6.404/76 e Lei 11.638/07 (DOU e DOEs).
+        </div>
+        <div class="pillar-tags">
+          <span class="pillar-tag">DOU Nacional</span>
+          <span class="pillar-tag">DOE SP / RJ / MG</span>
+          <span class="pillar-tag">Juntas Comerciais</span>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-title">🏦 BACEN IF.data (Financeiras)</div>
+        <div class="pillar-desc">
+          Relatórios contábeis trimestrais do Banco Central (Cosif 4010/4040), cobrindo bancos múltiplos, cooperativas de crédito e financeiras.
+        </div>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Cosif 4010</span>
+          <span class="pillar-tag">Basileia</span>
+          <span class="pillar-tag">Carteira de Crédito</span>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-title">🏢 CVM FII (Imobiliários)</div>
+        <div class="pillar-desc">
+          Informes anuais e mensais de Fundos de Investimento Imobiliário, com vacância física/financeira, valor patrimonial e ativos físicos.
+        </div>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Informe Anual</span>
+          <span class="pillar-tag">Valor Justo</span>
+          <span class="pillar-tag">Laudos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner Chamada para Publicações -->
+    <div class="live-banner">
+      <div class="live-banner-content">
+        <h3>🚨 Monitor de Fatos Relevantes & Publicações em Tempo Real</h3>
+        <p>Acompanhe comunicados ao mercado, deliberações de dividendos/JCP e balanços recém-protocolados.</p>
+      </div>
+      <a href="publicacoes.html" class="btn-action">Acessar Terminal de Publicações ↗</a>
     </div>
   </section>
 
   <!-- Pilares Técnicos -->
   <section class="section">
     <div class="section-header">
-      <h2 class="section-title">Pilares do PulseBalanços</h2>
-      <p class="section-desc">Construído segundo os padrões de engenharia de dados da PulseDataLabs: alta performance, resiliência e integridade contábil.</p>
+      <h2 class="section-title">Padrões de Engenharia PulseDataLabs</h2>
+      <p class="section-desc">Alta performance em memória, integridade contábil e serverless first.</p>
     </div>
 
     <div class="features-grid">
@@ -523,20 +647,11 @@
 
       <div class="feature-card">
         <div class="feature-icon">🚀</div>
-        <div class="feature-title">Serverless First</div>
+        <div class="feature-title">Execução Serverless Diária</div>
         <div class="feature-text">
-          Pipeline autônomo executado via GitHub Actions duas vezes ao dia nos dias úteis, mantendo os artefatos de dados sempre atualizados sem servidores 24/7.
+          Pipeline autônomo executado via GitHub Actions várias vezes ao dia, mantendo os artefatos de dados sempre atualizados sem custos com infraestrutura 24/7.
         </div>
       </div>
-    </div>
-
-    <!-- Metodologia TTM -->
-    <div class="formula-box">
-      <div class="formula-title">Metodologia Oficial TTM (Trailing Twelve Months)</div>
-      <code>TTM_ITR = Resultado_Acumulado_Exercicio_Atual + DFP_Exercicio_Anterior - Resultado_Acumulado_Mesmo_Ponto_Anterior</code>
-      <p style="margin-top: 10px; font-size: 12px; color: var(--text-2); font-family: var(--font-sans);">
-        Garante comparabilidade temporal justa entre empresas e trimestres, evitando os erros comuns de simplesmente somar 4 trimestres isolados sujeitos a ajustes de auditoria.
-      </p>
     </div>
   </section>
 
@@ -547,11 +662,10 @@
         © 2026 <strong>PulseBalanços</strong> — Projeto do ecossistema <a href="https://github.com/PulseDataLabs" target="_blank">PulseDataLabs</a>. Licença MIT.
       </div>
       <div class="footer-text">
-        Fonte oficial: <a href="https://dados.cvm.gov.br" target="_blank">Portal de Dados Abertos da CVM</a> e B3.
+        Fontes auditadas: CVM (ENET / Dados Abertos), B3, BACEN e Diários Oficiais.
       </div>
     </div>
   </footer>
 
 </body>
 </html>
-

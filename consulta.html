@@ -505,7 +505,8 @@
       </div>
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Início</a>
-        <a href="consulta.html" class="nav-link active">Empresas</a>
+        <a href="consulta.html" class="nav-link active">Empresas & Balanços</a>
+        <a href="publicacoes.html" class="nav-link">🚨 Fatos Relevantes & Docs</a>
         <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="nav-link">GitHub</a>
       </nav>
     </div>
@@ -837,7 +838,7 @@
       if (!comp) return;
 
       const tickers = comp.tickers_list && comp.tickers_list.length > 0 ? comp.tickers_list.join(', ') : (comp.ticker_principal || 'Nenhum');
-      const cvmLink = comp.cd_cvm ? `https://rad.cvm.gov.br/ENET/consultaExterna/default.aspx?codigoCVM=${comp.cd_cvm}` : 'https://dados.cvm.gov.br';
+      const cvmLink = comp.cd_cvm ? `https://www.rad.cvm.gov.br/ENET/frmConsultaExternaCVM.aspx?codigoCVM=${comp.cd_cvm}` : 'https://dados.cvm.gov.br';
 
       // Métricas derivadas
       const margemLiq = (comp.receita_liquida && comp.receita_liquida > 0 && comp.lucro_liquido !== null) 
