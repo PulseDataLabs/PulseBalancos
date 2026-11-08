@@ -96,7 +96,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/metadata/http_cache_metadata.json
-          git commit -m "chore(cache): atualiza metadados HTTP da CVM [skip ci]" || echo "Nenhuma alteração de metadados para commit."
+          git add data/companies_catalog.json data/companies_catalog.parquet data/metadata/http_cache_metadata.json
+          git commit -m "chore(data): atualização automática diária de companhias e demonstrativos CVM [skip ci]" || echo "Nenhuma alteração de dados para commit."
           git push || echo "Nenhuma alteração para enviar."
 

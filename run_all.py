@@ -72,6 +72,16 @@ def main() -> int:
     args = parse_args()
     logger.info("Iniciando PulseBalanços ETL - Ano: %s | Tipo: %s", args.year, args.doc_type)
 
+    # 1. Atualização do catálogo de companhias abertas e tickers B3
+    logger.info("Etapa 1: Atualizando catálogo mestre de companhias CVM e B3...")
+    try:
+        from scripts.build_companies_catalog import build_companies_catalog
+        build_companies_catalog(year=args.year)
+    except Exception as e:
+        logger.warning("Falha ao atualizar catálogo de companhias: %s", e)
+
+    # 2. Extração e saneamento de demonstrações contábeis
+    logger.info("Etapa 2: Ingestão de demonstrações financeiras (DFP/ITR)...")
     extractor = CVMExtractor()
     if args.force:
         extractor._cache.clear()
@@ -83,7 +93,7 @@ def main() -> int:
         summary = extractor.process_financial_year(doc_type=dt, year=args.year)
         summaries.append(summary)
 
-    # Gera sumário de execução
+    # 3. Gera sumário de execução
     generate_step_summary(summaries, Path("data/etl_summary.md"))
 
     logger.info("Execução finalizada com sucesso.")
