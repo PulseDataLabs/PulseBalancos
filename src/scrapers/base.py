@@ -104,3 +104,4 @@ class BaseScraper(abc.ABC):
     def extract_year(self, year: int) -> Iterator[UnifiedStatementRecord]:
         """Extrai todas as demonstrações contábeis do ano de exercício especificado."""
         pass
+

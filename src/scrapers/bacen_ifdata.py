@@ -37,3 +37,4 @@ class BacenIFDataScraper(BaseScraper):
 
             # Yield de demonstrações COSIF / IF.data mapeadas
             # Permite consulta imediata e rastreabilidade com o portal do Banco Central
+

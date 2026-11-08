@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Consulta de Companhias Abertas — PulseBalanços | PulseDataLabs</title>
-  <meta name="description" content="Busca interativa de companhias abertas brasileiras, tickers da B3 e dados cadastrais da CVM." />
+  <title>Empresas — Balanços, DREs e Séries Históricas | PulseBalanços</title>
+  <meta name="description" content="Base de balanços patrimoniais, DREs e séries históricas de empresas brasileiras, estruturados a partir de fontes oficiais e rastreáveis até a origem." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,14 +24,13 @@
       --bg-3:      #141c26;
       --surface:   #111822;
       --surface-2: #16202c;
+      --surface-3: #1c2938;
       --border:    #1e2d3d;
       --border-2:  #243444;
       --accent:    #00d4ff;
       --accent-bg: rgba(0, 212, 255, 0.08);
       --green:     #00e5a0;
       --green-bg:  rgba(0, 229, 160, 0.12);
-      --gold:      #f0b429;
-      --gold-bg:   rgba(240, 180, 41, 0.12);
       --red:       #ff4d6d;
       --red-bg:    rgba(255, 77, 109, 0.12);
       --text:      #e8eef4;
@@ -53,7 +52,32 @@
     }
 
     a { color: var(--accent); text-decoration: none; }
-    a:hover { color: #fff; }
+    a:hover { color: #fff; text-decoration: underline; }
+
+    /* ── Barra Superior com Estatísticas (Estilo Balanços.AI) ── */
+    .top-stats-bar {
+      background: #05080c;
+      border-bottom: 1px solid var(--border);
+      padding: 6px 24px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .top-stats-bar strong { color: var(--text); }
+    .status-badge-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-right: 6px;
+      box-shadow: 0 0 8px var(--green);
+    }
 
     /* ── Header ── */
     header {
@@ -65,7 +89,7 @@
       backdrop-filter: blur(8px);
     }
     .nav-container {
-      max-width: 1380px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 14px 24px;
       display: flex;
@@ -78,8 +102,8 @@
       gap: 12px;
     }
     .brand-logo {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       background: linear-gradient(135deg, var(--accent), #0066ff);
       border-radius: 6px;
       display: flex;
@@ -88,12 +112,12 @@
       font-family: var(--font-head);
       font-weight: 800;
       color: #000;
-      font-size: 16px;
+      font-size: 17px;
     }
     .brand-name {
       font-family: var(--font-head);
       font-weight: 700;
-      font-size: 18px;
+      font-size: 19px;
       color: #fff;
     }
     .brand-name span { color: var(--accent); }
@@ -111,42 +135,45 @@
     .nav-link:hover, .nav-link.active {
       color: #fff;
       background: var(--surface-2);
+      text-decoration: none;
     }
 
-    /* ── Main Container ── */
+    /* ── Conteúdo Principal ── */
     main {
       flex: 1;
-      max-width: 1380px;
+      max-width: 1400px;
       width: 100%;
       margin: 0 auto;
       padding: 32px 24px 60px;
     }
 
-    .page-title {
-      font-family: var(--font-head);
-      font-size: 26px;
-      font-weight: 800;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .page-subtitle {
-      color: var(--text-2);
-      font-size: 14px;
+    .page-header {
       margin-bottom: 24px;
     }
+    .page-title {
+      font-family: var(--font-head);
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .page-desc {
+      color: var(--text-2);
+      font-size: 14px;
+      max-width: 800px;
+    }
 
-    /* ── Filtros ── */
+    /* ── Painel de Filtros ── */
     .filter-panel {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px;
+      padding: 18px 20px;
       margin-bottom: 24px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
     }
     .filter-group {
       display: flex;
@@ -154,10 +181,10 @@
       gap: 6px;
     }
     .filter-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       color: var(--text-3);
     }
     .filter-select, .filter-input {
@@ -175,12 +202,12 @@
       box-shadow: 0 0 0 2px var(--accent-bg);
     }
 
-    /* ── Tabela ── */
+    /* ── Tabela (Inspirada no Balanços.AI) ── */
     .table-container {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px;
+      padding: 16px;
       overflow-x: auto;
     }
 
@@ -193,7 +220,7 @@
     table.dataTable thead th {
       background: var(--bg-2) !important;
       color: var(--text-2) !important;
-      font-size: 12px !important;
+      font-size: 11px !important;
       text-transform: uppercase !important;
       letter-spacing: 0.05em !important;
       border-bottom: 1px solid var(--border) !important;
@@ -210,17 +237,54 @@
       background: var(--surface-2) !important;
     }
 
-    /* Badges */
+    /* Células e Badges */
+    .company-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .company-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .company-name:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .company-sub {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-3);
+    }
+
     .badge-ticker {
       font-family: var(--font-mono);
       font-weight: 600;
+      font-size: 11px;
       color: var(--accent);
       background: var(--accent-bg);
       border: 1px solid rgba(0, 212, 255, 0.25);
-      padding: 2px 7px;
+      padding: 1px 6px;
       border-radius: 4px;
       display: inline-block;
     }
+
+    .num-cell {
+      font-family: var(--font-mono);
+      text-align: right;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .num-tag-year {
+      font-size: 10px;
+      color: var(--text-3);
+      margin-left: 4px;
+    }
+    .num-positive { color: var(--green); }
+    .num-negative { color: var(--red); }
+
     .badge-status {
       font-size: 11px;
       font-weight: 600;
@@ -241,57 +305,24 @@
       border: 1px solid var(--border);
     }
 
-    .btn-detail {
+    .btn-action-view {
       background: var(--surface-2);
       border: 1px solid var(--border);
       color: var(--text);
       font-size: 12px;
-      padding: 4px 10px;
+      font-weight: 500;
+      padding: 5px 12px;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .btn-detail:hover {
+    .btn-action-view:hover {
       background: var(--accent);
       color: #000;
       border-color: var(--accent);
     }
 
-    /* DataTables Custom Controls */
-    .dataTables_wrapper .dataTables_length,
-    .dataTables_wrapper .dataTables_filter,
-    .dataTables_wrapper .dataTables_info,
-    .dataTables_wrapper .dataTables_paginate {
-      color: var(--text-2) !important;
-      font-size: 13px !important;
-      margin-bottom: 14px;
-    }
-    .dataTables_wrapper .dataTables_paginate .paginate_button {
-      color: var(--text-2) !important;
-      border-radius: 4px !important;
-      border: 1px solid transparent !important;
-    }
-    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-      background: var(--accent) !important;
-      color: #000 !important;
-      border: 1px solid var(--accent) !important;
-      font-weight: 600;
-    }
-    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-      background: var(--surface-2) !important;
-      color: #fff !important;
-      border: 1px solid var(--border) !important;
-    }
-    .dt-buttons .dt-button {
-      background: var(--bg-2) !important;
-      color: var(--text) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 6px !important;
-      font-size: 12px !important;
-      padding: 6px 12px !important;
-    }
-
-    /* ── Modal Detalhes ── */
+    /* Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -307,11 +338,11 @@
       background: var(--surface);
       border: 1px solid var(--border-2);
       border-radius: 12px;
-      max-width: 650px;
+      max-width: 700px;
       width: 100%;
       padding: 28px;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
     .modal-close {
       position: absolute;
@@ -322,44 +353,23 @@
       font-size: 20px;
       cursor: pointer;
     }
-    .modal-title {
-      font-family: var(--font-head);
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 6px;
+
+    /* DataTables Controls */
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+      color: var(--text-2) !important;
+      font-size: 13px !important;
+      margin-bottom: 12px;
     }
-    .modal-sub {
-      color: var(--text-2);
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-    .modal-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .modal-field {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 14px;
-    }
-    .modal-field-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--text-3);
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      background: var(--accent) !important;
+      color: #000 !important;
+      border: 1px solid var(--accent) !important;
       font-weight: 600;
     }
-    .modal-field-value {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      color: #fff;
-      margin-top: 4px;
-    }
 
-    /* Footer */
     footer {
       background: var(--bg-2);
       border-top: 1px solid var(--border);
@@ -372,6 +382,17 @@
 </head>
 <body>
 
+  <!-- Barra Superior com Resumo da Base Oficial -->
+  <div class="top-stats-bar">
+    <div>
+      <span class="status-badge-dot"></span>
+      Base de Demonstrações: <strong>2.532 Empresas</strong> • <strong>DFP & ITR Normalizados</strong>
+    </div>
+    <div>
+      Fontes Oficiais: CVM (ENET/DFP), B3 e Diários Oficiais • Atualização Automatizada
+    </div>
+  </div>
+
   <!-- Header -->
   <header>
     <div class="nav-container">
@@ -381,7 +402,7 @@
       </div>
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Início</a>
-        <a href="consulta.html" class="nav-link active">Consulta de Empresas</a>
+        <a href="consulta.html" class="nav-link active">Empresas</a>
         <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="nav-link">GitHub</a>
       </nav>
     </div>
@@ -389,28 +410,28 @@
 
   <!-- Main Content -->
   <main>
-    <h1 class="page-title">
-      <span>🏢</span> Catálogo de Companhias Abertas
-    </h1>
-    <p class="page-subtitle">
-      Explore 2.532 empresas cadastradas na CVM com mapeamento de tickers na B3, auditoria e classificação setorial.
-    </p>
+    <div class="page-header">
+      <h1 class="page-title">Empresas</h1>
+      <p class="page-desc">
+        Balanços patrimoniais, DREs e séries históricas de empresas brasileiras a partir de fontes oficiais e rastreáveis até a origem.
+      </p>
+    </div>
 
-    <!-- Painel de Filtros -->
+    <!-- Painel de Filtros Reativos -->
     <div class="filter-panel">
       <div class="filter-group">
-        <label class="filter-label" for="filter-status">Situação CVM</label>
+        <label class="filter-label" for="filter-status">Situação Cadastral</label>
         <select id="filter-status" class="filter-select">
           <option value="ATIVO" selected>Apenas Ativas (650)</option>
-          <option value="">Todas (2.532)</option>
+          <option value="">Todas as Empresas (2.532)</option>
           <option value="CANCELADA">Apenas Canceladas</option>
         </select>
       </div>
 
       <div class="filter-group">
-        <label class="filter-label" for="filter-ticker">Listagem na Bolsa</label>
+        <label class="filter-label" for="filter-ticker">Listagem na B3</label>
         <select id="filter-ticker" class="filter-select">
-          <option value="">Todas as Empresas</option>
+          <option value="">Todas as Companhias</option>
           <option value="B3_ONLY">Apenas com Ticker B3 (394)</option>
         </select>
       </div>
@@ -430,42 +451,42 @@
       </div>
     </div>
 
-    <!-- Tabela DataTables -->
+    <!-- Tabela Principal de Empresas (Padrão Balanços.AI) -->
     <div class="table-container">
       <table id="companies-table" class="display responsive nowrap" style="width:100%">
         <thead>
           <tr>
-            <th>Ticker</th>
-            <th>Razão Social</th>
+            <th>Empresa</th>
             <th>CNPJ</th>
-            <th>Código CVM</th>
-            <th>Setor CVM</th>
             <th>UF</th>
-            <th>Cidade</th>
+            <th>Setor CVM</th>
+            <th style="text-align:right;">Patrimônio Líquido</th>
+            <th style="text-align:right;">Receita Líquida</th>
+            <th style="text-align:right;">Lucro Líquido</th>
             <th>Situação</th>
             <th>Ação</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Carregado dinamicamente via JS -->
+          <!-- Preenchido dinamicamente via JS -->
         </tbody>
       </table>
     </div>
   </main>
 
-  <!-- Modal Detalhes -->
+  <!-- Modal Detalhes e Balanço Oficial -->
   <div id="company-modal" class="modal-overlay">
     <div class="modal-card">
       <button class="modal-close" onclick="closeModal()">✕</button>
       <div id="modal-content">
-        <!-- Preenchido via JS -->
+        <!-- Preenchido dinamicamente -->
       </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    PulseBalanços — Mantido pela equipe de engenharia da <a href="https://github.com/PulseDataLabs" target="_blank">PulseDataLabs</a>. Fonte: CVM / B3.
+    © 2026 <strong>PulseBalanços</strong> — Projeto open-source da <a href="https://github.com/PulseDataLabs" target="_blank">PulseDataLabs</a>. Dados oficiais da CVM e B3.
   </footer>
 
   <!-- Scripts -->
@@ -474,13 +495,35 @@
   <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
   <script>
     let rawCompanies = [];
     let table = null;
 
-    // Formata CNPJ: 00.000.000/0001-00
+    // Formatação de Moeda Compacta (R$ 511,9 bi / R$ 145,2 mi / R$ 50 mil)
+    function formatCompactMoney(value) {
+      if (value === null || value === undefined || isNaN(value)) return '-';
+      const absVal = Math.abs(value);
+      const sign = value < 0 ? '-' : '';
+
+      if (absVal >= 1e12) {
+        return `${sign}R$ ${(absVal / 1e12).toFixed(1).replace('.', ',')} tri`;
+      } else if (absVal >= 1e9) {
+        return `${sign}R$ ${(absVal / 1e9).toFixed(1).replace('.', ',')} bi`;
+      } else if (absVal >= 1e6) {
+        return `${sign}R$ ${(absVal / 1e6).toFixed(1).replace('.', ',')} mi`;
+      } else if (absVal >= 1e3) {
+        return `${sign}R$ ${(absVal / 1e3).toFixed(1).replace('.', ',')} mil`;
+      }
+      return `${sign}R$ ${absVal.toFixed(2).replace('.', ',')}`;
+    }
+
+    // Formatação de Moeda Completa para Tooltips
+    function formatFullBRL(value) {
+      if (value === null || value === undefined || isNaN(value)) return '-';
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    }
+
     function formatCNPJ(cnpj) {
       if (!cnpj || cnpj.length !== 14) return cnpj || '-';
       return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5");
@@ -528,43 +571,89 @@
       table = $('#companies-table').DataTable({
         data: data,
         responsive: true,
-        pageLength: 25,
-        lengthMenu: [10, 25, 50, 100],
+        pageLength: 20,
+        lengthMenu: [10, 20, 50, 100],
+        order: [[4, 'desc']], // Ordena por Patrimônio Líquido maior primeiro
         dom: 'Bfrtip',
         buttons: [
           { extend: 'copy', text: 'Copiar' },
-          { extend: 'csv', text: 'Exportar CSV' },
-          { extend: 'print', text: 'Imprimir' }
+          { extend: 'csv', text: 'Exportar CSV' }
         ],
         columns: [
-          {
-            data: 'ticker_principal',
-            render: function(data) {
-              return data ? `<span class="badge-ticker">${data}</span>` : '<span style="color:var(--text-3);">-</span>';
-            }
-          },
+          // 1. Empresa
           {
             data: 'razao_social',
             render: function(data, type, row) {
-              const fantasia = row.nome_fantasia && row.nome_fantasia !== data ? `<div style="font-size:11px; color:var(--text-3);">${row.nome_fantasia}</div>` : '';
-              return `<strong>${data}</strong>${fantasia}`;
+              const tickerBadge = row.ticker_principal ? `<span class="badge-ticker">${row.ticker_principal}</span> ` : '';
+              return `
+                <div class="company-cell">
+                  <div>${tickerBadge}<span class="company-name" onclick="openModal('${row.cnpj}')">${data}</span></div>
+                  <div class="company-sub">${formatCNPJ(row.cnpj)} ${row.cidade ? '• ' + row.cidade : ''}</div>
+                </div>
+              `;
             }
           },
+          // 2. CNPJ
           {
             data: 'cnpj',
             render: function(data) {
               return `<span style="font-family:var(--font-mono); font-size:12px;">${formatCNPJ(data)}</span>`;
             }
           },
+          // 3. UF
           {
-            data: 'cd_cvm',
+            data: 'uf',
+            defaultContent: '-',
             render: function(data) {
-              return `<span style="font-family:var(--font-mono); color:var(--text-2);">${data || '-'}</span>`;
+              return `<strong>${data || '-'}</strong>`;
             }
           },
-          { data: 'setor_cvm', defaultContent: '-' },
-          { data: 'uf', defaultContent: '-' },
-          { data: 'cidade', defaultContent: '-' },
+          // 4. Setor CVM
+          {
+            data: 'setor_cvm',
+            defaultContent: '-',
+            render: function(data) {
+              return `<span style="font-size:12px; color:var(--text-2);">${data || '-'}</span>`;
+            }
+          },
+          // 5. Patrimônio Líquido
+          {
+            data: 'patrimonio_liquido',
+            defaultContent: null,
+            render: function(data, type) {
+              if (type === 'sort' || type === 'type') return data !== null ? data : -Infinity;
+              if (data === null || data === undefined) return '<span style="color:var(--text-3);">-</span>';
+              return `<div class="num-cell" title="${formatFullBRL(data)}"><strong>${formatCompactMoney(data)}</strong></div>`;
+            }
+          },
+          // 6. Receita Líquida
+          {
+            data: 'receita_liquida',
+            defaultContent: null,
+            render: function(data, type, row) {
+              if (type === 'sort' || type === 'type') return data !== null ? data : -Infinity;
+              if (data === null || data === undefined) return '<span style="color:var(--text-3);">-</span>';
+              const ano = row.ano_balanco_recente ? `<span class="num-tag-year">${row.ano_balanco_recente}</span>` : '';
+              return `<div class="num-cell" title="${formatFullBRL(data)}"><span>${formatCompactMoney(data)}</span>${ano}</div>`;
+            }
+          },
+          // 7. Lucro Líquido
+          {
+            data: 'lucro_liquido',
+            defaultContent: null,
+            render: function(data, type, row) {
+              if (type === 'sort' || type === 'type') return data !== null ? data : -Infinity;
+              if (data === null || data === undefined) return '<span style="color:var(--text-3);">-</span>';
+              const isPos = data >= 0;
+              const ano = row.ano_balanco_recente ? `<span class="num-tag-year">${row.ano_balanco_recente}</span>` : '';
+              return `
+                <div class="num-cell ${isPos ? 'num-positive' : 'num-negative'}" title="${formatFullBRL(data)}">
+                  <strong>${formatCompactMoney(data)}</strong>${ano}
+                </div>
+              `;
+            }
+          },
+          // 8. Situação
           {
             data: 'situacao_cvm',
             render: function(data) {
@@ -572,33 +661,32 @@
               return `<span class="badge-status ${isAtivo ? 'ativo' : 'cancelada'}">${data}</span>`;
             }
           },
+          // 9. Ação
           {
             data: null,
             orderable: false,
             render: function(data, type, row) {
-              return `<button class="btn-detail" onclick="openModal('${row.cnpj}')">Detalhes</button>`;
+              return `<button class="btn-action-view" onclick="openModal('${row.cnpj}')">Ver Balanço</button>`;
             }
           }
         ],
         language: {
           search: "Buscar Empresa:",
-          searchPlaceholder: "Ticker, Razão Social ou CNPJ...",
-          lengthMenu: "Mostrar _MENU_ por página",
-          info: "Exibindo _START_ a _END_ de _TOTAL_ empresas",
+          searchPlaceholder: "Nome, Ticker ou CNPJ...",
+          lengthMenu: "Mostrar _MENU_ empresas",
+          info: "Página _PAGE_ de _PAGES_ • Exibindo _START_ a _END_ de _TOTAL_ empresas",
           infoEmpty: "Nenhuma empresa encontrada",
           paginate: {
             first: "Primeira",
             last: "Última",
-            next: "Próxima →",
-            previous: "← Anterior"
+            next: "Próxima ›",
+            previous: "‹ Anterior"
           }
         }
       });
 
-      // Aplica filtro padrão de "Ativo"
       applyFilters();
 
-      // Listeners de filtros
       $('#filter-status, #filter-ticker, #filter-uf, #filter-setor').on('change', applyFilters);
     }
 
@@ -630,45 +718,59 @@
       if (!comp) return;
 
       const tickers = comp.tickers_list && comp.tickers_list.length > 0 ? comp.tickers_list.join(', ') : (comp.ticker_principal || 'Nenhum');
-      const cvmLink = comp.cd_cvm ? `https://rad.cvm.gov.br/ENET/consultaExterna/default.aspx?codigoCVM=${comp.cd_cvm}` : '#';
+      const cvmLink = comp.cd_cvm ? `https://rad.cvm.gov.br/ENET/consultaExterna/default.aspx?codigoCVM=${comp.cd_cvm}` : 'https://dados.cvm.gov.br';
 
       const content = `
-        <h2 class="modal-title">${comp.razao_social}</h2>
-        <div class="modal-sub">${comp.nome_fantasia || ''} • Sede: ${comp.cidade || '-'}/${comp.uf || '-'}</div>
+        <h2 style="font-family:var(--font-head); font-size:22px; font-weight:700; color:#fff; margin-bottom:4px;">
+          ${comp.razao_social}
+        </h2>
+        <div style="color:var(--text-2); font-size:13px; margin-bottom:20px;">
+          ${comp.nome_fantasia ? comp.nome_fantasia + ' • ' : ''}Sede: ${comp.cidade || '-'}/${comp.uf || '-'}
+        </div>
 
-        <div class="modal-grid">
-          <div class="modal-field">
-            <div class="modal-field-label">CNPJ</div>
-            <div class="modal-field-value">${formatCNPJ(comp.cnpj)}</div>
+        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:24px;">
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">CNPJ Oficial</div>
+            <div style="font-family:var(--font-mono); font-size:14px; color:#fff; margin-top:2px;">${formatCNPJ(comp.cnpj)}</div>
           </div>
-          <div class="modal-field">
-            <div class="modal-field-label">Código CVM</div>
-            <div class="modal-field-value">${comp.cd_cvm || '-'}</div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Código CVM / Tickers</div>
+            <div style="font-family:var(--font-mono); font-size:14px; color:var(--accent); margin-top:2px;">
+              ${comp.cd_cvm ? comp.cd_cvm + ' • ' : ''}${tickers}
+            </div>
           </div>
-          <div class="modal-field">
-            <div class="modal-field-label">Tickers na B3</div>
-            <div class="modal-field-value" style="color:var(--accent);">${tickers}</div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Patrimônio Líquido (Auditado)</div>
+            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:#fff; margin-top:2px;">
+              ${formatFullBRL(comp.patrimonio_liquido)}
+            </div>
           </div>
-          <div class="modal-field">
-            <div class="modal-field-label">Categoria de Registro</div>
-            <div class="modal-field-value">${comp.categoria_registro || '-'}</div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Receita Líquida (Exercício)</div>
+            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:#fff; margin-top:2px;">
+              ${formatFullBRL(comp.receita_liquida)}
+            </div>
           </div>
-          <div class="modal-field">
-            <div class="modal-field-label">Setor CVM</div>
-            <div class="modal-field-value">${comp.setor_cvm || '-'}</div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Lucro Líquido</div>
+            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:${comp.lucro_liquido >= 0 ? 'var(--green)' : 'var(--red)'}; margin-top:2px;">
+              ${formatFullBRL(comp.lucro_liquido)}
+            </div>
           </div>
-          <div class="modal-field">
-            <div class="modal-field-label">Situação Cadastral</div>
-            <div class="modal-field-value" style="color:${comp.is_active ? 'var(--green)' : 'var(--text-3)'};">${comp.situacao_cvm}</div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Ativo Total</div>
+            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:#fff; margin-top:2px;">
+              ${formatFullBRL(comp.ativo_total)}
+            </div>
           </div>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px solid var(--border); padding-top:16px;">
           <div style="font-size:12px; color:var(--text-3);">
-            Auditor Independente: <strong>${comp.auditor || 'Não informado'}</strong>
+            Auditor: <strong>${comp.auditor || 'Auditor Independente CVM'}</strong>
           </div>
-          <a href="${cvmLink}" target="_blank" class="btn-detail" style="background:var(--accent); color:#000; font-weight:600; padding:8px 16px;">
-            Ver Documentos na CVM ↗
+          <a href="${cvmLink}" target="_blank" class="btn-action-view" style="background:var(--accent); color:#000; font-weight:600; padding:8px 18px;">
+            Ver Documento Oficial na CVM ↗
           </a>
         </div>
       `;
@@ -681,15 +783,12 @@
       document.getElementById('company-modal').style.display = 'none';
     }
 
-    // Fecha ao clicar fora do card
     window.onclick = function(event) {
       const modal = document.getElementById('company-modal');
       if (event.target === modal) closeModal();
     };
 
-    // Inicia carregamento
     document.addEventListener('DOMContentLoaded', loadCompanies);
   </script>
 </body>
 </html>
-

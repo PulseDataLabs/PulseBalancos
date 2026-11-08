@@ -52,3 +52,4 @@ class OfficialPublicationMetadata:
     tipo_documento: str
     possui_auditoria: bool
     auditor_independente: Optional[str] = None
+

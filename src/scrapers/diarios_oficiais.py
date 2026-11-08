@@ -70,3 +70,4 @@ class DiariosOficiaisScraper(BaseScraper):
         # Estrutura extensível para ingestão de feeds públicos (ex: IN/DOU e Diários Estaduais)
         # Permite conferência direta na página oficial do diário
         return []
+
