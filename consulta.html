@@ -690,7 +690,7 @@
               const tickerBadge = row.ticker_principal ? `<span class="badge-ticker">${row.ticker_principal}</span> ` : '';
               return `
                 <div class="company-cell">
-                  <div>${tickerBadge}<span class="company-name" onclick="openModal('${row.cnpj}')">${data}</span></div>
+                  <div>${tickerBadge}<a href="empresa.html?cnpj=${row.cnpj}" class="company-name" style="text-decoration:none; color:#fff;">${data}</a></div>
                   <div class="company-sub">${formatCNPJ(row.cnpj)} ${row.cidade ? '• ' + row.cidade : ''}</div>
                 </div>
               `;
@@ -769,7 +769,16 @@
             data: null,
             orderable: false,
             render: function(data, type, row) {
-              return `<button class="btn-action-view" onclick="openModal('${row.cnpj}')">Ver Balanço</button>`;
+              return `
+                <div style="display:flex; gap:6px;">
+                  <a href="empresa.html?cnpj=${row.cnpj}" class="btn-action-view" style="text-decoration:none; display:inline-flex; align-items:center;">
+                    Balanço ↗
+                  </a>
+                  <button class="btn-action-view" style="background:var(--bg-2); border:1px solid var(--border); padding:6px 9px;" onclick="openModal('${row.cnpj}')" title="Prévia Rápida">
+                    👁️
+                  </button>
+                </div>
+              `;
             }
           }
         ],
@@ -1007,9 +1016,14 @@
           <div style="font-size:11px; color:var(--text-3);">
             Fonte oficial auditada: CVM / B3
           </div>
-          <a href="${cvmLink}" target="_blank" class="btn-action-view" style="background:var(--accent); color:#000; font-weight:600; padding:8px 16px;">
-            Ver Documentos Oficiais na CVM ↗
-          </a>
+          <div style="display:flex; gap:8px;">
+            <a href="empresa.html?cnpj=${comp.cnpj}" class="btn-action-view" style="background:var(--accent); color:#000; font-weight:700; padding:8px 16px; text-decoration:none;">
+              Abrir DRE & Balanço Completo ↗
+            </a>
+            <a href="${cvmLink}" target="_blank" class="btn-action-view" style="background:var(--surface-2); border:1px solid var(--border); padding:8px 12px; text-decoration:none;" title="Ver na CVM">
+              CVM ENET ↗
+            </a>
+          </div>
         </div>
       `;
 

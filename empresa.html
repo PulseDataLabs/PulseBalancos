@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demonstrações Contábeis & Perfil Corporativo | PulseBalanços</title>
+  <meta name="description" content="Demonstração do Resultado (DRE), Balanço Patrimonial, Acionistas e Fatos Relevantes oficiais da empresa." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080c10;
+      --bg-2:      #0d1218;
+      --bg-3:      #141c26;
+      --surface:   #111822;
+      --surface-2: #16202c;
+      --surface-3: #1c2938;
+      --border:    #1e2d3d;
+      --border-2:  #243444;
+      --accent:    #00d4ff;
+      --accent-dim:#0095c8;
+      --accent-bg: rgba(0, 212, 255, 0.08);
+      --green:     #00e5a0;
+      --green-bg:  rgba(0, 229, 160, 0.12);
+      --gold:      #f0b429;
+      --gold-bg:   rgba(240, 180, 41, 0.12);
+      --red:       #ff4d6d;
+      --red-bg:    rgba(255, 77, 109, 0.12);
+      --text:      #e8eef4;
+      --text-2:    #8fa3b8;
+      --text-3:    #5a7288;
+      --font-head: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #fff; text-decoration: none; }
+
+    /* Header */
+    header {
+      background: rgba(8, 12, 16, 0.95);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--accent), #0066ff);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800;
+      color: #000;
+      font-size: 16px;
+    }
+    .brand-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+    }
+    .brand-name span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .nav-link {
+      font-size: 14px;
+      color: var(--text-2);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+      background: var(--surface-2);
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 24px 60px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* Header da Empresa */
+    .company-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .company-title-area {
+      flex: 1;
+      min-width: 300px;
+    }
+    .badge-ticker {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .company-name {
+      font-family: var(--font-head);
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .company-meta {
+      font-size: 13px;
+      color: var(--text-2);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .company-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .company-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-cvm-link {
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-cvm-link:hover {
+      background: #4de1ff;
+      color: #000;
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+    }
+
+    /* KPIs Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .kpi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-3);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .kpi-value {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--text-2);
+      margin-top: 4px;
+    }
+
+    /* Navigation Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-2);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: #fff; }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* Tabelas Contábeis */
+    .statement-table-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+    table.statement-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    table.statement-table thead th {
+      background: var(--bg-2);
+      color: var(--text-2);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 14px;
+      font-weight: 600;
+      text-align: left;
+    }
+    table.statement-table tbody td {
+      border-bottom: 1px solid var(--border);
+      padding: 9px 14px;
+    }
+    table.statement-table tbody tr:hover td {
+      background: var(--surface-2);
+    }
+
+    .account-parent td {
+      font-weight: 700;
+      color: #fff;
+      background: rgba(22, 32, 44, 0.4);
+    }
+    .account-indent-1 { padding-left: 14px; }
+    .account-indent-2 { padding-left: 28px; }
+    .account-indent-3 { padding-left: 42px; }
+    .account-indent-4 { padding-left: 56px; }
+
+    .num-val {
+      font-family: var(--font-mono);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Documentos */
+    .doc-row {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .doc-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .doc-tag {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .doc-assunto {
+      font-size: 14px;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* Progress bar */
+    .progress-bar-bg {
+      background: var(--bg-2);
+      border-radius: 4px;
+      height: 6px;
+      width: 90px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .progress-bar-fill {
+      background: var(--accent);
+      height: 100%;
+    }
+
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-logo">P</div>
+        <div class="brand-name">Pulse<span>Balanços</span></div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Início</a>
+        <a href="consulta.html" class="nav-link active">Empresas</a>
+        <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="nav-link">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <a href="consulta.html" class="back-link">← Voltar para Consulta de Empresas</a>
+
+    <div id="loading" style="padding:40px; text-align:center; color:var(--text-2);">
+      Carregando demonstrações financeiras oficiais da companhia...
+    </div>
+
+    <div id="company-view" style="display:none;">
+      <!-- Header da Empresa -->
+      <div class="company-header">
+        <div class="company-title-area">
+          <div id="badge-ticker" class="badge-ticker" style="display:none;"></div>
+          <h1 id="company-name" class="company-name"></h1>
+          <div class="company-meta">
+            <div class="company-meta-item">CNPJ: <strong id="company-cnpj" style="font-family:var(--font-mono); color:#fff;"></strong></div>
+            <div class="company-meta-item">CVM: <strong id="company-cvm" style="font-family:var(--font-mono); color:#fff;"></strong></div>
+            <div class="company-meta-item">Sede: <strong id="company-sede" style="color:#fff;"></strong></div>
+            <div class="company-meta-item">Setor: <strong id="company-setor" style="color:#fff;"></strong></div>
+          </div>
+        </div>
+        <div class="company-actions">
+          <a id="btn-cvm-external" href="#" target="_blank" class="btn-cvm-link">Ver na CVM (ENET) ↗</a>
+        </div>
+      </div>
+
+      <!-- KPIs Rápidos -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Patrimônio Líquido</div>
+          <div id="kpi-pl" class="kpi-value">-</div>
+          <div class="kpi-sub">Balanço Auditado</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Receita Líquida</div>
+          <div id="kpi-rec" class="kpi-value">-</div>
+          <div class="kpi-sub">Exercício Fechado</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Lucro Líquido</div>
+          <div id="kpi-lucro" class="kpi-value">-</div>
+          <div class="kpi-sub">Resultado Contábil</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Margem Líquida</div>
+          <div id="kpi-margem" class="kpi-value" style="color:var(--accent);">-</div>
+          <div class="kpi-sub">Margem s/ Receita</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">ROE (Retorno s/ PL)</div>
+          <div id="kpi-roe" class="kpi-value" style="color:var(--green);">-</div>
+          <div class="kpi-sub">Rentabilidade s/ PL</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Ativo Total</div>
+          <div id="kpi-ativo" class="kpi-value">-</div>
+          <div class="kpi-sub">Dimensão Patrimonial</div>
+        </div>
+      </div>
+
+      <!-- Abas de Navegação -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="showTab('dre')">📊 Demonstração do Resultado (DRE)</button>
+        <button class="tab-btn" onclick="showTab('bpa')">🏛️ Balanço Ativo (BPA)</button>
+        <button class="tab-btn" onclick="showTab('bpp')">💳 Balanço Passivo (BPP)</button>
+        <button class="tab-btn" onclick="showTab('acionistas')">👥 Acionistas & Governança</button>
+        <button class="tab-btn" onclick="showTab('docs')">📑 Fatos Relevantes & Docs CVM</button>
+      </div>
+
+      <!-- 1. DRE -->
+      <div id="tab-dre" class="tab-pane active">
+        <div class="statement-table-card">
+          <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
+            Demonstração do Resultado Consolidada (DRE) • Exercício social auditado com Análise Vertical (% da Receita Líquida):
+          </div>
+          <table class="statement-table">
+            <thead>
+              <tr>
+                <th style="width:110px;">Código</th>
+                <th>Descrição da Conta Contábil</th>
+                <th style="text-align:right;">Valor (R$)</th>
+                <th style="text-align:right; width:120px;">% AV (Receita)</th>
+              </tr>
+            </thead>
+            <tbody id="dre-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2. BPA (Ativo) -->
+      <div id="tab-bpa" class="tab-pane">
+        <div class="statement-table-card">
+          <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
+            Balanço Patrimonial Ativo (BPA) • Estrutura de Bens e Direitos com Análise Vertical (% do Ativo Total):
+          </div>
+          <table class="statement-table">
+            <thead>
+              <tr>
+                <th style="width:110px;">Código</th>
+                <th>Descrição da Conta Contábil</th>
+                <th style="text-align:right;">Valor (R$)</th>
+                <th style="text-align:right; width:120px;">% AV (Ativo)</th>
+              </tr>
+            </thead>
+            <tbody id="bpa-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. BPP (Passivo) -->
+      <div id="tab-bpp" class="tab-pane">
+        <div class="statement-table-card">
+          <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
+            Balanço Patrimonial Passivo e Patrimônio Líquido (BPP) • Obrigações e Capital Social:
+          </div>
+          <table class="statement-table">
+            <thead>
+              <tr>
+                <th style="width:110px;">Código</th>
+                <th>Descrição da Conta Contábil</th>
+                <th style="text-align:right;">Valor (R$)</th>
+                <th style="text-align:right; width:120px;">% AV (Passivo)</th>
+              </tr>
+            </thead>
+            <tbody id="bpp-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. Acionistas -->
+      <div id="tab-acionistas" class="tab-pane">
+        <div class="statement-table-card">
+          <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
+            Posição acionária dos controladores e acionistas relevantes (> 5%) declarados à CVM (Formulário FRE):
+          </div>
+          <table class="statement-table">
+            <thead>
+              <tr>
+                <th>Acionista</th>
+                <th style="text-align:right; width:220px;">Participação no Capital</th>
+                <th style="width:160px;">Classificação</th>
+              </tr>
+            </thead>
+            <tbody id="acionistas-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5. Documentos -->
+      <div id="tab-docs" class="tab-pane">
+        <div style="margin-bottom:16px; font-size:13px; color:var(--text-2);">
+          Publicações oficiais, Fatos Relevantes e Comunicados protocolados pela companhia na CVM (IPE):
+        </div>
+        <div id="docs-list"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    PulseBalanços — Projeto open-source da <a href="https://github.com/PulseDataLabs" target="_blank">PulseDataLabs</a>. Dados oficiais da CVM e B3.
+  </footer>
+
+  <script>
+    function formatBRL(value) {
+      if (value === null || value === undefined || isNaN(value)) return '-';
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    }
+
+    function formatCompactMoney(value) {
+      if (value === null || value === undefined || isNaN(value)) return '-';
+      const absVal = Math.abs(value);
+      const sign = value < 0 ? '-' : '';
+      if (absVal >= 1e12) return `${sign}R$ ${(absVal / 1e12).toFixed(1).replace('.', ',')} tri`;
+      if (absVal >= 1e9) return `${sign}R$ ${(absVal / 1e9).toFixed(1).replace('.', ',')} bi`;
+      if (absVal >= 1e6) return `${sign}R$ ${(absVal / 1e6).toFixed(1).replace('.', ',')} mi`;
+      return formatBRL(value);
+    }
+
+    function formatCNPJ(cnpj) {
+      if (!cnpj || cnpj.length !== 14) return cnpj || '-';
+      return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5");
+    }
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+      event.target.classList.add('active');
+      document.getElementById(`tab-${tabName}`).classList.add('active');
+    }
+
+    function renderStatementRows(accounts, tbodyId) {
+      const tbody = document.getElementById(tbodyId);
+      if (!accounts || accounts.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--text-3);">Nenhuma rubrica contábil disponível para este demonstrativo.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = accounts.map(a => {
+        const isParent = a.nivel <= 2;
+        const indentClass = `account-indent-${Math.min(a.nivel - 1, 4)}`;
+        const avText = a.analise_vertical !== null && a.analise_vertical !== undefined ? `${a.analise_vertical.toFixed(2).replace('.', ',')}%` : '-';
+        
+        return `
+          <tr class="${isParent ? 'account-parent' : ''}">
+            <td style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">${a.cd_conta}</td>
+            <td class="${indentClass}">${a.ds_conta}</td>
+            <td class="num-val" title="${formatBRL(a.valor)}">
+              ${isParent ? '<strong>' + formatBRL(a.valor) + '</strong>' : formatBRL(a.valor)}
+            </td>
+            <td class="num-val" style="color:var(--accent);">${avText}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function loadCompanyDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      let cnpj = urlParams.get('cnpj');
+      const ticker = urlParams.get('ticker');
+
+      // Se passou ticker em vez de cnpj, busca no catálogo mestre
+      if (!cnpj && ticker) {
+        try {
+          const catResp = await fetch('./data/companies_catalog.json');
+          const cat = await catResp.json();
+          const found = cat.find(c => c.ticker_principal === ticker.toUpperCase() || (c.tickers_list && c.tickers_list.includes(ticker.toUpperCase())));
+          if (found) cnpj = found.cnpj;
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      if (!cnpj) {
+        document.getElementById('loading').innerHTML = '<span style="color:var(--red);">CNPJ ou Ticker não fornecido na URL. <a href="consulta.html">Voltar para a busca</a>.</span>';
+        return;
+      }
+
+      cnpj = cnpj.replace(/\D/g, '').padStart(14, '0');
+
+      try {
+        const resp = await fetch(`./data/companies/${cnpj}.json`);
+        if (!resp.ok) throw new Error('Dados detalhados da companhia não encontrados');
+        const data = await resp.json();
+
+        // Preenche Header
+        document.title = `${data.razao_social} (${data.ticker_principal || 'CVM'}) — PulseBalanços`;
+        document.getElementById('company-name').textContent = data.razao_social;
+        document.getElementById('company-cnpj').textContent = formatCNPJ(data.cnpj);
+        document.getElementById('company-cvm').textContent = data.cd_cvm || '-';
+        document.getElementById('company-sede').textContent = `${data.cidade || '-'}/${data.uf || '-'}`;
+        document.getElementById('company-setor').textContent = data.setor_cvm || '-';
+        document.getElementById('btn-cvm-external').href = data.url_cvm || '#';
+
+        if (data.ticker_principal) {
+          const badge = document.getElementById('badge-ticker');
+          badge.textContent = data.ticker_principal;
+          badge.style.display = 'inline-block';
+        }
+
+        // Preenche KPIs
+        const res = data.resumo_financeiro || {};
+        document.getElementById('kpi-pl').textContent = formatCompactMoney(res.patrimonio_liquido);
+        document.getElementById('kpi-rec').textContent = formatCompactMoney(res.receita_liquida);
+        const lucroEl = document.getElementById('kpi-lucro');
+        lucroEl.textContent = formatCompactMoney(res.lucro_liquido);
+        if (res.lucro_liquido >= 0) {
+          lucroEl.style.color = 'var(--green)';
+        } else if (res.lucro_liquido < 0) {
+          lucroEl.style.color = 'var(--red)';
+        }
+        document.getElementById('kpi-ativo').textContent = formatCompactMoney(res.ativo_total);
+
+        // Múltiplos
+        if (res.receita_liquida > 0 && res.lucro_liquido !== null) {
+          document.getElementById('kpi-margem').textContent = ((res.lucro_liquido / res.receita_liquida) * 100).toFixed(1).replace('.', ',') + '%';
+        }
+        if (res.patrimonio_liquido > 0 && res.lucro_liquido !== null) {
+          document.getElementById('kpi-roe').textContent = ((res.lucro_liquido / res.patrimonio_liquido) * 100).toFixed(1).replace('.', ',') + '%';
+        }
+
+        // Renderiza DRE, BPA, BPP
+        renderStatementRows(data.dre, 'dre-body');
+        renderStatementRows(data.bpa, 'bpa-body');
+        renderStatementRows(data.bpp, 'bpp-body');
+
+        // Renderiza Acionistas
+        const shBody = document.getElementById('acionistas-body');
+        if (data.acionistas && data.acionistas.length > 0) {
+          shBody.innerHTML = data.acionistas.map(a => `
+            <tr>
+              <td><strong>${a.nome}</strong></td>
+              <td style="text-align:right; font-family:var(--font-mono);">
+                <span class="progress-bar-bg"><span class="progress-bar-fill" style="width:${Math.min(a.percentual, 100)}%;"></span></span>
+                <strong>${a.percentual.toFixed(1).replace('.', ',')}%</strong>
+              </td>
+              <td>
+                ${a.controlador ? '<span class="badge-status" style="background:var(--gold-bg); color:var(--gold); border:1px solid rgba(240,180,41,0.3); padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600;">Controlador</span>' : '<span style="color:var(--text-3); font-size:12px;">Acionista Relevante</span>'}
+              </td>
+            </tr>
+          `).join('');
+        } else {
+          shBody.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:var(--text-3);">Posição acionária detalhada não declarada no formulário FRE.</td></tr>';
+        }
+
+        // Renderiza Documentos
+        const docsList = document.getElementById('docs-list');
+        if (data.documentos && data.documentos.length > 0) {
+          docsList.innerHTML = data.documentos.map(d => `
+            <div class="doc-row">
+              <div>
+                <div>
+                  <span class="doc-tag">${d.categoria}</span>
+                  <span class="doc-date">${d.data} ${d.tipo ? '• ' + d.tipo : ''}</span>
+                </div>
+                <div class="doc-assunto">${d.assunto || 'Documento protocolado na CVM'}</div>
+              </div>
+              <a href="${d.url}" target="_blank" class="btn-cvm-link" style="white-space:nowrap; padding:6px 14px; font-size:12px;">
+                Baixar PDF Oficial ↗
+              </a>
+            </div>
+          `).join('');
+        } else {
+          docsList.innerHTML = '<div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:20px; text-align:center; color:var(--text-3);">Nenhum documento recente reportado no sistema IPE.</div>';
+        }
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('company-view').style.display = 'block';
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById('loading').innerHTML = `
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:30px; max-width:600px; margin:0 auto; text-align:center;">
+            <h3 style="color:var(--text); margin-bottom:10px;">Companhia Não Encontrada na Base Detalhada</h3>
+            <p style="color:var(--text-2); font-size:14px; margin-bottom:18px;">
+              Esta empresa está registrada na CVM, mas ainda não possui balanço auditado extraído ou seu CNPJ (${formatCNPJ(cnpj)}) está pendente de processamento.
+            </p>
+            <a href="consulta.html" class="btn-cvm-link" style="display:inline-block;">Voltar para Consulta</a>
+          </div>
+        `;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadCompanyDetails);
+  </script>
+</body>
+</html>

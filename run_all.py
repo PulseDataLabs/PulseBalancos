@@ -93,7 +93,15 @@ def main() -> int:
         summary = extractor.process_financial_year(doc_type=dt, year=args.year)
         summaries.append(summary)
 
-    # 3. Gera sumário de execução
+    # 3. Geração de relatórios e demonstrações detalhadas por empresa (DRE, BPA, BPP, Docs)
+    logger.info("Etapa 3: Gerando relatórios individuais por empresa em data/companies/...")
+    try:
+        from scripts.build_company_details import build_company_details
+        build_company_details(year=args.year)
+    except Exception as e:
+        logger.warning("Falha ao gerar demonstrações detalhadas por empresa: %s", e)
+
+    # 4. Gera sumário de execução
     generate_step_summary(summaries, Path("data/etl_summary.md"))
 
     logger.info("Execução finalizada com sucesso.")
