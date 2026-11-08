@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta de Companhias Abertas — PulseBalanços | PulseDataLabs</title>
+  <meta name="description" content="Busca interativa de companhias abertas brasileiras, tickers da B3 e dados cadastrais da CVM." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080c10;
+      --bg-2:      #0d1218;
+      --bg-3:      #141c26;
+      --surface:   #111822;
+      --surface-2: #16202c;
+      --border:    #1e2d3d;
+      --border-2:  #243444;
+      --accent:    #00d4ff;
+      --accent-bg: rgba(0, 212, 255, 0.08);
+      --green:     #00e5a0;
+      --green-bg:  rgba(0, 229, 160, 0.12);
+      --gold:      #f0b429;
+      --gold-bg:   rgba(240, 180, 41, 0.12);
+      --red:       #ff4d6d;
+      --red-bg:    rgba(255, 77, 109, 0.12);
+      --text:      #e8eef4;
+      --text-2:    #8fa3b8;
+      --text-3:    #5a7288;
+      --font-head: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #fff; }
+
+    /* ── Header ── */
+    header {
+      background: rgba(8, 12, 16, 0.95);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .nav-container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--accent), #0066ff);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800;
+      color: #000;
+      font-size: 16px;
+    }
+    .brand-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+    }
+    .brand-name span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .nav-link {
+      font-size: 14px;
+      color: var(--text-2);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+      background: var(--surface-2);
+    }
+
+    /* ── Main Container ── */
+    main {
+      flex: 1;
+      max-width: 1380px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px 60px;
+    }
+
+    .page-title {
+      font-family: var(--font-head);
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-subtitle {
+      color: var(--text-2);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* ── Filtros ── */
+    .filter-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .filter-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-3);
+    }
+    .filter-select, .filter-input {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+    }
+    .filter-select:focus, .filter-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-bg);
+    }
+
+    /* ── Tabela ── */
+    .table-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    table.dataTable {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      color: var(--text) !important;
+      background: transparent !important;
+    }
+    table.dataTable thead th {
+      background: var(--bg-2) !important;
+      color: var(--text-2) !important;
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+      border-bottom: 1px solid var(--border) !important;
+      padding: 12px 14px !important;
+      font-weight: 600 !important;
+    }
+    table.dataTable tbody td {
+      border-bottom: 1px solid var(--border) !important;
+      padding: 12px 14px !important;
+      font-size: 13px !important;
+      background: transparent !important;
+    }
+    table.dataTable tbody tr:hover td {
+      background: var(--surface-2) !important;
+    }
+
+    /* Badges */
+    .badge-ticker {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .badge-status {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-status.ativo {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid rgba(0, 229, 160, 0.3);
+    }
+    .badge-status.cancelada {
+      background: rgba(143, 163, 184, 0.1);
+      color: var(--text-3);
+      border: 1px solid var(--border);
+    }
+
+    .btn-detail {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-detail:hover {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    /* DataTables Custom Controls */
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+      color: var(--text-2) !important;
+      font-size: 13px !important;
+      margin-bottom: 14px;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      color: var(--text-2) !important;
+      border-radius: 4px !important;
+      border: 1px solid transparent !important;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      background: var(--accent) !important;
+      color: #000 !important;
+      border: 1px solid var(--accent) !important;
+      font-weight: 600;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      background: var(--surface-2) !important;
+      color: #fff !important;
+      border: 1px solid var(--border) !important;
+    }
+    .dt-buttons .dt-button {
+      background: var(--bg-2) !important;
+      color: var(--text) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 6px !important;
+      font-size: 12px !important;
+      padding: 6px 12px !important;
+    }
+
+    /* ── Modal Detalhes ── */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 20px;
+    }
+    .modal-card {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      max-width: 650px;
+      width: 100%;
+      padding: 28px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-2);
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .modal-title {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .modal-sub {
+      color: var(--text-2);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .modal-field {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+    .modal-field-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 600;
+    }
+    .modal-field-value {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: #fff;
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-logo">P</div>
+        <div class="brand-name">Pulse<span>Balanços</span></div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Início</a>
+        <a href="consulta.html" class="nav-link active">Consulta de Empresas</a>
+        <a href="https://github.com/PulseDataLabs/PulseBalancos" target="_blank" class="nav-link">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h1 class="page-title">
+      <span>🏢</span> Catálogo de Companhias Abertas
+    </h1>
+    <p class="page-subtitle">
+      Explore 2.532 empresas cadastradas na CVM com mapeamento de tickers na B3, auditoria e classificação setorial.
+    </p>
+
+    <!-- Painel de Filtros -->
+    <div class="filter-panel">
+      <div class="filter-group">
+        <label class="filter-label" for="filter-status">Situação CVM</label>
+        <select id="filter-status" class="filter-select">
+          <option value="ATIVO" selected>Apenas Ativas (650)</option>
+          <option value="">Todas (2.532)</option>
+          <option value="CANCELADA">Apenas Canceladas</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="filter-ticker">Listagem na Bolsa</label>
+        <select id="filter-ticker" class="filter-select">
+          <option value="">Todas as Empresas</option>
+          <option value="B3_ONLY">Apenas com Ticker B3 (394)</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="filter-uf">Estado (UF)</label>
+        <select id="filter-uf" class="filter-select">
+          <option value="">Todos os Estados</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="filter-setor">Setor de Atividade</label>
+        <select id="filter-setor" class="filter-select">
+          <option value="">Todos os Setores</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Tabela DataTables -->
+    <div class="table-container">
+      <table id="companies-table" class="display responsive nowrap" style="width:100%">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Razão Social</th>
+            <th>CNPJ</th>
+            <th>Código CVM</th>
+            <th>Setor CVM</th>
+            <th>UF</th>
+            <th>Cidade</th>
+            <th>Situação</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Carregado dinamicamente via JS -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Modal Detalhes -->
+  <div id="company-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modal-content">
+        <!-- Preenchido via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    PulseBalanços — Mantido pela equipe de engenharia da <a href="https://github.com/PulseDataLabs" target="_blank">PulseDataLabs</a>. Fonte: CVM / B3.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+  <script>
+    let rawCompanies = [];
+    let table = null;
+
+    // Formata CNPJ: 00.000.000/0001-00
+    function formatCNPJ(cnpj) {
+      if (!cnpj || cnpj.length !== 14) return cnpj || '-';
+      return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5");
+    }
+
+    async function loadCompanies() {
+      try {
+        const response = await fetch('./data/companies_catalog.json');
+        rawCompanies = await response.json();
+
+        populateFilters(rawCompanies);
+        initDataTable(rawCompanies);
+      } catch (err) {
+        console.error('Falha ao carregar catálogo de empresas:', err);
+      }
+    }
+
+    function populateFilters(data) {
+      const ufs = new Set();
+      const setores = new Set();
+
+      data.forEach(c => {
+        if (c.uf) ufs.add(c.uf);
+        if (c.setor_cvm) setores.add(c.setor_cvm);
+      });
+
+      const ufSelect = document.getElementById('filter-uf');
+      Array.from(ufs).sort().forEach(uf => {
+        const opt = document.createElement('option');
+        opt.value = uf;
+        opt.textContent = uf;
+        ufSelect.appendChild(opt);
+      });
+
+      const setorSelect = document.getElementById('filter-setor');
+      Array.from(setores).sort().forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = s;
+        setorSelect.appendChild(opt);
+      });
+    }
+
+    function initDataTable(data) {
+      table = $('#companies-table').DataTable({
+        data: data,
+        responsive: true,
+        pageLength: 25,
+        lengthMenu: [10, 25, 50, 100],
+        dom: 'Bfrtip',
+        buttons: [
+          { extend: 'copy', text: 'Copiar' },
+          { extend: 'csv', text: 'Exportar CSV' },
+          { extend: 'print', text: 'Imprimir' }
+        ],
+        columns: [
+          {
+            data: 'ticker_principal',
+            render: function(data) {
+              return data ? `<span class="badge-ticker">${data}</span>` : '<span style="color:var(--text-3);">-</span>';
+            }
+          },
+          {
+            data: 'razao_social',
+            render: function(data, type, row) {
+              const fantasia = row.nome_fantasia && row.nome_fantasia !== data ? `<div style="font-size:11px; color:var(--text-3);">${row.nome_fantasia}</div>` : '';
+              return `<strong>${data}</strong>${fantasia}`;
+            }
+          },
+          {
+            data: 'cnpj',
+            render: function(data) {
+              return `<span style="font-family:var(--font-mono); font-size:12px;">${formatCNPJ(data)}</span>`;
+            }
+          },
+          {
+            data: 'cd_cvm',
+            render: function(data) {
+              return `<span style="font-family:var(--font-mono); color:var(--text-2);">${data || '-'}</span>`;
+            }
+          },
+          { data: 'setor_cvm', defaultContent: '-' },
+          { data: 'uf', defaultContent: '-' },
+          { data: 'cidade', defaultContent: '-' },
+          {
+            data: 'situacao_cvm',
+            render: function(data) {
+              const isAtivo = data === 'ATIVO';
+              return `<span class="badge-status ${isAtivo ? 'ativo' : 'cancelada'}">${data}</span>`;
+            }
+          },
+          {
+            data: null,
+            orderable: false,
+            render: function(data, type, row) {
+              return `<button class="btn-detail" onclick="openModal('${row.cnpj}')">Detalhes</button>`;
+            }
+          }
+        ],
+        language: {
+          search: "Buscar Empresa:",
+          searchPlaceholder: "Ticker, Razão Social ou CNPJ...",
+          lengthMenu: "Mostrar _MENU_ por página",
+          info: "Exibindo _START_ a _END_ de _TOTAL_ empresas",
+          infoEmpty: "Nenhuma empresa encontrada",
+          paginate: {
+            first: "Primeira",
+            last: "Última",
+            next: "Próxima →",
+            previous: "← Anterior"
+          }
+        }
+      });
+
+      // Aplica filtro padrão de "Ativo"
+      applyFilters();
+
+      // Listeners de filtros
+      $('#filter-status, #filter-ticker, #filter-uf, #filter-setor').on('change', applyFilters);
+    }
+
+    function applyFilters() {
+      const status = $('#filter-status').val();
+      const onlyTicker = $('#filter-ticker').val() === 'B3_ONLY';
+      const uf = $('#filter-uf').val();
+      const setor = $('#filter-setor').val();
+
+      $.fn.dataTable.ext.search = [];
+
+      $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+        const row = rawCompanies[dataIndex];
+        if (!row) return true;
+
+        if (status && row.situacao_cvm !== status) return false;
+        if (onlyTicker && !row.ticker_principal) return false;
+        if (uf && row.uf !== uf) return false;
+        if (setor && row.setor_cvm !== setor) return false;
+
+        return true;
+      });
+
+      table.draw();
+    }
+
+    function openModal(cnpj) {
+      const comp = rawCompanies.find(c => c.cnpj === cnpj);
+      if (!comp) return;
+
+      const tickers = comp.tickers_list && comp.tickers_list.length > 0 ? comp.tickers_list.join(', ') : (comp.ticker_principal || 'Nenhum');
+      const cvmLink = comp.cd_cvm ? `https://rad.cvm.gov.br/ENET/consultaExterna/default.aspx?codigoCVM=${comp.cd_cvm}` : '#';
+
+      const content = `
+        <h2 class="modal-title">${comp.razao_social}</h2>
+        <div class="modal-sub">${comp.nome_fantasia || ''} • Sede: ${comp.cidade || '-'}/${comp.uf || '-'}</div>
+
+        <div class="modal-grid">
+          <div class="modal-field">
+            <div class="modal-field-label">CNPJ</div>
+            <div class="modal-field-value">${formatCNPJ(comp.cnpj)}</div>
+          </div>
+          <div class="modal-field">
+            <div class="modal-field-label">Código CVM</div>
+            <div class="modal-field-value">${comp.cd_cvm || '-'}</div>
+          </div>
+          <div class="modal-field">
+            <div class="modal-field-label">Tickers na B3</div>
+            <div class="modal-field-value" style="color:var(--accent);">${tickers}</div>
+          </div>
+          <div class="modal-field">
+            <div class="modal-field-label">Categoria de Registro</div>
+            <div class="modal-field-value">${comp.categoria_registro || '-'}</div>
+          </div>
+          <div class="modal-field">
+            <div class="modal-field-label">Setor CVM</div>
+            <div class="modal-field-value">${comp.setor_cvm || '-'}</div>
+          </div>
+          <div class="modal-field">
+            <div class="modal-field-label">Situação Cadastral</div>
+            <div class="modal-field-value" style="color:${comp.is_active ? 'var(--green)' : 'var(--text-3)'};">${comp.situacao_cvm}</div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div style="font-size:12px; color:var(--text-3);">
+            Auditor Independente: <strong>${comp.auditor || 'Não informado'}</strong>
+          </div>
+          <a href="${cvmLink}" target="_blank" class="btn-detail" style="background:var(--accent); color:#000; font-weight:600; padding:8px 16px;">
+            Ver Documentos na CVM ↗
+          </a>
+        </div>
+      `;
+
+      document.getElementById('modal-content').innerHTML = content;
+      document.getElementById('company-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('company-modal').style.display = 'none';
+    }
+
+    // Fecha ao clicar fora do card
+    window.onclick = function(event) {
+      const modal = document.getElementById('company-modal');
+      if (event.target === modal) closeModal();
+    };
+
+    // Inicia carregamento
+    document.addEventListener('DOMContentLoaded', loadCompanies);
+  </script>
+</body>
+</html>
