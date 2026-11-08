@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import abc
-import io
+import hashlib
 import json
 import logging
 from pathlib import Path
@@ -68,25 +68,37 @@ class BaseScraper(abc.ABC):
         except Exception as e:
             logger.warning("[%s] Falha ao salvar cache de HTTP: %s", self.name, e)
 
-    def download_in_memory(self, url: str) -> Tuple[Optional[bytes], bool]:
-        """Faz download em memória com suporte a ETag / If-Modified-Since."""
+    def download_in_memory(self, url: str, force: bool = False) -> Tuple[Optional[bytes], bool]:
+        """Faz download em memória com suporte a ETag / If-Modified-Since e cache local."""
+        raw_dir = self.cache_dir / "raw"
+        raw_dir.mkdir(parents=True, exist_ok=True)
+        url_hash = hashlib.md5(url.encode()).hexdigest()
+        raw_file = raw_dir / f"{url_hash}.bin"
+
         headers: Dict[str, str] = {}
         cached_info = self._http_cache.get(url, {})
 
-        if cached_info.get("etag"):
-            headers["If-None-Match"] = cached_info["etag"]
-        if cached_info.get("last_modified"):
-            headers["If-Modified-Since"] = cached_info["last_modified"]
+        if not force and raw_file.exists():
+            if cached_info.get("etag"):
+                headers["If-None-Match"] = cached_info["etag"]
+            if cached_info.get("last_modified"):
+                headers["If-Modified-Since"] = cached_info["last_modified"]
 
         try:
             resp = self.session.get(url, headers=headers, stream=True, timeout=self.timeout)
 
-            if resp.status_code == 304:
-                logger.info("[%s] HTTP 304 (Not Modified / Cache Hit): %s", self.name, url)
-                return None, True
+            if resp.status_code == 304 and raw_file.exists():
+                logger.info("[%s] HTTP 304 (Cache Hit): %s", self.name, url)
+                return raw_file.read_bytes(), True
 
             resp.raise_for_status()
             content = resp.content
+
+            # Persiste cópia temporária no cache local
+            try:
+                raw_file.write_bytes(content)
+            except Exception:
+                pass
 
             self._http_cache[url] = {
                 "etag": resp.headers.get("ETag"),
@@ -98,10 +110,12 @@ class BaseScraper(abc.ABC):
 
         except Exception as e:
             logger.error("[%s] Erro na requisição para %s: %s", self.name, url, e)
+            if raw_file.exists():
+                logger.info("[%s] Usando cópia local em cache após falha de rede.", self.name)
+                return raw_file.read_bytes(), True
             raise
 
     @abc.abstractmethod
     def extract_year(self, year: int) -> Iterator[UnifiedStatementRecord]:
         """Extrai todas as demonstrações contábeis do ano de exercício especificado."""
         pass
-

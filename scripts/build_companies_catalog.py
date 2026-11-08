@@ -20,6 +20,11 @@ import zipfile
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+# Garante que a raiz do projeto esteja no sys.path
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import polars as pl
 import requests
 
@@ -292,14 +297,57 @@ def build_companies_catalog(year: int = 2024, output_dir: Optional[Path] = None)
     # Ordena por atividade, patrimônio líquido ou receita
     df_final = df_final.sort(["is_active", "patrimonio_liquido", "razao_social"], descending=[True, True, False])
 
-    # 6. Exportação para Parquet e JSON
+    # 7. Mapeamento de Acionistas (FRE) e Documentos Oficiais Recentes (IPE)
+    from src.scrapers.cvm_shareholders import CVMShareholdersScraper
+    from src.scrapers.cvm_ipe_documents import CVMIPEDocumentsScraper
+    from collections import defaultdict
+
+    logger.info("Mapeando acionistas e governança corporativa via FRE...")
+    shareholders_by_cnpj = defaultdict(list)
+    seen_sh = defaultdict(set)
+    try:
+        fre = CVMShareholdersScraper()
+        for s in fre.extract_shareholders(year=2024):
+            if s.acionista and s.acionista.upper() not in ["OUTROS", "AÇÕES TESOURARIA", "ACOES EM TESOURARIA"]:
+                if s.acionista not in seen_sh[s.cnpj_companhia]:
+                    seen_sh[s.cnpj_companhia].add(s.acionista)
+                    shareholders_by_cnpj[s.cnpj_companhia].append({
+                        "nome": s.acionista,
+                        "percentual": round(s.percentual_total_acoes, 2),
+                        "controlador": s.is_controlador
+                    })
+    except Exception as e:
+        logger.warning("Falha ao processar acionistas: %s", e)
+
+    logger.info("Mapeando documentos e fatos relevantes recentes via IPE...")
+    docs_by_cnpj = defaultdict(list)
+    try:
+        ipe = CVMIPEDocumentsScraper()
+        for d in ipe.extract_year(year=2024):
+            if len(docs_by_cnpj[d.cnpj]) < 5:
+                docs_by_cnpj[d.cnpj].append({
+                    "data": d.data_entrega,
+                    "categoria": d.categoria,
+                    "tipo": d.tipo,
+                    "assunto": (d.assunto or d.especie or d.tipo)[:140],
+                    "url": d.url_download
+                })
+    except Exception as e:
+        logger.warning("Falha ao processar documentos IPE: %s", e)
+
+    # 8. Exportação para Parquet e JSON
     parquet_path = output_dir / "companies_catalog.parquet"
     json_path = output_dir / "companies_catalog.json"
 
     df_final.write_parquet(parquet_path)
 
-    # Converte para lista de dicionários para JSON
+    # Converte para lista de dicionários enriquecida com governança e documentos
     companies_dict = df_final.to_dicts()
+    for item in companies_dict:
+        cnpj_val = item["cnpj"]
+        item["acionistas"] = sorted(shareholders_by_cnpj.get(cnpj_val, []), key=lambda x: x["percentual"], reverse=True)[:5]
+        item["ultimos_documentos"] = docs_by_cnpj.get(cnpj_val, [])
+
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(companies_dict, f, ensure_ascii=False, indent=2, default=str)
 

@@ -11,9 +11,12 @@ ENV/
 
 # Data & Cache local
 data/raw/
+data/metadata/raw/
+data/metadata/*.bin
 data/*.zip
 data/*.csv
 !data/metadata/
+!data/metadata/*.json
 .pytest_cache/
 .ruff_cache/
 

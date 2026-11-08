@@ -108,3 +108,4 @@ class CVMIPEDocumentsScraper(BaseScraper):
                 versao=row["versao_int"],
                 url_download=str(row.get("Link_Download") or ""),
             )
+

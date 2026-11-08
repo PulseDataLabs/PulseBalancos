@@ -334,15 +334,118 @@
       z-index: 999;
       padding: 20px;
     }
+    /* Modal Tabs */
     .modal-card {
       background: var(--surface);
       border: 1px solid var(--border-2);
       border-radius: 12px;
-      max-width: 700px;
+      max-width: 780px;
       width: 100%;
-      padding: 28px;
+      padding: 24px;
       position: relative;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-body {
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .modal-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      padding-bottom: 2px;
+      overflow-x: auto;
+    }
+    .modal-tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-2);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .modal-tab-btn:hover {
+      color: #fff;
+    }
+    .modal-tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Tabela de Acionistas */
+    .shareholders-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .shareholders-table th {
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .shareholders-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .progress-bar-bg {
+      background: var(--bg-2);
+      border-radius: 4px;
+      height: 6px;
+      width: 100px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .progress-bar-fill {
+      background: var(--accent);
+      height: 100%;
+    }
+
+    /* Lista de Documentos */
+    .doc-item {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .doc-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .doc-cat {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .doc-title {
+      font-size: 13px;
+      color: #fff;
+      margin-top: 2px;
     }
     .modal-close {
       position: absolute;
@@ -713,6 +816,13 @@
       table.draw();
     }
 
+    function switchModalTab(tabId) {
+      $('.modal-tab-btn').removeClass('active');
+      $('.tab-content').removeClass('active');
+      $(`.modal-tab-btn[data-tab="${tabId}"]`).addClass('active');
+      $(`#tab-${tabId}`).addClass('active');
+    }
+
     function openModal(cnpj) {
       const comp = rawCompanies.find(c => c.cnpj === cnpj);
       if (!comp) return;
@@ -720,57 +830,185 @@
       const tickers = comp.tickers_list && comp.tickers_list.length > 0 ? comp.tickers_list.join(', ') : (comp.ticker_principal || 'Nenhum');
       const cvmLink = comp.cd_cvm ? `https://rad.cvm.gov.br/ENET/consultaExterna/default.aspx?codigoCVM=${comp.cd_cvm}` : 'https://dados.cvm.gov.br';
 
+      // Métricas derivadas
+      const margemLiq = (comp.receita_liquida && comp.receita_liquida > 0 && comp.lucro_liquido !== null) 
+        ? ((comp.lucro_liquido / comp.receita_liquida) * 100).toFixed(1).replace('.', ',') + '%' 
+        : '-';
+      const roe = (comp.patrimonio_liquido && comp.patrimonio_liquido > 0 && comp.lucro_liquido !== null)
+        ? ((comp.lucro_liquido / comp.patrimonio_liquido) * 100).toFixed(1).replace('.', ',') + '%'
+        : '-';
+
+      // HTML da Aba de Acionistas
+      let acionistasHtml = '';
+      if (comp.acionistas && comp.acionistas.length > 0) {
+        acionistasHtml = `
+          <table class="shareholders-table">
+            <thead>
+              <tr>
+                <th>Acionista</th>
+                <th style="text-align:right;">Participação</th>
+                <th>Papel</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${comp.acionistas.map(a => `
+                <tr>
+                  <td><strong>${a.nome}</strong></td>
+                  <td style="text-align:right; font-family:var(--font-mono); white-space:nowrap;">
+                    <span class="progress-bar-bg"><span class="progress-bar-fill" style="width:${Math.min(a.percentual, 100)}%;"></span></span>
+                    <strong>${a.percentual.toFixed(1).replace('.', ',')}%</strong>
+                  </td>
+                  <td>
+                    ${a.controlador ? '<span class="badge-status" style="background:var(--gold-bg); color:var(--gold); border:1px solid rgba(240,180,41,0.3);">Controlador</span>' : '<span style="color:var(--text-3); font-size:11px;">Relevante (>5%)</span>'}
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      } else {
+        acionistasHtml = `
+          <div style="padding:24px; text-align:center; color:var(--text-3); font-size:13px;">
+            Estrutura acionária detalhada não reportada ou empresa fechada sem formulário FRE no exercício.
+          </div>
+        `;
+      }
+
+      // HTML da Aba de Documentos CVM (IPE)
+      let docsHtml = '';
+      if (comp.ultimos_documentos && comp.ultimos_documentos.length > 0) {
+        docsHtml = comp.ultimos_documentos.map(d => `
+          <div class="doc-item">
+            <div>
+              <div class="doc-date">${d.data} • <span class="doc-cat">${d.categoria}</span> ${d.tipo ? '(' + d.tipo + ')' : ''}</div>
+              <div class="doc-title">${d.assunto || 'Documento protocolado na CVM'}</div>
+            </div>
+            <a href="${d.url}" target="_blank" class="btn-action-view" style="white-space:nowrap; padding:6px 12px; font-size:11px;">
+              Baixar PDF ↗
+            </a>
+          </div>
+        `).join('');
+      } else {
+        docsHtml = `
+          <div style="padding:24px; text-align:center; color:var(--text-3); font-size:13px;">
+            Nenhum documento recente reportado no sistema IPE ou emissor sem publicações no exercício.
+          </div>
+        `;
+      }
+
       const content = `
-        <h2 style="font-family:var(--font-head); font-size:22px; font-weight:700; color:#fff; margin-bottom:4px;">
-          ${comp.razao_social}
-        </h2>
-        <div style="color:var(--text-2); font-size:13px; margin-bottom:20px;">
-          ${comp.nome_fantasia ? comp.nome_fantasia + ' • ' : ''}Sede: ${comp.cidade || '-'}/${comp.uf || '-'}
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:24px;">
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
-            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">CNPJ Oficial</div>
-            <div style="font-family:var(--font-mono); font-size:14px; color:#fff; margin-top:2px;">${formatCNPJ(comp.cnpj)}</div>
-          </div>
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
-            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Código CVM / Tickers</div>
-            <div style="font-family:var(--font-mono); font-size:14px; color:var(--accent); margin-top:2px;">
-              ${comp.cd_cvm ? comp.cd_cvm + ' • ' : ''}${tickers}
-            </div>
-          </div>
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
-            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Patrimônio Líquido (Auditado)</div>
-            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:#fff; margin-top:2px;">
-              ${formatFullBRL(comp.patrimonio_liquido)}
-            </div>
-          </div>
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
-            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Receita Líquida (Exercício)</div>
-            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:#fff; margin-top:2px;">
-              ${formatFullBRL(comp.receita_liquida)}
-            </div>
-          </div>
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
-            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Lucro Líquido</div>
-            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:${comp.lucro_liquido >= 0 ? 'var(--green)' : 'var(--red)'}; margin-top:2px;">
-              ${formatFullBRL(comp.lucro_liquido)}
-            </div>
-          </div>
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
-            <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Ativo Total</div>
-            <div style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:#fff; margin-top:2px;">
-              ${formatFullBRL(comp.ativo_total)}
-            </div>
+        <div style="margin-bottom:16px;">
+          <h2 style="font-family:var(--font-head); font-size:20px; font-weight:700; color:#fff; margin-bottom:4px;">
+            ${comp.razao_social}
+          </h2>
+          <div style="color:var(--text-2); font-size:13px;">
+            ${comp.ticker_principal ? '<span class="badge-ticker">' + comp.ticker_principal + '</span> ' : ''}
+            ${comp.nome_fantasia ? comp.nome_fantasia + ' • ' : ''}Sede: ${comp.cidade || '-'}/${comp.uf || '-'}
           </div>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px solid var(--border); padding-top:16px;">
-          <div style="font-size:12px; color:var(--text-3);">
-            Auditor: <strong>${comp.auditor || 'Auditor Independente CVM'}</strong>
+        <!-- Abas de Navegação -->
+        <div class="modal-tabs">
+          <button class="modal-tab-btn active" data-tab="balanco" onclick="switchModalTab('balanco')">📊 Balanço & DRE</button>
+          <button class="modal-tab-btn" data-tab="acionistas" onclick="switchModalTab('acionistas')">👥 Acionistas & Governança</button>
+          <button class="modal-tab-btn" data-tab="docs" onclick="switchModalTab('docs')">📑 Fatos Relevantes & Docs (${comp.ultimos_documentos ? comp.ultimos_documentos.length : 0})</button>
+          <button class="modal-tab-btn" data-tab="cadastro" onclick="switchModalTab('cadastro')">🏛️ Cadastro & Auditor</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- 1. Aba Balanço -->
+          <div id="tab-balanco" class="tab-content active">
+            <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:16px;">
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Patrimônio Líquido</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#fff; margin-top:2px;">
+                  ${formatFullBRL(comp.patrimonio_liquido)}
+                </div>
+              </div>
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Receita Líquida (${comp.ano_balanco_recente || '2023'})</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#fff; margin-top:2px;">
+                  ${formatFullBRL(comp.receita_liquida)}
+                </div>
+              </div>
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Lucro Líquido</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:${comp.lucro_liquido >= 0 ? 'var(--green)' : 'var(--red)'}; margin-top:2px;">
+                  ${formatFullBRL(comp.lucro_liquido)}
+                </div>
+              </div>
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Ativo Total</div>
+                <div style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#fff; margin-top:2px;">
+                  ${formatFullBRL(comp.ativo_total)}
+                </div>
+              </div>
+            </div>
+
+            <!-- Indicadores Derivados -->
+            <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:16px;">
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Margem Líquida</div>
+                <div style="font-family:var(--font-mono); font-size:15px; font-weight:600; color:var(--accent); margin-top:2px;">
+                  ${margemLiq}
+                </div>
+              </div>
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">ROE (Retorno s/ PL)</div>
+                <div style="font-family:var(--font-mono); font-size:15px; font-weight:600; color:var(--accent); margin-top:2px;">
+                  ${roe}
+                </div>
+              </div>
+            </div>
           </div>
-          <a href="${cvmLink}" target="_blank" class="btn-action-view" style="background:var(--accent); color:#000; font-weight:600; padding:8px 18px;">
-            Ver Documento Oficial na CVM ↗
+
+          <!-- 2. Aba Acionistas -->
+          <div id="tab-acionistas" class="tab-content">
+            <div style="font-size:12px; color:var(--text-2); margin-bottom:12px;">
+              Posição acionária dos controladores e acionistas relevantes (> 5%) declarados à CVM (Formulário FRE):
+            </div>
+            ${acionistasHtml}
+          </div>
+
+          <!-- 3. Aba Documentos -->
+          <div id="tab-docs" class="tab-content">
+            <div style="font-size:12px; color:var(--text-2); margin-bottom:12px;">
+              Publicações oficiais e fatos relevantes protocolados no sistema IPE da CVM:
+            </div>
+            ${docsHtml}
+          </div>
+
+          <!-- 4. Aba Cadastro -->
+          <div id="tab-cadastro" class="tab-content">
+            <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:16px;">
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">CNPJ Oficial</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:#fff; margin-top:2px;">${formatCNPJ(comp.cnpj)}</div>
+              </div>
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Código CVM / Tickers</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:var(--accent); margin-top:2px;">
+                  ${comp.cd_cvm ? comp.cd_cvm + ' • ' : ''}${tickers}
+                </div>
+              </div>
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Setor CVM</div>
+                <div style="font-size:13px; color:#fff; margin-top:2px;">${comp.setor_cvm || '-'}</div>
+              </div>
+              <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:6px; padding:10px 14px;">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--text-3); font-weight:600;">Auditor Independente</div>
+                <div style="font-size:12px; color:#fff; margin-top:2px;">${comp.auditor || 'Não informado'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px solid var(--border); padding-top:14px; margin-top:10px;">
+          <div style="font-size:11px; color:var(--text-3);">
+            Fonte oficial auditada: CVM / B3
+          </div>
+          <a href="${cvmLink}" target="_blank" class="btn-action-view" style="background:var(--accent); color:#000; font-weight:600; padding:8px 16px;">
+            Ver Documentos Oficiais na CVM ↗
           </a>
         </div>
       `;

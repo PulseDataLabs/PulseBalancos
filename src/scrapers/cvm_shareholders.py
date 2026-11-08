@@ -156,3 +156,4 @@ class CVMShareholdersScraper(BaseScraper):
 
     def extract_year(self, year: int) -> Iterator[Any]:
         yield from self.extract_shareholders(year)
+

@@ -111,3 +111,4 @@ class CVMFIIScraper(BaseScraper):
 
     def extract_year(self, year: int) -> Iterator[Any]:
         yield from self.extract_fii_summaries(year)
+
