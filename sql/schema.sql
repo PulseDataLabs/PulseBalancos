@@ -1,5 +1,5 @@
 -- ==============================================================================
--- PulseDataLabs - PulseFinancials
+-- PulseDataLabs - PulseBalanços
 -- DDL PostgreSQL Completo: Demonstrações Contábeis, Séries Históricas e Rankings
 -- Modelagem equivalente às funcionalidades e consultas públicas do Balanços.AI
 -- ==============================================================================

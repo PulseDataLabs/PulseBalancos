@@ -1,4 +1,4 @@
-"""PulseFinancials - Camada de Endpoints da API REST."""
+"""PulseBalanços - Camada de Endpoints da API REST."""
 
 from .routes import router
 

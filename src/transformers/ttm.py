@@ -16,7 +16,7 @@ from typing import Dict, List, Optional
 
 import polars as pl
 
-logger = logging.getLogger("pulsefinancials.transformers.ttm")
+logger = logging.getLogger("pulsebalancos.transformers.ttm")
 
 
 # Mapeamento padrão de rubricas CVM (IFRS)

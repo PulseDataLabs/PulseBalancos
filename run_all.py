@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PulseFinancials - Orquestrador Central de Execução (Run All).
+"""PulseBalanços - Orquestrador Central de Execução (Run All).
 
 Pipeline unificado para ingestão, saneamento e carga de demonstrações financeiras
 da CVM (DFP/ITR) e indicadores fundamentalistas.
@@ -20,12 +20,12 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-logger = logging.getLogger("pulsefinancials.orchestrator")
+logger = logging.getLogger("pulsebalancos.orchestrator")
 
 
 def parse_args() -> argparse.Namespace:
     current_year = datetime.datetime.now().year
-    parser = argparse.ArgumentParser(description="PulseFinancials - ETL Pipeline CVM")
+    parser = argparse.ArgumentParser(description="PulseBalanços - ETL Pipeline CVM")
     parser.add_argument(
         "--year",
         type=int,
@@ -51,7 +51,7 @@ def generate_step_summary(summaries: list, output_path: Path) -> None:
     """Gera sumário em Markdown para publicação no GitHub Actions."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        "# 🚀 PulseFinancials - Sumário de Execução ETL CVM",
+        "# 🚀 PulseBalanços - Sumário de Execução ETL CVM",
         f"**Data da Execução:** {datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')} (BRT)\n",
         "| Documento | Ano | Status | Cache Hit | Demonstrações Extraídas | Total Registros |",
         "|:---|:---:|:---:|:---:|:---|:---:|",
@@ -70,7 +70,7 @@ def generate_step_summary(summaries: list, output_path: Path) -> None:
 
 def main() -> int:
     args = parse_args()
-    logger.info("Iniciando PulseFinancials ETL - Ano: %s | Tipo: %s", args.year, args.doc_type)
+    logger.info("Iniciando PulseBalanços ETL - Ano: %s | Tipo: %s", args.year, args.doc_type)
 
     extractor = CVMExtractor()
     if args.force:

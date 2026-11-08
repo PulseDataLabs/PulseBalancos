@@ -1,4 +1,4 @@
-"""Rotas e Endpoints da API Pública do PulseFinancials.
+"""Rotas e Endpoints da API Pública do PulseBalanços.
 
 Espelha 100% das consultas, navegações e rankings do Balanços.AI:
 - Busca instantânea (Nome, CNPJ, Ticker)
@@ -14,7 +14,7 @@ from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 
-router = APIRouter(prefix="/api/v1", tags=["PulseFinancials Public API"])
+router = APIRouter(prefix="/api/v1", tags=["PulseBalanços Public API"])
 
 
 # -----------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-"""PulseFinancials - Módulo de Transformações e Cálculos Contábeis."""
+"""PulseBalanços - Módulo de Transformações e Cálculos Contábeis."""
 
 from .ttm import FinancialMetricsTransformer
 

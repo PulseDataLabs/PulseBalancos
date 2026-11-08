@@ -25,7 +25,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 # Configuração de Logger estruturado
-logger = logging.getLogger("pulsefinancials.extractors.cvm")
+logger = logging.getLogger("pulsebalancos.extractors.cvm")
 
 
 @dataclass

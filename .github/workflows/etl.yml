@@ -1,4 +1,4 @@
-name: PulseFinancials - Ingestão e Processamento CVM
+name: PulseBalanços - Ingestão e Processamento CVM
 
 on:
   schedule:
@@ -32,7 +32,7 @@ on:
         type: boolean
 
 concurrency:
-  group: pulsefinancials-etl
+  group: pulsebalancos-etl
   cancel-in-progress: false
 
 jobs:
@@ -66,9 +66,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data/metadata
-          key: pulsefinancials-metadata-cache-${{ hashFiles('data/metadata/http_cache_metadata.json') }}
+          key: pulsebalancos-metadata-cache-${{ hashFiles('data/metadata/http_cache_metadata.json') }}
           restore-keys: |
-            pulsefinancials-metadata-cache-
+            pulsebalancos-metadata-cache-
 
       - name: Executar Pipeline de Extração e Carga
         env:

@@ -1,4 +1,4 @@
-"""PulseFinancials - Ingestores e Extratores de Dados da CVM e B3."""
+"""PulseBalanços - Ingestores e Extratores de Dados da CVM e B3."""
 
 from .cvm import CVMExtractor
 
