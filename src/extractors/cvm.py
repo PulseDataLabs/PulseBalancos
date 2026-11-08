@@ -59,8 +59,8 @@ class CVMExtractor:
     BASE_URL_CAD = "https://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/DADOS/cad_cia_aberta.csv"
     BASE_URL_FCA = "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FCA/DADOS/fca_cia_aberta_{year}.zip"
 
-    # Demonstrações financeiras padrão
-    STATEMENTS = ("BPA", "BPP", "DRE", "DFC_MD", "DFC_MI")
+    # Demonstrações financeiras padrão (incluindo DVA - Demonstração do Valor Adicionado)
+    STATEMENTS = ("BPA", "BPP", "DRE", "DFC_MD", "DFC_MI", "DVA")
 
     def __init__(
         self,
@@ -406,3 +406,4 @@ class CVMExtractor:
             summary.status = "ERROR"
             summary.error_message = str(e)
             return summary
+
