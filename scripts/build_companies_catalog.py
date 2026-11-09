@@ -122,7 +122,14 @@ def _fetch_dfp_metrics_single_year(session: requests.Session, year: int) -> pl.D
                 if not matching:
                     return None
                 with zf.open(matching[0]) as f:
-                    df = pl.read_csv(io.BytesIO(f.read()), separator=";", encoding="iso-8859-1", ignore_errors=True)
+                    df = pl.read_csv(
+                        io.BytesIO(f.read()),
+                        separator=";",
+                        encoding="iso-8859-1",
+                        quote_char=None,
+                        truncate_ragged_lines=True,
+                        ignore_errors=True,
+                    )
                 df = df.rename({c: c.strip().upper() for c in df.columns})
                 if "ORDEM_EXERC" in df.columns:
                     df = df.filter(pl.col("ORDEM_EXERC").str.strip_chars().str.to_uppercase() == "ÚLTIMO")

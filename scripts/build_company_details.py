@@ -52,7 +52,14 @@ def download_bytes(url: str) -> bytes:
 
 def parse_statement_csv(zf: zipfile.ZipFile, csv_filename: str) -> pl.DataFrame:
     with zf.open(csv_filename) as f:
-        df = pl.read_csv(io.BytesIO(f.read()), separator=";", encoding="iso-8859-1", ignore_errors=True)
+        df = pl.read_csv(
+            io.BytesIO(f.read()),
+            separator=";",
+            encoding="iso-8859-1",
+            quote_char=None,
+            truncate_ragged_lines=True,
+            ignore_errors=True,
+        )
     df = df.rename({c: c.strip().upper() for c in df.columns})
     if "ORDEM_EXERC" in df.columns:
         df = df.filter(pl.col("ORDEM_EXERC").str.strip_chars().str.to_uppercase() == "ÚLTIMO")
@@ -76,7 +83,8 @@ def parse_statement_csv(zf: zipfile.ZipFile, csv_filename: str) -> pl.DataFrame:
 
 def build_company_details(output_dir: Optional[Path] = None, years: Optional[List[int]] = None) -> int:
     if years is None:
-        years = [2022, 2023, 2024, 2025]
+        # Série histórica completa desde a adoção das normas internacionais IFRS pela CVM (2010 a 2025)
+        years = list(range(2010, 2026))
 
     output_dir = Path(output_dir or Path("data/companies"))
     output_dir.mkdir(parents=True, exist_ok=True)

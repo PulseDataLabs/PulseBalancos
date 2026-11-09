@@ -362,6 +362,27 @@
       height: 100%;
     }
 
+    .pill-range-btn {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pill-range-btn:hover {
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .pill-range-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
     footer {
       background: var(--bg-2);
       border-top: 1px solid var(--border);
@@ -462,8 +483,15 @@
       <!-- 1. DRE -->
       <div id="tab-dre" class="tab-pane active">
         <div class="statement-table-card">
-          <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
-            Demonstração do Resultado Consolidada (DRE) • Série histórica auditada com Análise Horizontal (Var YoY) e Vertical (% da Receita Líquida):
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+            <div style="font-size:13px; color:var(--text-2);">
+              Demonstração do Resultado Consolidada (DRE) • Série histórica auditada (2010 a 2025):
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="pill-range-btn active" data-range="5" onclick="setYearsRange(5)">Últimos 5 Anos</button>
+              <button class="pill-range-btn" data-range="10" onclick="setYearsRange(10)">10 Anos</button>
+              <button class="pill-range-btn" data-range="ALL" onclick="setYearsRange('ALL')">Histórico Completo (2010-2025)</button>
+            </div>
           </div>
           <table class="statement-table">
             <thead id="dre-head"></thead>
@@ -475,8 +503,15 @@
       <!-- 2. BPA (Ativo) -->
       <div id="tab-bpa" class="tab-pane">
         <div class="statement-table-card">
-          <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
-            Balanço Patrimonial Ativo (BPA) • Estrutura de Bens e Direitos com Análise Vertical (% do Ativo Total):
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+            <div style="font-size:13px; color:var(--text-2);">
+              Balanço Patrimonial Ativo (BPA) • Estrutura de Bens e Direitos:
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="pill-range-btn active" data-range="5" onclick="setYearsRange(5)">Últimos 5 Anos</button>
+              <button class="pill-range-btn" data-range="10" onclick="setYearsRange(10)">10 Anos</button>
+              <button class="pill-range-btn" data-range="ALL" onclick="setYearsRange('ALL')">Histórico Completo (2010-2025)</button>
+            </div>
           </div>
           <table class="statement-table">
             <thead id="bpa-head"></thead>
@@ -488,8 +523,15 @@
       <!-- 3. BPP (Passivo) -->
       <div id="tab-bpp" class="tab-pane">
         <div class="statement-table-card">
-          <div style="margin-bottom:14px; font-size:13px; color:var(--text-2);">
-            Balanço Patrimonial Passivo e Patrimônio Líquido (BPP) • Obrigações e Capital Social:
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+            <div style="font-size:13px; color:var(--text-2);">
+              Balanço Patrimonial Passivo e Patrimônio Líquido (BPP) • Obrigações e Capital Social:
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="pill-range-btn active" data-range="5" onclick="setYearsRange(5)">Últimos 5 Anos</button>
+              <button class="pill-range-btn" data-range="10" onclick="setYearsRange(10)">10 Anos</button>
+              <button class="pill-range-btn" data-range="ALL" onclick="setYearsRange('ALL')">Histórico Completo (2010-2025)</button>
+            </div>
           </div>
           <table class="statement-table">
             <thead id="bpp-head"></thead>
@@ -560,6 +602,35 @@
 
       event.target.classList.add('active');
       document.getElementById(`tab-${tabName}`).classList.add('active');
+    }
+
+    let companyData = null;
+    let currentYearsRange = 5;
+
+    function setYearsRange(range) {
+      currentYearsRange = range;
+      document.querySelectorAll('.pill-range-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-range') == String(range));
+      });
+      renderAllStatements();
+    }
+
+    function getVisibleYears() {
+      if (!companyData || !companyData.anos_disponiveis || companyData.anos_disponiveis.length === 0) {
+        return [companyData ? companyData.ano_balanco_recente || 2025 : 2025];
+      }
+      const allYears = companyData.anos_disponiveis;
+      if (currentYearsRange === 'ALL') return allYears;
+      const count = parseInt(currentYearsRange, 10) || 5;
+      return allYears.slice(-count);
+    }
+
+    function renderAllStatements() {
+      if (!companyData) return;
+      const years = getVisibleYears();
+      renderStatementTable(companyData.dre, 'dre-head', 'dre-body', years, 'Receita');
+      renderStatementTable(companyData.bpa, 'bpa-head', 'bpa-body', years, 'Ativo');
+      renderStatementTable(companyData.bpp, 'bpp-head', 'bpp-body', years, 'Passivo');
     }
 
     function renderStatementTable(accounts, theadId, tbodyId, years, avBasisLabel) {
@@ -697,13 +768,8 @@
         }
 
         // Renderiza DRE, BPA, BPP com série histórica multi-ano
-        const years = data.anos_disponiveis && data.anos_disponiveis.length > 0
-          ? data.anos_disponiveis
-          : [data.ano_balanco_recente || 2025];
-
-        renderStatementTable(data.dre, 'dre-head', 'dre-body', years, 'Receita');
-        renderStatementTable(data.bpa, 'bpa-head', 'bpa-body', years, 'Ativo');
-        renderStatementTable(data.bpp, 'bpp-head', 'bpp-body', years, 'Passivo');
+        companyData = data;
+        renderAllStatements();
 
         // Renderiza Acionistas
         const shBody = document.getElementById('acionistas-body');

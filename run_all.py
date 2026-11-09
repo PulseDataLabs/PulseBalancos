@@ -88,11 +88,11 @@ def main() -> int:
     except Exception as e:
         logger.warning("Falha ao atualizar feed de publicações recentes: %s", e)
 
-    # 3. Geração de relatórios e demonstrações detalhadas com histórico multi-ano (2022-2025)
-    logger.info("Etapa 3: Gerando relatórios individuais com série histórica multi-ano em data/companies/...")
+    # 3. Geração de relatórios e demonstrações detalhadas com histórico completo IFRS (2010 a 2025)
+    logger.info("Etapa 3: Gerando relatórios individuais com série histórica completa (2010-2025) em data/companies/...")
     try:
         from scripts.build_company_details import build_company_details
-        build_company_details(years=[2022, 2023, 2024, 2025])
+        build_company_details(years=list(range(2010, 2026)))
     except Exception as e:
         logger.warning("Falha ao gerar demonstrações detalhadas por empresa: %s", e)
 
